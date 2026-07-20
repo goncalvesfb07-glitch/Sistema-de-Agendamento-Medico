@@ -39,4 +39,9 @@ if (!isset($_SESSION["id"])) {
     <a href="logout.php">Sair</a>
 
 </body>
+<?php
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
+?>
 </html>
