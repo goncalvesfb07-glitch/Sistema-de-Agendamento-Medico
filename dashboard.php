@@ -41,7 +41,6 @@ if (!isset($_SESSION["id"])) {
 </body>
 <?php
 echo "<pre>";
-print_r($_SESSION);
 echo "</pre>";
 ?>
 </html>
