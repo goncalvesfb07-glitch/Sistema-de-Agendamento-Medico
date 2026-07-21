@@ -31,7 +31,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
     <div class="right">
 
-        <form id="loginForm">
+        <form id="loginForm" action="login.php" method="POST">
 
             <h2>Login</h2>
 
@@ -40,10 +40,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
                 <i class="fa-solid fa-user"></i>
 
                 <input
-                type="text"
-                placeholder="Usuário"
+                type="email"
+                name="email"
+                placeholder="E-mail"
                 required>
-
             </div>
 
             <div class="inputBox">
@@ -52,28 +52,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
                 <input
                 type="password"
+                name="senha"
                 placeholder="Senha"
                 required>
-
             </div>
 
-            <select id="perfil">
-
-                <option value="">Selecione o Perfil</option>
-
-                <option value="medico">
-                    Médico
-                </option>
-
-                <option value="recepcionista">
-                    Recepcionista
-                </option>
-
-                <option value="paciente">
-                    Paciente
-                </option>
-
-            </select>
+ 
 
             <button type="submit">
                 Entrar

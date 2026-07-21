@@ -22,59 +22,94 @@ if (isset($_SESSION["id"])) {
     header("Location: dashboard.php");
     exit;
 }
-
 ?>
-
-<!-- layout temporario para teste -->
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <title>Login - Sistema de Agendamento</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de Agendamento Médico</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
 
-<h1>Login</h1>
+<div class="container">
 
-<!-- nao apague a linha abaixo codigo de apresentação de erro -->
+    <div class="left">
 
-<?php
-if (isset($_SESSION["erro"])) {
+        <div class="logo">
+            <i class="fa-solid fa-hospital"></i>
+        </div>
 
-    echo "<p style='color:red'>" . $_SESSION["erro"] . "</p>";
+        <h1>Clínica Vida+</h1>
 
-    unset($_SESSION["erro"]);
+        <p>
+            Sistema de Agendamento Médico
+        </p>
 
-}
+    </div>
 
-?>
+    <div class="right">
 
-<!-- layout temporario para teste -->
-<form action="login.php" method="POST">
+        <form id="loginForm" action="login.php" method="POST">
 
-    <label>E-mail:</label><br>
-    <input type="email" name="email" required>
+            <h2>Login</h2>
 
-    <br><br>
+            <?php
+            if (isset($_SESSION["erro"])) {
+                echo "<p style='color:red; text-align:center; margin-bottom:15px;'>"
+                    . $_SESSION["erro"] .
+                    "</p>";
 
+                unset($_SESSION["erro"]);
+            }
+            ?>
 
-    <label>Senha:</label><br>
-    <input type="password" name="senha" required>
+            <div class="inputBox">
 
+                <i class="fa-solid fa-envelope"></i>
 
-    <br><br>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="E-mail"
+                    required>
 
+            </div>
 
-    <button type="submit">
-        Entrar
-    </button>
+            <div class="inputBox">
 
+                <i class="fa-solid fa-lock"></i>
 
-</form>
+                <input
+                    type="password"
+                    name="senha"
+                    placeholder="Senha"
+                    required>
 
+            </div>
+
+            <button type="submit">
+                Entrar
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="assets/js/script.js"></script>
 
 </body>
 
