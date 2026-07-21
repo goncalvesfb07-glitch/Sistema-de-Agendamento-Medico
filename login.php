@@ -15,7 +15,7 @@ $senha = $_POST["senha"];
 
 $sql = "SELECT * FROM usuarios Where email = ?";
 
-$stmt = $conexao->prepare($sql);
+$stmt = $conn->prepare($sql);
 
 $stmt->bind_param("s", $email);
 

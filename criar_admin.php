@@ -10,7 +10,7 @@ $perfil = "Administrador";
 $sql = "INSERT INTO usuarios (nome, email, senha, perfil)
         VALUES (?, ?, ?, ?)";
 
-$stmt = $conexao->prepare($sql);
+$stmt = $conn->prepare($sql);
 
 $stmt->bind_param(
     "ssss",
@@ -31,6 +31,6 @@ if ($stmt->execute()) {
 }
 
 $stmt->close();
-$conexao->close();
+$conn->close();
 
 ?>
