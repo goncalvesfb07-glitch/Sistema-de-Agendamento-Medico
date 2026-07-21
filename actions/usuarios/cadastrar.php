@@ -12,7 +12,7 @@
 */
 
 
-require_once "../../includes/conexao.php";
+require_once "../../config/conexao.php";
 
 
 // Recebendo dados do formulário
