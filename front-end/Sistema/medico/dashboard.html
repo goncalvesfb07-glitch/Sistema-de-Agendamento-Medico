@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard Médico</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-hospital"></i>
+
+        <h2>Vida+</h2>
+
+    </div>
+
+    <ul>
+
+        <li class="active" onclick="window.location.href='dashboard.html'">
+
+            <i class="fa-solid fa-house"></i>
+        
+            Dashboard
+        
+        </li>
+        
+        <li onclick="window.location.href='agenda.html'">
+            <i class="fa-solid fa-calendar-days"></i>
+            Agenda
+        </li>
+        
+        <li onclick="window.location.href='pacientes.html'">
+           
+            <i class="fa-solid fa-users"></i>
+          
+            Pacientes
+        
+        </li>
+        
+        <li onclick="window.location.href='prontuarios.html'">
+           
+            <i class="fa-solid fa-file-medical"></i>
+           
+            Prontuários
+       
+        </li>
+        
+        <li onclick="window.location.href='historico.html'">
+          
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          
+            Histórico
+       
+        </li>
+        
+        <li onclick="window.location.href='perfil.html'">
+          
+            <i class="fa-solid fa-user-doctor"></i>
+          
+            Perfil
+       
+        </li>
+        
+        <li onclick="window.location.href='../login.html'">
+          
+            <i class="fa-solid fa-right-from-bracket"></i>
+           
+            Sair
+        
+        </li>
+        
+        </ul>
+
+</div>
+
+
+
+<div class="main">
+
+<header>
+
+<div>
+
+<h1 id="nomeMedico">
+
+Dr. Leozinho Amaral
+
+</h1>
+
+<p>
+
+Engenharias
+
+</p>
+
+</div>
+
+<div class="relogio">
+
+<h2 id="hora"></h2>
+
+<span id="data"></span>
+
+</div>
+
+</header>
+
+
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+<h2 id="consultasHoje">12</h2>
+
+<p>Consultas Hoje</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-user-clock"></i>
+
+<h2 id="proximoPaciente">
+
+Maria Oliveira
+
+</h2>
+
+<p>Próximo Paciente</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-hourglass-half"></i>
+
+<h2 id="pendentes">
+
+5
+
+</h2>
+
+<p>Pendentes</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-circle-check"></i>
+
+<h2 id="finalizadas">
+
+7
+
+</h2>
+
+<p>Finalizadas</p>
+
+</div>
+
+</div>
+
+
+
+<div class="conteudo">
+
+<div class="consultas">
+
+    <h2>Consultas de Hoje</h2>
+
+    <div class="consulta-card">
+    
+        <div class="consulta-info">
+    
+            <h3>👤 Maria Oliveira</h3>
+    
+            <p><strong>Horário:</strong> 08:30</p>
+    
+            <p><strong>Tipo:</strong> Consulta</p>
+    
+        </div>
+    
+        <div class="consulta-status">
+    
+            <select class="status">
+    
+                <option>Aguardando</option>
+                <option>Em Atendimento</option>
+                <option>Finalizada</option>
+                <option>Cancelada</option>
+                <option>Faltou</option>
+    
+            </select>
+    
+            <button class="btnAtender">
+                Abrir Prontuário
+            </button>
+    
+        </div>
+    
+    </div>
+    
+    <div class="consulta-card">
+    
+        <div class="consulta-info">
+    
+            <h3>👤 Carlos Henrique</h3>
+    
+            <p><strong>Horário:</strong> 09:20</p>
+    
+            <p><strong>Tipo:</strong> Retorno</p>
+    
+        </div>
+    
+        <div class="consulta-status">
+    
+            <select class="status">
+    
+                <option>Em Atendimento</option>
+                <option>Aguardando</option>
+                <option>Finalizada</option>
+                <option>Cancelada</option>
+                <option>Faltou</option>
+    
+            </select>
+    
+            <button class="btnAtender">
+                Continuar Atendimento
+            </button>
+    
+        </div>
+    
+    </div>
+    
+    <div class="consulta-card">
+    
+        <div class="consulta-info">
+    
+            <h3>👤 Ana Souza</h3>
+    
+            <p><strong>Horário:</strong> 10:00</p>
+    
+            <p><strong>Tipo:</strong> Consulta</p>
+    
+        </div>
+    
+        <div class="consulta-status">
+    
+            <select class="status">
+    
+                <option>Finalizada</option>
+                <option>Aguardando</option>
+                <option>Em Atendimento</option>
+                <option>Cancelada</option>
+                <option>Faltou</option>
+    
+            </select>
+    
+            <button class="btnAtender">
+                Ver Prontuário
+            </button>
+    
+        </div>
+    
+    </div>
+
+
+
+<div class="lateral">
+
+<div class="notificacoes">
+
+<h2>
+
+Notificações
+
+</h2>
+
+<ul>
+
+<li>
+
+📅 Maria Oliveira chegou.
+
+</li>
+
+<li>
+
+📄 Receita emitida.
+
+</li>
+
+<li>
+
+🔔 Nova consulta adicionada.
+
+</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="proximas">
+
+<h2>
+
+Próximas Consultas
+
+</h2>
+
+<p>
+
+11:00 - Pedro Alves
+
+</p>
+
+<p>
+
+11:30 - Lucas Souza
+
+</p>
+
+<p>
+
+13:00 - João Lima
+
+</p>
+
+</div>
+
+</div><!-- fecha lateral -->
+
+</div><!-- fecha conteudo -->
+
+</div><!-- fecha main -->
+
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

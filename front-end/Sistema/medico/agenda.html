@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agenda do Médico</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-hospital"></i>
+        <h2>Vida+</h2>
+    </div>
+
+    <ul>
+
+        <li onclick="location.href='dashboard.html'">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </li>
+
+        <li class="active">
+            <i class="fa-solid fa-calendar-days"></i>
+            Agenda
+        </li>
+
+        <li onclick="location.href='pacientes.html'">
+            <i class="fa-solid fa-users"></i>
+            Pacientes
+        </li>
+
+        <li onclick="location.href='prontuarios.html'">
+            <i class="fa-solid fa-file-medical"></i>
+            Prontuários
+        </li>
+
+        <li>
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            Histórico
+        </li>
+
+        <li>
+            <i class="fa-solid fa-user-doctor"></i>
+            Perfil
+        </li>
+
+    </ul>
+
+</div>
+
+
+<div class="main">
+
+<header>
+
+<div>
+
+<h1>Agenda de Hoje</h1>
+
+<p id="dataAgenda"></p>
+
+</div>
+
+<div class="relogio">
+
+<h2 id="hora"></h2>
+
+</div>
+
+</header>
+
+
+<div class="agenda">
+
+<div class="consulta">
+
+<div>
+
+<h3>08:30</h3>
+
+<p>Maria Oliveira</p>
+
+<small>Consulta</small>
+
+</div>
+
+<div>
+
+<span class="status aguardando">
+Aguardando
+</span>
+
+<button>Abrir</button>
+
+</div>
+
+</div>
+
+
+
+<div class="consulta">
+
+<div>
+
+<h3>09:00</h3>
+
+<p>Carlos Henrique</p>
+
+<small>Retorno</small>
+
+</div>
+
+<div>
+
+<span class="status atendimento">
+Em Atendimento
+</span>
+
+<button>Continuar</button>
+
+</div>
+
+</div>
+
+
+
+<div class="consulta">
+
+<div>
+
+<h3>10:00</h3>
+
+<p>Ana Souza</p>
+
+<small>Consulta</small>
+
+</div>
+
+<div>
+
+<span class="status finalizado">
+Finalizada
+</span>
+
+<button>Ver</button>
+
+</div>
+
+</div>
+
+
+
+<div class="consulta">
+
+<div>
+
+<h3>11:00</h3>
+
+<p>Pedro Alves</p>
+
+<small>Consulta</small>
+
+</div>
+
+<div>
+
+<span class="status aguardando">
+Aguardando
+</span>
+
+<button>Abrir</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

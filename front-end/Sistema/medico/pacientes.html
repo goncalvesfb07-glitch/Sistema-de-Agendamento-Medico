@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pacientes</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-hospital"></i>
+
+        <h2>Vida+</h2>
+
+    </div>
+
+    <ul>
+
+        <li onclick="location.href='dashboard.html'">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </li>
+
+        <li onclick="location.href='agenda.html'">
+            <i class="fa-solid fa-calendar-days"></i> Agenda
+        </li>
+
+        <li class="active">
+            <i class="fa-solid fa-users"></i> Pacientes
+        </li>
+
+        <li onclick="location.href='prontuarios.html'">
+            <i class="fa-solid fa-file-medical"></i> Prontuários
+        </li>
+
+        <li>
+            <i class="fa-solid fa-clock-rotate-left"></i> Histórico
+        </li>
+
+        <li>
+            <i class="fa-solid fa-user-doctor"></i> Perfil
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="main">
+
+<header>
+
+<div>
+
+<h1>Pacientes</h1>
+
+<p>Pesquise e acompanhe seus pacientes.</p>
+
+</div>
+
+</header>
+
+<div class="pesquisa">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+placeholder="Pesquisar paciente...">
+
+</div>
+
+<div class="listaPacientes">
+
+<div class="pacienteCard">
+
+<div class="avatar">
+
+<i class="fa-solid fa-circle-user"></i>
+
+</div>
+
+<div class="dados">
+
+<h2>Maria Oliveira</h2>
+
+<p>CPF: 000.000.000-00</p>
+
+<p>Telefone: (11)99999-9999</p>
+
+<p>Convênio: Unimed</p>
+
+</div>
+
+<div>
+
+<button class="abrir">
+
+Abrir Prontuário
+
+</button>
+
+</div>
+
+</div>
+
+<div class="pacienteCard">
+
+<div class="avatar">
+
+<i class="fa-solid fa-circle-user"></i>
+
+</div>
+
+<div class="dados">
+
+<h2>Carlos Henrique</h2>
+
+<p>CPF: 111.111.111-11</p>
+
+<p>Telefone: (11)98888-8888</p>
+
+<p>Convênio: Particular</p>
+
+</div>
+
+<div>
+
+<button class="abrir">
+
+Abrir Prontuário
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
