@@ -14,8 +14,34 @@
 
 require_once "../../config/conexao.php";
 
+// Verificar Envio de Formulários
 
-// Recebendo dados do formulário
+if($_SERVER["REQUEST_METHOD"] !== "POST"){
+
+    echo "Acesso inválido";
+    exit;
+
+
+}
+
+
+// Validar campos obrigatórios
+
+if(
+    empty($_POST["nome"]) ||
+    empty($_POST["email"]) ||
+    empty($_POST["senha"]) ||
+    empty($_POST["perfil"])
+
+){
+
+    echo "Preencha todos os campos!";
+    exit;
+
+}
+
+
+// Recendo dados
 
 $nome = $_POST["nome"];
 $email = $_POST["email"];
@@ -23,7 +49,49 @@ $senha = $_POST["senha"];
 $perfil = $_POST["perfil"];
 
 
-// Criptografando senha
+// Verificar email existente
+
+$sqlEmail = "
+SELECT id
+FROM usuarios
+WHERE email = ?
+";
+
+
+
+$stmtEmail = $conn->prepare($sqlEmail);
+
+
+$stmtEmail->bind_param(
+    "s",git 
+    $email
+);
+
+
+$stmtEmail->execute();
+
+
+$resultado = $stmtEmail->get_result();
+
+
+
+if($resultado->num_rows > 0) {
+
+    echo "
+    Este email já está cadastrado!
+    <br>
+    <a href='../../admin/usuarios/cadastrar.php'>
+    Voltar
+    </a>
+    ";
+
+    exit;
+
+}
+
+
+
+// Criptografar senha
 
 $senhaHash = password_hash(
     $senha,
@@ -31,32 +99,30 @@ $senhaHash = password_hash(
 );
 
 
-// SQL de inserção
 
+
+// Inserir Usuário
 $sql = "
 INSERT INTO usuarios
 (
-    nome,
-    email,
-    senha,
-    perfil
+nome,
+email,
+senha,
+perfil
 )
 VALUES
 (
-    ?,
-    ?,
-    ?,
-    ?
+?,
+?,
+?,
+?
 )
 ";
 
 
-// Preparando comando
-
 $stmt = $conn->prepare($sql);
 
 
-// Associando valores
 
 $stmt->bind_param(
     "ssss",
@@ -64,32 +130,39 @@ $stmt->bind_param(
     $email,
     $senhaHash,
     $perfil
+
 );
 
 
-// Executando
 
-if($stmt->execute()){
+if(stmt->execute()){
 
 
     echo "
     Usuário cadastrado com sucesso!
-    <br>
+    <br><br>
+
     <a href='../../admin/usuarios/cadastrar.php'>
-    Cadastrar outro usuário
+    Cadastar outro usuário
     </a>
+
     ";
 
 
 }else{
 
-
     echo "
     Erro ao cadastrar usuário:
     "
-    .$conn->error;
+    .$conn->erro;
 
 
 }
+
+
+
+$stmt->close();
+$conn->close();
+
 
 ?>
