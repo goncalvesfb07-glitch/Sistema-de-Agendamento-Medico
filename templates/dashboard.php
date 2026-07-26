@@ -7,7 +7,7 @@ session_start ();
 
 
 if (!isset($_SESSION["id"])) {
-    header("Location: index.php");
+    header("Location: public/index.php");
     exit;
 
 }
@@ -36,7 +36,7 @@ if (!isset($_SESSION["id"])) {
 
     <br>
 
-    <a href="logout.php">Sair</a>
+    <a href="../../logout.php">Sair</a>
 
 </body>
 <?php

@@ -15,13 +15,13 @@ if (session_start() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION["id"])) {
-    header("Location: /ProjetoAgendamentoMedico/index.php");
+    header("Location: /ProjetoAgendamentoMedico/public/index.php");
     exit;
 
 }
 
 if ($_SESSION["perfil"] !== "Administrador") {
-    header("Location: /ProjetoAgendamentoMedico/dashboard.php");
+    header("Location: /ProjetoAgendamentoMedico/templates/painel-usuario.php");
     exit;
     
 }

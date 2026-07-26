@@ -63,7 +63,7 @@ $stmtEmail = $conn->prepare($sqlEmail);
 
 
 $stmtEmail->bind_param(
-    "s",git 
+    "s",
     $email
 );
 

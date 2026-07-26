@@ -8,7 +8,7 @@
 |--------------------------------------------------------------------------
 */
 
-require_once "../../includes/verificar_admin.php";
+require_once __DIR__ "../../includes/verificar_admin.php";
 ?>
 
 <!DOCTYPE html>

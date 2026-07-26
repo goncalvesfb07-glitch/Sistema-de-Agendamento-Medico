@@ -5,7 +5,7 @@ session_start();
 require_once "config/conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: index.php");
+    header("Location: public/index.php");
     exit;
 
 }
@@ -33,7 +33,7 @@ if ($resultado->num_rows == 1) {
 } else {
 
    $_SESSION["erro"] = "E-mail ou Senha inválidos.";
-   header("Location: index.php");
+   header("Location: public/index.php");
     exit;
 
 }
@@ -45,14 +45,14 @@ if (password_verify($senha, $usuario["senha"]))  {
     $_SESSION["email"] = $usuario["email"];
     $_SESSION["perfil"] = $usuario["perfil"];
 
-    header("Location: dashboard.php");
+    header("Location: templates/painel-usuario.php");
     exit;
 
 
 } else {
 
     $_SESSION["erro"] = "E-mail ou senha inválidos.";
-    header("Location: index.php");
+    header("Location: public/index.php");
     exit;
 
 }

@@ -19,7 +19,7 @@ ini_set('display_errors', 1);
 session_start();
 
 if (isset($_SESSION["id"])) {
-    header("Location: dashboard.php");
+    header("Location: templates/painel-usuario.php");
     exit;
 }
 ?>
@@ -34,7 +34,7 @@ if (isset($_SESSION["id"])) {
 
     <title>Sistema de Agendamento Médico</title>
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -61,7 +61,7 @@ if (isset($_SESSION["id"])) {
 
     <div class="right">
 
-        <form id="loginForm" action="login.php" method="POST">
+        <form id="loginForm" action="auth.php" method="POST">
 
             <h2>Login</h2>
 
@@ -109,7 +109,7 @@ if (isset($_SESSION["id"])) {
 
 </div>
 
-<script src="assets/js/script.js"></script>
+<script src="../public/js/script.js"></script>
 
 </body>
 

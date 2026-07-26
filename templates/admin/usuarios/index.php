@@ -54,6 +54,8 @@ $resultado = $stmt->get_result();
         <th>E-mail</th>
         <th>Perfil</th>
         <th>Data de Cadastro</th>
+        <th>Ações</th>
+
 
     </tr>
 </body>
@@ -74,6 +76,20 @@ $resultado = $stmt->get_result();
 <td><?= $usuario["created_at"]; ?></td>
 
 </tr>
+
+<td>
+
+    <a href="editar.php?id=<?= $usuario["id"]; ?>">
+        Editar
+    </a>
+
+    |
+
+    <a href="excluir.php?id=<?= $usuario["id"]; ?>">
+        Excluir
+    </a>
+
+</td>
 
 <?php endwhile; ?>
 
