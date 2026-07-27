@@ -61,7 +61,7 @@ if (isset($_SESSION["id"])) {
 
     <div class="right">
 
-        <form id="loginForm" action="auth.php" method="POST">
+        <form id="loginForm" action="../auth.php" method="POST">
 
             <h2>Login</h2>
 

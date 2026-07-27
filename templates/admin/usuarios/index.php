@@ -13,8 +13,8 @@
 |--------------------------------------------------------------------------
 */
 
-require_once "../../includes/verificar_admin.php";
-require_once "../../config/conexao.php";
+require_once __DIR__ . "../../includes/verificar_admin.php";
+require_once __DIR__ . "../../config/conexao.php";
 
 $sql = "SELECT
             id,
@@ -79,13 +79,13 @@ $resultado = $stmt->get_result();
 
 <td>
 
-    <a href="editar.php?id=<?= $usuario["id"]; ?>">
+    <a href="../../editar.php?id=<?= $usuario["id"]; ?>">
         Editar
     </a>
 
     |
 
-    <a href="excluir.php?id=<?= $usuario["id"]; ?>">
+    <a href="../../excluir.php?id=<?= $usuario["id"]; ?>">
         Excluir
     </a>
 

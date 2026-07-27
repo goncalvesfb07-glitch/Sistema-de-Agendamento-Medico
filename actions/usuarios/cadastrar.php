@@ -12,7 +12,7 @@
 */
 
 
-require_once "../../config/conexao.php";
+ "../../config/conexao.php";
 
 // Verificar Envio de Formulários
 
