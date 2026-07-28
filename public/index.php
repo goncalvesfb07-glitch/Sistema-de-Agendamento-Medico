@@ -19,7 +19,7 @@ ini_set('display_errors', 1);
 session_start();
 
 if (isset($_SESSION["id"])) {
-    header("Location: templates/painel-usuario.php");
+    header("Location: ../templates/painel-usuario.php");
     exit;
 }
 ?>
@@ -61,7 +61,7 @@ if (isset($_SESSION["id"])) {
 
     <div class="right">
 
-        <form id="loginForm" action="../auth.php" method="POST">
+        <form action="../auth.php" method="POST">
 
             <h2>Login</h2>
 
