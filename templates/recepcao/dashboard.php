@@ -10,7 +10,7 @@ if (!isset($_SESSION["id"])) {
 }
 
 //verifica se o usuário é administrador
-if ($_SESSION["perfil"] !== "Administrador") {
+if ($_SESSION["perfil"] !== "Recepcionista") {
     header("Location: ../painel-usuario.php");
     exit;
 
@@ -34,15 +34,21 @@ if ($_SESSION["perfil"] !== "Administrador") {
 
     <h2>Menu</h2>
 
-    <ul>
-        <li>
-            <a href="usuarios/index.php">Gerenciar Usuários</a>
-        </li>
+<ul>
 
-        <!-- Futuros módulos -->
-        <li>Gerenciar Médicos (Em desenvolvimento)</li>
-        <li>Consultas (Em desenvolvimento)</li>
-    </ul>
+    <li>
+        <a href="pacientes/index.php">Gerenciar Pacientes</a>
+    </li>
+
+    <li>
+        Agendar Consulta (Em desenvolvimento)
+    </li>
+
+    <li>
+        Consultar Agenda (Em desenvolvimento)
+    </li>
+
+</ul>
 
     <hr>
 

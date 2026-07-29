@@ -1,59 +1,84 @@
 <?php
-
 session_start();
+?>
 
-require_once __DIR__ . "../config/conexao.php";
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: public/index.php");
-    exit;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Agendamento Médico</title>
 
-}
+    <link rel="stylesheet" href="../public/css/style.css">
 
-$email = trim($_POST["email"]);
-$senha = $_POST["senha"];
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
 
-$sql = "SELECT * FROM usuarios Where email = ?";
+<body>
 
-$stmt = $conn->prepare($sql);
+<div class="container">
 
-$stmt->bind_param("s", $email);
+    <div class="left">
+        <div class="logo">
+            <i class="fa-solid fa-hospital"></i>
+        </div>
 
-$stmt->execute();
+        <h1>Clínica Vida+</h1>
 
-$resultado = $stmt->get_result();
+        <p>Sistema de Agendamento Médico</p>
+    </div>
 
+    <div class="right">
 
+        <form action="../auth.php" method="POST">
 
-if ($resultado->num_rows == 1) {
+            <h2>Login</h2>
 
-    $usuario = $resultado->fetch_assoc();
+            <?php
+            if (isset($_SESSION["erro"])) {
+                echo "<p style='color:red; text-align:center; margin-bottom:15px;'>"
+                    . $_SESSION["erro"] .
+                    "</p>";
 
+                unset($_SESSION["erro"]);
 
-} else {
-
-   $_SESSION["erro"] = "E-mail ou Senha inválidos.";
-   header("Location: public/index.php");
-    exit;
-
-}
-
-if (password_verify($senha, $usuario["senha"]))  {
-    
-    $_SESSION["id"] = $usuario["id"];
-    $_SESSION["nome"] = $usuario["nome"];
-    $_SESSION["email"] = $usuario["email"];
-    $_SESSION["perfil"] = $usuario["perfil"];
-
-    header("Location: templates/painel-usuario.php");
-    exit;
+            }
+            ?>
 
 
-} else {
+<div class="inputBox">
+                <i class="fa-solid fa-envelope"></i>
 
-    $_SESSION["erro"] = "E-mail ou senha inválidos.";
-    header("Location: public/index.php");
-    exit;
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="E-mail"
+                    required>
+            </div>
 
-}
+            <div class="inputBox">
+                <i class="fa-solid fa-lock"></i>
 
+                <input
+                    type="password"
+                    name="senha"
+                    placeholder="Senha"
+                    required>
+            </div>
+
+            <button type="submit">
+                Entrar
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="../public/js/script.js"></script>
+
+</body>
+</html>
