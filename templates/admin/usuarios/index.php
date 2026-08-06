@@ -16,6 +16,52 @@
 require_once __DIR__ . "/../../../includes/verificar_admin.php";
 require_once(__DIR__ . "/../../../config/conexao.php");
 
+if (isset($_SESSION["sucesso"])) { ?>
+
+    <div style="
+        background:#d4edda;
+        color:#155724;
+        border:1px solid #c3e6cb;
+        padding:12px;
+        margin-bottom:20px;
+        border-radius:6px;
+        font-weight:bold;
+    ">
+        ✔ <?= $_SESSION["sucesso"]; ?>
+    </div>
+
+<?php
+
+unset($_SESSION["sucesso"]);
+
+}
+
+?>
+
+<?php
+
+if (isset($_SESSION["erro"])) { ?>
+
+    <div style="
+        background:#f8d7da;
+        color:#721c24;
+        border:1px solid #f5c6cb;
+        padding:12px;
+        margin-bottom:20px;
+        border-radius:6px;
+        font-weight:bold;
+    ">
+        ✖ <?= $_SESSION["erro"]; ?>
+    </div>
+
+<?php
+
+unset($_SESSION["erro"]);
+
+}
+
+?>
+<?php
 $sql = "SELECT
             id,
             nome,
@@ -79,13 +125,11 @@ $resultado = $stmt->get_result();
 
 <td>
 
-    <a href="../../editar.php?id=<?= $usuario["id"]; ?>">
+    <a href="editar.php?id=<?= $usuario["id"]; ?>">
         Editar
     </a>
 
-    |
-
-    <a href="../../excluir.php?id=<?= $usuario["id"]; ?>">
+    <a href="excluir.php?id=<?= $usuario["id"]; ?>">
         Excluir
     </a>
 
