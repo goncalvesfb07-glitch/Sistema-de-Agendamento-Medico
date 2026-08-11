@@ -129,7 +129,8 @@ $resultado = $stmt->get_result();
         Editar
     </a>
 
-    <a href="excluir.php?id=<?= $usuario["id"]; ?>">
+    <a href="../../../actions/usuarios/excluir.php?id=<?= $usuario["id"]; ?>"
+        onclick="return confirm('Tem Certeza Que Deseja Excluir Este Usuário?');">
         Excluir
     </a>
 
