@@ -57,19 +57,6 @@ O sistema possui autenticação por níveis de acesso e contempla as rotinas de 
 - itens_receita
 - atestados
 
----
-
-## Status do Projeto
-
-🚧 Em desenvolvimento
-
-Sprint 1 ✅ Login
-
-Sprint 2 ✅ Modelagem do banco
-
-Sprint 2.5 🚧 Organização do projeto
-
-Sprint 3 ⏳ CRUD de pacientes
 
 ---
 
