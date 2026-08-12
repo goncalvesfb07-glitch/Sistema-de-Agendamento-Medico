@@ -130,9 +130,9 @@ $resultado = $stmt->get_result();
     </a>
 
     <a href="../../../actions/usuarios/excluir.php?id=<?= $usuario["id"]; ?>"
-        onclick="return confirm('Tem Certeza Que Deseja Excluir Este Usuário?');">
-        Excluir
-    </a>
+   onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+    Excluir
+</a>
 
 </td>
 
