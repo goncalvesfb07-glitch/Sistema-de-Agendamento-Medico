@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Vida+ | Paciente</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            width: 230px;
+
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+
+            padding: 24px 15px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 0 8px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .brand h2 {
+            font-size: 15px;
+        }
+
+        .brand span {
+            display: block;
+            margin-top: 3px;
+
+            color: #8a94a6;
+            font-size: 8px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        nav a {
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 0 12px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #667085;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        nav a span {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 13px 7px;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .profile-avatar {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background: #eaf1ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .profile strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .profile small {
+            display: block;
+            margin-top: 3px;
+
+            color: #98a2b3;
+            font-size: 7px;
+        }
+
+        .logout {
+            width: 100%;
+            height: 37px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #f7f8fa;
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .logout:hover {
+            background: #fff1f1;
+            color: #d92d20;
+        }
+
+        /* MAIN */
+
+        main {
+            margin-left: 230px;
+            min-height: 100vh;
+
+            padding: 30px 38px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .topbar small {
+            color: #2563eb;
+
+            font-size: 8px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .topbar h1 {
+            margin-top: 6px;
+            font-size: 25px;
+        }
+
+        .clock {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            gap: 4px;
+
+            color: #8a94a6;
+            font-size: 8px;
+            text-transform: capitalize;
+        }
+
+        .clock strong {
+            color: #344054;
+            font-size: 13px;
+        }
+
+        /* BOAS-VINDAS */
+
+        .welcome {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+
+            padding: 22px;
+
+            margin-bottom: 18px;
+
+            box-shadow: 0 3px 12px rgba(16,24,40,.035);
+        }
+
+        .welcome h2 {
+            font-size: 16px;
+        }
+
+        .welcome p {
+            margin-top: 6px;
+
+            color: #8a94a6;
+
+            font-size: 9px;
+        }
+
+        /* CARDS */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            box-shadow: 0 3px 12px rgba(16,24,40,.035);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .stat-title {
+            color: #8a94a6;
+            font-size: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .stat-icon {
+            width: 30px;
+            height: 30px;
+
+            border-radius: 8px;
+
+            background: #edf3ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 13px;
+        }
+
+        .stat-number {
+            margin-top: 12px;
+
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        /* GRID */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns: 1.5fr 1fr;
+
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+
+            border-radius: 13px;
+
+            padding: 20px;
+
+            box-shadow: 0 3px 12px rgba(16,24,40,.035);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 17px;
+        }
+
+        .card-header h2 {
+            font-size: 13px;
+        }
+
+        .card-header a {
+            color: #2563eb;
+
+            text-decoration: none;
+
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        /* CONSULTA */
+
+        .appointment {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 13px 0;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .appointment:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .date-box {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 9px;
+
+            background: #edf3ff;
+            color: #2563eb;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+        }
+
+        .date-box strong {
+            font-size: 13px;
+        }
+
+        .date-box span {
+            font-size: 6px;
+            text-transform: uppercase;
+        }
+
+        .appointment-info {
+            flex: 1;
+        }
+
+        .appointment-info strong {
+            display: block;
+
+            font-size: 9px;
+        }
+
+        .appointment-info span {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+        }
+
+        .appointment-status {
+            padding: 5px 8px;
+
+            border-radius: 6px;
+
+            background: #ecfdf3;
+            color: #027a48;
+
+            font-size: 7px;
+            font-weight: bold;
+        }
+
+        .appointment-status.pending {
+            background: #fffaeb;
+            color: #b54708;
+        }
+
+        /* INFORMAÇÕES */
+
+        .info-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 12px 0;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .info-item:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+
+        .info-icon {
+            width: 32px;
+            height: 32px;
+
+            border-radius: 8px;
+
+            background: #f2f4f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #667085;
+
+            font-size: 12px;
+        }
+
+        .info-item strong {
+            display: block;
+
+            font-size: 8px;
+        }
+
+        .info-item span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+        }
+
+        /* RESPONSIVO */
+
+        @media (max-width: 850px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+                position: relative;
+                width: 100%;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 25px 20px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .clock {
+                align-items: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>
+                    Clínica Vida+
+                </h2>
+
+                <span>
+                    Área do Paciente
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a
+                href="dashboard.html"
+                class="active"
+            >
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="consultas.html">
+
+                <span>▣</span>
+
+                Minhas consultas
+
+            </a>
+
+
+            <a href="prontuarios.html">
+
+                <span>▤</span>
+
+                Prontuários
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="profile">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    PA
+                </div>
+
+                <div>
+
+                    <strong id="profileName">
+                        Paciente
+                    </strong>
+
+                    <small>
+                        Paciente
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout"
+                id="logoutButton"
+            >
+                ↪ &nbsp; Sair
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main>
+
+
+        <header class="topbar">
+
+            <div>
+
+                <small>
+                    ÁREA DO PACIENTE
+                </small>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+            </div>
+
+
+            <div class="clock">
+
+                <span id="currentDate">
+                    Carregando...
+                </span>
+
+                <strong id="currentTime">
+                    00:00:00
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- BOAS VINDAS -->
+
+        <section class="welcome">
+
+            <h2 id="welcomeTitle">
+                Olá!
+            </h2>
+
+            <p>
+                Acompanhe suas consultas e informações médicas pela Clínica Vida+.
+            </p>
+
+        </section>
+
+
+
+        <!-- ESTATÍSTICAS -->
+
+        <section class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-title">
+                        Próxima consulta
+                    </span>
+
+                    <div class="stat-icon">
+                        ▣
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="nextAppointment"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-title">
+                        Consultas realizadas
+                    </span>
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="completedAppointments"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-title">
+                        Prontuários
+                    </span>
+
+                    <div class="stat-icon">
+                        ▤
+                    </div>
+
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="recordsCount"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- CONTEÚDO -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- CONSULTAS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Próximas consultas
+                    </h2>
+
+                    <a href="consultas.html">
+                        Ver todas
+                    </a>
+
+                </div>
+
+
+                <div id="appointmentsList">
+
+                    <div class="appointment">
+
+                        <div class="date-box">
+
+                            <strong>
+                                —
+                            </strong>
+
+                            <span>
+                                —
+                            </span>
+
+                        </div>
+
+
+                        <div class="appointment-info">
+
+                            <strong>
+                                Nenhuma consulta encontrada
+                            </strong>
+
+                            <span>
+                                Suas próximas consultas aparecerão aqui.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- INFORMAÇÕES -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Meu perfil
+                    </h2>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        ♙
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Nome
+                        </strong>
+
+                        <span id="patientName">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        @
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            E-mail
+                        </strong>
+
+                        <span id="patientEmail">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        ☎
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Telefone
+                        </strong>
+
+                        <span id="patientPhone">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        #
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            CPF
+                        </strong>
+
+                        <span id="patientCpf">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================
+           PROTEÇÃO
+        ========================= */
+
+        const loggedUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "usuarioLogado"
+                )
+            );
+
+
+        if (
+            !loggedUser ||
+            loggedUser.tipo !== "paciente"
+        ) {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        /* =========================
+           INICIAIS
+        ========================= */
+
+        function initials(name) {
+
+            if (!name)
+                return "PA";
+
+
+            return name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(
+                    item =>
+                        item
+                            .charAt(0)
+                            .toUpperCase()
+                )
+                .join("");
+
+        }
+
+
+
+        /* =========================
+           PERFIL
+        ========================= */
+
+        if (loggedUser) {
+
+            const name =
+                loggedUser.nome ||
+                "Paciente";
+
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                name;
+
+
+            document.getElementById(
+                "profileAvatar"
+            ).textContent =
+                initials(name);
+
+
+            document.getElementById(
+                "welcomeTitle"
+            ).textContent =
+                "Olá, " +
+                name.split(" ")[0] +
+                "!";
+
+
+            document.getElementById(
+                "patientName"
+            ).textContent =
+                name;
+
+
+            document.getElementById(
+                "patientEmail"
+            ).textContent =
+                loggedUser.email ||
+                "Não informado";
+
+
+            document.getElementById(
+                "patientPhone"
+            ).textContent =
+                loggedUser.telefone ||
+                "Não informado";
+
+
+            document.getElementById(
+                "patientCpf"
+            ).textContent =
+                loggedUser.cpf ||
+                "Não informado";
+
+        }
+
+
+
+        /* =========================
+           RELÓGIO
+        ========================= */
+
+        function updateClock() {
+
+            const now =
+                new Date();
+
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+                now.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            document.getElementById(
+                "currentTime"
+            ).textContent =
+                now.toLocaleTimeString(
+                    "pt-BR"
+                );
+
+        }
+
+
+        updateClock();
+
+        setInterval(
+            updateClock,
+            1000
+        );
+
+
+
+        /* =========================
+           CONSULTAS
+        ========================= */
+
+        const appointments =
+            JSON.parse(
+                localStorage.getItem(
+                    "clinicaConsultas"
+                )
+            ) || [];
+
+
+        const patientId =
+            loggedUser
+                ? String(loggedUser.id)
+                : "";
+
+
+        const patientEmail =
+            loggedUser
+                ? String(
+                    loggedUser.email ||
+                    ""
+                ).toLowerCase()
+                : "";
+
+
+        const patientAppointments =
+            appointments.filter(
+                function(item) {
+
+                    const itemPatientId =
+                        String(
+                            item.pacienteId ||
+                            item.idPaciente ||
+                            ""
+                        );
+
+
+                    const itemEmail =
+                        String(
+                            item.pacienteEmail ||
+                            item.emailPaciente ||
+                            ""
+                        ).toLowerCase();
+
+
+                    return (
+                        (
+                            patientId &&
+                            itemPatientId ===
+                            patientId
+                        )
+                        ||
+                        (
+                            patientEmail &&
+                            itemEmail ===
+                            patientEmail
+                        )
+                    );
+
+                }
+            );
+
+
+
+        /* =========================
+           DATAS
+        ========================= */
+
+        function getAppointmentDate(
+            appointment
+        ) {
+
+            const value =
+                appointment.data ||
+                appointment.date ||
+                appointment.dataConsulta ||
+                "";
+
+
+            if (!value)
+                return null;
+
+
+            const date =
+                new Date(value);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return null;
+
+            }
+
+
+            return date;
+
+        }
+
+
+
+        /* =========================
+           ORDENAR
+        ========================= */
+
+        patientAppointments.sort(
+            function(a, b) {
+
+                const dateA =
+                    getAppointmentDate(a);
+
+                const dateB =
+                    getAppointmentDate(b);
+
+
+                if (!dateA)
+                    return 1;
+
+                if (!dateB)
+                    return -1;
+
+
+                return (
+                    dateA.getTime() -
+                    dateB.getTime()
+                );
+
+            }
+        );
+
+
+
+        /* =========================
+           PRÓXIMA CONSULTA
+        ========================= */
+
+        const today =
+            new Date();
+
+        today.setHours(
+            0, 0, 0, 0
+        );
+
+
+        const upcoming =
+            patientAppointments.filter(
+                function(item) {
+
+                    const date =
+                        getAppointmentDate(item);
+
+
+                    if (!date)
+                        return false;
+
+
+                    return (
+                        date >= today
+                    );
+
+                }
+            );
+
+
+        if (
+            upcoming.length > 0
+        ) {
+
+            const next =
+                upcoming[0];
+
+
+            const date =
+                getAppointmentDate(next);
+
+
+            document.getElementById(
+                "nextAppointment"
+            ).textContent =
+                date.toLocaleDateString(
+                    "pt-BR"
+                );
+
+        }
+
+
+
+        /* =========================
+           REALIZADAS
+        ========================= */
+
+        const completed =
+            patientAppointments.filter(
+                function(item) {
+
+                    const status =
+                        String(
+                            item.status ||
+                            item.situacao ||
+                            ""
+                        ).toLowerCase();
+
+
+                    return (
+                        status.includes(
+                            "realiz"
+                        ) ||
+                        status.includes(
+                            "finaliz"
+                        ) ||
+                        status.includes(
+                            "conclu"
+                        )
+                    );
+
+                }
+            );
+
+
+        document.getElementById(
+            "completedAppointments"
+        ).textContent =
+            completed.length;
+
+
+
+        /* =========================
+           LISTA
+        ========================= */
+
+        const list =
+            document.getElementById(
+                "appointmentsList"
+            );
+
+
+        if (
+            upcoming.length > 0
+        ) {
+
+            list.innerHTML = "";
+
+
+            upcoming
+                .slice(0, 4)
+                .forEach(
+                    function(item) {
+
+                        const date =
+                            getAppointmentDate(
+                                item
+                            );
+
+
+                        const doctor =
+                            item.medicoNome ||
+                            item.nomeMedico ||
+                            item.medico ||
+                            "Médico";
+
+
+                        const time =
+                            item.horario ||
+                            item.hora ||
+                            "--:--";
+
+
+                        const status =
+                            String(
+                                item.status ||
+                                item.situacao ||
+                                "Agendada"
+                            );
+
+
+                        const div =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        div.className =
+                            "appointment";
+
+
+                        div.innerHTML = `
+
+                            <div class="date-box">
+
+                                <strong>
+                                    ${date.getDate()}
+                                </strong>
+
+                                <span>
+                                    ${date.toLocaleDateString(
+                                        "pt-BR",
+                                        {
+                                            month: "short"
+                                        }
+                                    )}
+                                </span>
+
+                            </div>
+
+
+                            <div class="appointment-info">
+
+                                <strong>
+                                    ${doctor}
+                                </strong>
+
+                                <span>
+                                    Consulta às ${time}
+                                </span>
+
+                            </div>
+
+
+                            <div class="appointment-status">
+
+                                ${status}
+
+                            </div>
+
+                        `;
+
+
+                        list.appendChild(
+                            div
+                        );
+
+                    }
+                );
+
+        }
+
+
+
+        /* =========================
+           PRONTUÁRIOS
+           ========================= */
+
+        const records =
+            JSON.parse(
+                localStorage.getItem(
+                    "clinicaProntuarios"
+                )
+            ) || [];
+
+
+        const patientRecords =
+            records.filter(
+                function(item) {
+
+                    return (
+                        String(
+                            item.pacienteId ||
+                            ""
+                        ) ===
+                        patientId
+                    );
+
+                }
+            );
+
+
+        document.getElementById(
+            "recordsCount"
+        ).textContent =
+            patientRecords.length;
+
+
+
+        /* =========================
+           SAIR
+           ========================= */
+
+        document.getElementById(
+            "logoutButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem(
+                    "usuarioLogado"
+                );
+
+
+                window.location.href =
+                    "../login.html";
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

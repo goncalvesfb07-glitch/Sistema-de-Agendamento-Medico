@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica Vida+ | Prontuários</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            width: 230px;
+
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+
+            padding: 24px 15px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 0 8px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .brand h2 {
+            font-size: 15px;
+        }
+
+        .brand span {
+            display: block;
+            margin-top: 3px;
+
+            color: #8a94a6;
+            font-size: 8px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        nav a {
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 0 12px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #667085;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        nav a span {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 13px 7px;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .profile-avatar {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background: #eaf1ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .profile strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .profile small {
+            display: block;
+            margin-top: 3px;
+
+            color: #98a2b3;
+            font-size: 7px;
+        }
+
+        .logout {
+            width: 100%;
+            height: 37px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #f7f8fa;
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .logout:hover {
+            background: #fff1f1;
+            color: #d92d20;
+        }
+
+        /* MAIN */
+
+        main {
+            margin-left: 230px;
+            min-height: 100vh;
+
+            padding: 30px 38px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .topbar small {
+            color: #2563eb;
+
+            font-size: 8px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .topbar h1 {
+            margin-top: 6px;
+
+            font-size: 25px;
+        }
+
+        .clock {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            gap: 4px;
+
+            color: #8a94a6;
+
+            font-size: 8px;
+            text-transform: capitalize;
+        }
+
+        .clock strong {
+            color: #344054;
+            font-size: 13px;
+        }
+
+        /* CARD */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(16,24,40,.035);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .card-header h2 {
+            font-size: 15px;
+        }
+
+        .card-header p {
+            margin-top: 5px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+        }
+
+        /* PRONTUÁRIO */
+
+        .record {
+            border: 1px solid #e5e9ef;
+
+            border-radius: 10px;
+
+            margin-bottom: 12px;
+
+            overflow: hidden;
+
+            background: white;
+        }
+
+        .record-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 16px 18px;
+
+            background: #fafbfc;
+
+            border-bottom: 1px solid #edf0f4;
+
+            cursor: pointer;
+        }
+
+        .record-header:hover {
+            background: #f7f9fc;
+        }
+
+        .record-main {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .record-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 9px;
+
+            background: #edf3ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+        }
+
+        .record-title strong {
+            display: block;
+
+            font-size: 10px;
+        }
+
+        .record-title span {
+            display: block;
+
+            margin-top: 4px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+        }
+
+        .record-arrow {
+            color: #98a2b3;
+
+            font-size: 14px;
+
+            transition: .2s;
+        }
+
+        .record.open .record-arrow {
+            transform: rotate(180deg);
+        }
+
+        .record-content {
+            display: none;
+
+            padding: 20px;
+        }
+
+        .record.open .record-content {
+            display: block;
+        }
+
+        .info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            padding: 13px;
+
+            background: #f8fafc;
+
+            border-radius: 8px;
+        }
+
+        .info-box label {
+            display: block;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            margin-bottom: 5px;
+        }
+
+        .info-box strong {
+            display: block;
+
+            color: #344054;
+
+            font-size: 8px;
+        }
+
+        .record-section {
+            margin-top: 18px;
+        }
+
+        .record-section h3 {
+            margin-bottom: 8px;
+
+            color: #344054;
+
+            font-size: 9px;
+        }
+
+        .record-section p {
+            color: #667085;
+
+            font-size: 8px;
+
+            line-height: 1.6;
+        }
+
+        /* VAZIO */
+
+        .empty {
+            padding: 45px 20px;
+
+            text-align: center;
+
+            border: 1px dashed #dfe4ea;
+
+            border-radius: 10px;
+
+            color: #98a2b3;
+        }
+
+        .empty-icon {
+            width: 52px;
+            height: 52px;
+
+            margin: 0 auto 12px;
+
+            border-radius: 50%;
+
+            background: #f2f4f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #98a2b3;
+
+            font-size: 19px;
+        }
+
+        .empty strong {
+            display: block;
+
+            color: #667085;
+
+            font-size: 9px;
+
+            margin-bottom: 5px;
+        }
+
+        .empty p {
+            font-size: 8px;
+        }
+
+        /* RESPONSIVO */
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+            }
+
+            main {
+                margin-left: 0;
+
+                padding: 25px 20px;
+            }
+
+            .topbar {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+            .clock {
+                align-items: flex-start;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>
+                    Clínica Vida+
+                </h2>
+
+                <span>
+                    Área do Paciente
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+
+            <a href="dashboard.html">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="consultas.html">
+
+                <span>▣</span>
+
+                Minhas consultas
+
+            </a>
+
+
+            <a
+                href="prontuarios.html"
+                class="active"
+            >
+
+                <span>▤</span>
+
+                Prontuários
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <div class="profile">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    PA
+                </div>
+
+                <div>
+
+                    <strong id="profileName">
+                        Paciente
+                    </strong>
+
+                    <small>
+                        Paciente
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout"
+                id="logoutButton"
+            >
+                ↪ &nbsp; Sair
+            </button>
+
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main>
+
+
+        <header class="topbar">
+
+            <div>
+
+                <small>
+                    ÁREA DO PACIENTE
+                </small>
+
+                <h1>
+                    Prontuários
+                </h1>
+
+            </div>
+
+
+            <div class="clock">
+
+                <span id="currentDate">
+                    Carregando...
+                </span>
+
+                <strong id="currentTime">
+                    00:00:00
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Meus prontuários
+                    </h2>
+
+                    <p>
+                        Consulte os registros dos seus atendimentos médicos.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div id="recordsList">
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================
+           PROTEÇÃO
+        ========================= */
+
+        const loggedUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "usuarioLogado"
+                )
+            );
+
+
+        if (
+            !loggedUser ||
+            loggedUser.tipo !== "paciente"
+        ) {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        /* =========================
+           INICIAIS
+        ========================= */
+
+        function initials(name) {
+
+            if (!name)
+                return "PA";
+
+
+            return name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(
+                    item =>
+                        item
+                            .charAt(0)
+                            .toUpperCase()
+                )
+                .join("");
+
+        }
+
+
+        if (loggedUser) {
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                loggedUser.nome ||
+                "Paciente";
+
+
+            document.getElementById(
+                "profileAvatar"
+            ).textContent =
+                initials(
+                    loggedUser.nome
+                );
+
+        }
+
+
+
+        /* =========================
+           RELÓGIO
+        ========================= */
+
+        function updateClock() {
+
+            const now =
+                new Date();
+
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+                now.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            document.getElementById(
+                "currentTime"
+            ).textContent =
+                now.toLocaleTimeString(
+                    "pt-BR"
+                );
+
+        }
+
+
+        updateClock();
+
+        setInterval(
+            updateClock,
+            1000
+        );
+
+
+
+        /* =========================
+           BUSCAR PRONTUÁRIOS
+        ========================= */
+
+        const records =
+            JSON.parse(
+                localStorage.getItem(
+                    "clinicaProntuarios"
+                )
+            ) || [];
+
+
+        const patientId =
+            loggedUser
+                ? String(
+                    loggedUser.id ||
+                    ""
+                )
+                : "";
+
+
+        const patientEmail =
+            loggedUser
+                ? String(
+                    loggedUser.email ||
+                    ""
+                ).toLowerCase()
+                : "";
+
+
+
+        function isMyRecord(
+            record
+        ) {
+
+            const id =
+                String(
+                    record.pacienteId ||
+                    record.idPaciente ||
+                    record.patientId ||
+                    ""
+                );
+
+
+            const email =
+                String(
+                    record.pacienteEmail ||
+                    record.emailPaciente ||
+                    record.patientEmail ||
+                    ""
+                ).toLowerCase();
+
+
+            return (
+                (
+                    patientId &&
+                    id === patientId
+                )
+                ||
+                (
+                    patientEmail &&
+                    email === patientEmail
+                )
+            );
+
+        }
+
+
+
+        const myRecords =
+            records.filter(
+                isMyRecord
+            );
+
+
+
+        /* =========================
+           DATA
+        ========================= */
+
+        function getDate(
+            record
+        ) {
+
+            const value =
+                record.data ||
+                record.dataConsulta ||
+                record.date ||
+                "";
+
+
+            if (!value)
+                return null;
+
+
+            const date =
+                new Date(value);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return null;
+
+            }
+
+
+            return date;
+
+        }
+
+
+
+        /* =========================
+           MÉDICO
+        ========================= */
+
+        function getDoctor(
+            record
+        ) {
+
+            return (
+                record.medicoNome ||
+                record.nomeMedico ||
+                record.medico ||
+                "Médico"
+            );
+
+        }
+
+
+
+        /* =========================
+           RENDERIZAR
+        ========================= */
+
+        const recordsList =
+            document.getElementById(
+                "recordsList"
+            );
+
+
+        if (
+            myRecords.length === 0
+        ) {
+
+            recordsList.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="empty-icon">
+                        ▤
+                    </div>
+
+                    <strong>
+                        Nenhum prontuário encontrado
+                    </strong>
+
+                    <p>
+                        Seus registros médicos aparecerão aqui após os atendimentos.
+                    </p>
+
+                </div>
+
+            `;
+
+        } else {
+
+
+            myRecords.sort(
+                function(a, b) {
+
+                    const dateA =
+                        getDate(a);
+
+                    const dateB =
+                        getDate(b);
+
+
+                    if (!dateA)
+                        return 1;
+
+                    if (!dateB)
+                        return -1;
+
+
+                    return (
+                        dateB.getTime() -
+                        dateA.getTime()
+                    );
+
+                }
+            );
+
+
+            myRecords.forEach(
+                function(record, index) {
+
+                    const date =
+                        getDate(
+                            record
+                        );
+
+
+                    const doctor =
+                        getDoctor(
+                            record
+                        );
+
+
+                    const specialty =
+                        record.especialidade ||
+                        record.medicoEspecialidade ||
+                        "Especialidade não informada";
+
+
+                    const diagnosis =
+                        record.diagnostico ||
+                        record.diagnóstico ||
+                        record.diagnosis ||
+                        "Não informado";
+
+
+                    const symptoms =
+                        record.sintomas ||
+                        record.symptoms ||
+                        "Não informado";
+
+
+                    const prescription =
+                        record.prescricao ||
+                        record.prescrição ||
+                        record.receita ||
+                        record.prescription ||
+                        "Não informado";
+
+
+                    const observations =
+                        record.observacoes ||
+                        record.observações ||
+                        record.anotacoes ||
+                        record.anotações ||
+                        "Não informado";
+
+
+                    const dateText =
+                        date
+                            ? date.toLocaleDateString(
+                                "pt-BR"
+                            )
+                            : "Data não informada";
+
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.className =
+                        "record";
+
+
+                    div.innerHTML = `
+
+                        <div class="record-header">
+
+                            <div class="record-main">
+
+                                <div class="record-icon">
+                                    ▤
+                                </div>
+
+
+                                <div class="record-title">
+
+                                    <strong>
+                                        Atendimento com ${doctor}
+                                    </strong>
+
+                                    <span>
+                                        ${specialty} • ${dateText}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="record-arrow">
+                                ▼
+                            </div>
+
+                        </div>
+
+
+                        <div class="record-content">
+
+
+                            <div class="info-grid">
+
+
+                                <div class="info-box">
+
+                                    <label>
+                                        DATA DO ATENDIMENTO
+                                    </label>
+
+                                    <strong>
+                                        ${dateText}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-box">
+
+                                    <label>
+                                        MÉDICO
+                                    </label>
+
+                                    <strong>
+                                        ${doctor}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-box">
+
+                                    <label>
+                                        ESPECIALIDADE
+                                    </label>
+
+                                    <strong>
+                                        ${specialty}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="info-box">
+
+                                    <label>
+                                        PACIENTE
+                                    </label>
+
+                                    <strong>
+                                        ${loggedUser.nome || "Paciente"}
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="record-section">
+
+                                <h3>
+                                    Diagnóstico
+                                </h3>
+
+                                <p>
+                                    ${diagnosis}
+                                </p>
+
+                            </div>
+
+
+
+                            <div class="record-section">
+
+                                <h3>
+                                    Sintomas / Queixa principal
+                                </h3>
+
+                                <p>
+                                    ${symptoms}
+                                </p>
+
+                            </div>
+
+
+
+                            <div class="record-section">
+
+                                <h3>
+                                    Prescrição / Receita
+                                </h3>
+
+                                <p>
+                                    ${prescription}
+                                </p>
+
+                            </div>
+
+
+
+                            <div class="record-section">
+
+                                <h3>
+                                    Observações médicas
+                                </h3>
+
+                                <p>
+                                    ${observations}
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+                    `;
+
+
+                    const header =
+                        div.querySelector(
+                            ".record-header"
+                        );
+
+
+                    header.addEventListener(
+                        "click",
+                        function() {
+
+                            div.classList.toggle(
+                                "open"
+                            );
+
+                        }
+                    );
+
+
+                    recordsList.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================
+           SAIR
+        ========================= */
+
+        document.getElementById(
+            "logoutButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem(
+                    "usuarioLogado"
+                );
+
+
+                window.location.href =
+                    "../login.html";
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

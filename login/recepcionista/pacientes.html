@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Clínica Vida+ | Pacientes</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/pacientes-recepcionista.css"
+    >
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>Clínica Vida+</h2>
+
+                <span>Recepção</span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a
+                href="agendar.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">▣</span>
+                <span>Agendar consulta</span>
+            </a>
+
+
+            <a
+                href="medicos.html"
+                class="menu-item"
+            >
+                <span class="menu-icon">♙</span>
+                <span>Médicos</span>
+            </a>
+
+
+            <a
+                href="pacientes.html"
+                class="menu-item active"
+            >
+                <span class="menu-icon">♧</span>
+                <span>Pacientes</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="user-card">
+
+                <div class="avatar">
+                    RC
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Recepcionista</strong>
+
+                    <span>Recepção</span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+                <span>↪</span>
+                Sair
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <main class="main-content">
+
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    Recepção
+                </span>
+
+                <h1>
+                    Pacientes
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="current-date">
+
+                    <span id="currentDate">
+                        Carregando...
+                    </span>
+
+                    <strong id="currentTime">
+                        00:00:00
+                    </strong>
+
+                </div>
+
+
+                <div class="notification">
+                    🔔
+                    <i>4</i>
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- CABEÇALHO -->
+
+        <section class="patients-header card">
+
+            <div>
+
+                <span class="card-label">
+                    CADASTRO
+                </span>
+
+                <h2>
+                    Pacientes
+                </h2>
+
+                <p>
+                    Cadastre e consulte os pacientes da clínica.
+                </p>
+
+            </div>
+
+
+            <button
+                class="new-patient-button"
+                id="newPatientButton"
+            >
+                + Novo paciente
+            </button>
+
+        </section>
+
+
+
+        <!-- PESQUISA -->
+
+        <section class="search-card card">
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input
+                    type="text"
+                    id="patientSearch"
+                    placeholder="Pesquisar por nome ou CPF..."
+                >
+
+            </div>
+
+        </section>
+
+
+
+        <!-- LISTA -->
+
+        <section class="card patients-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="card-label">
+                        PACIENTES
+                    </span>
+
+                    <h3>
+                        Pacientes cadastrados
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="patients-list"
+                id="patientsList"
+            >
+
+
+                <article
+                    class="patient-row"
+                    data-name="Ana Martins"
+                    data-cpf="12345678900"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            AM
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ana Martins
+                            </strong>
+
+                            <span>
+                                CPF: 123.456.789-00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Nascimento
+                        </span>
+
+                        <strong>
+                            15/03/1995
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-1111
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            Hoje
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="view-button"
+                        onclick="visualizarPaciente('Ana Martins')"
+                    >
+                        Visualizar
+                    </button>
+
+                </article>
+
+
+
+                <article
+                    class="patient-row"
+                    data-name="João Pereira"
+                    data-cpf="23456789001"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            JP
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                João Pereira
+                            </strong>
+
+                            <span>
+                                CPF: 234.567.890-01
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Nascimento
+                        </span>
+
+                        <strong>
+                            22/07/1988
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-2222
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            Hoje
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="view-button"
+                        onclick="visualizarPaciente('João Pereira')"
+                    >
+                        Visualizar
+                    </button>
+
+                </article>
+
+
+
+                <article
+                    class="patient-row"
+                    data-name="Mariana Costa"
+                    data-cpf="34567890112"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            MC
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Mariana Costa
+                            </strong>
+
+                            <span>
+                                CPF: 345.678.901-12
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Nascimento
+                        </span>
+
+                        <strong>
+                            09/11/2001
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-3333
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            05/08/2026
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="view-button"
+                        onclick="visualizarPaciente('Mariana Costa')"
+                    >
+                        Visualizar
+                    </button>
+
+                </article>
+
+
+
+                <article
+                    class="patient-row"
+                    data-name="Ricardo Costa"
+                    data-cpf="45678901223"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            RC
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ricardo Costa
+                            </strong>
+
+                            <span>
+                                CPF: 456.789.012-23
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Nascimento
+                        </span>
+
+                        <strong>
+                            18/01/1979
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-4444
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            01/08/2026
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="view-button"
+                        onclick="visualizarPaciente('Ricardo Costa')"
+                    >
+                        Visualizar
+                    </button>
+
+                </article>
+
+
+            </div>
+
+
+            <div
+                class="no-results"
+                id="noResults"
+            >
+                Nenhum paciente encontrado.
+            </div>
+
+        </section>
+
+
+
+        <!-- MODAL -->
+
+        <div
+            class="modal-overlay"
+            id="patientModal"
+        >
+
+            <div class="modal">
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <span class="card-label">
+                            CADASTRO DE PACIENTE
+                        </span>
+
+                        <h2>
+                            Novo paciente
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="close-button"
+                        id="closeModal"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <form id="patientForm">
+
+
+                    <div class="modal-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="fullName">
+                                Nome completo
+                            </label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="cpf">
+                                CPF
+                            </label>
+
+                            <input
+                                type="text"
+                                id="cpf"
+                                maxlength="14"
+                                placeholder="000.000.000-00"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="birthDate">
+                                Data de nascimento
+                            </label>
+
+                            <input
+                                type="date"
+                                id="birthDate"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="phone">
+                                Telefone
+                            </label>
+
+                            <input
+                                type="text"
+                                id="phone"
+                                placeholder="(00) 00000-0000"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                E-mail
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="address">
+                                Endereço
+                            </label>
+
+                            <input
+                                type="text"
+                                id="address"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="modal-actions">
+
+                        <button
+                            type="button"
+                            class="cancel-button"
+                            id="cancelButton"
+                        >
+                            Cancelar
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="save-button"
+                        >
+                            Cadastrar paciente
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <script src="../js/pacientes-recepcionista.js"></script>
+
+</body>
+
+</html>

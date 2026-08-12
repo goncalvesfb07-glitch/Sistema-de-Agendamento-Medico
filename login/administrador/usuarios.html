@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica Vida+ | Cadastro de Usuários</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 230px;
+            background: white;
+            border-right: 1px solid #e5e7eb;
+            padding: 24px 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 8px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .brand h2 {
+            font-size: 15px;
+        }
+
+        .brand span {
+            display: block;
+            margin-top: 3px;
+            font-size: 8px;
+            color: #8a94a6;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        nav a {
+            height: 42px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 0 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #667085;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: #f3f6fb;
+            color: #2563eb;
+        }
+
+        nav a.active {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        nav a span {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 13px 7px;
+            border-top: 1px solid #edf0f4;
+        }
+
+        .profile-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #eaf1ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .profile strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .profile small {
+            display: block;
+            margin-top: 3px;
+            color: #98a2b3;
+            font-size: 7px;
+        }
+
+        .logout {
+            width: 100%;
+            height: 37px;
+            border: none;
+            border-radius: 8px;
+            background: #f7f8fa;
+            color: #667085;
+            cursor: pointer;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            margin-left: 230px;
+            min-height: 100vh;
+            padding: 30px 38px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .topbar small {
+            color: #2563eb;
+            font-size: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .topbar h1 {
+            margin-top: 6px;
+            font-size: 25px;
+        }
+
+        .clock {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+            color: #8a94a6;
+            font-size: 8px;
+            text-transform: capitalize;
+        }
+
+        .clock strong {
+            color: #344054;
+            font-size: 13px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(16,24,40,.035);
+        }
+
+        .card-header {
+            margin-bottom: 25px;
+        }
+
+        .card-header h2 {
+            font-size: 17px;
+        }
+
+        .card-header p {
+            margin-top: 5px;
+            color: #8a94a6;
+            font-size: 9px;
+        }
+
+        /* =========================
+           TIPO
+        ========================= */
+
+        .section-title {
+            margin-bottom: 12px;
+        }
+
+        .section-number {
+            color: #2563eb;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .section-title h3 {
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        .section-title p {
+            margin-top: 4px;
+            color: #8a94a6;
+            font-size: 8px;
+        }
+
+        .types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .type-card {
+            border: 1px solid #dfe4ea;
+            border-radius: 9px;
+            padding: 15px;
+            cursor: pointer;
+            background: white;
+            transition: .2s;
+        }
+
+        .type-card:hover {
+            border-color: #9ab7ed;
+            background: #f9fbff;
+        }
+
+        .type-card.selected {
+            border-color: #2563eb;
+            background: #edf3ff;
+        }
+
+        .type-card strong {
+            display: block;
+            font-size: 10px;
+            margin-bottom: 5px;
+        }
+
+        .type-card span {
+            color: #8a94a6;
+            font-size: 8px;
+            line-height: 1.4;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-section {
+            border-top: 1px solid #edf0f4;
+            padding-top: 22px;
+            margin-top: 22px;
+        }
+
+        .form-section h3 {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .form-section > p {
+            color: #8a94a6;
+            font-size: 8px;
+            margin-bottom: 18px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 8px;
+            font-weight: bold;
+            color: #344054;
+        }
+
+        input,
+        select {
+            height: 39px;
+            width: 100%;
+            border: 1px solid #d7dce3;
+            border-radius: 7px;
+            padding: 0 11px;
+            outline: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,.08);
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 60px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 7px;
+            top: 5px;
+            height: 29px;
+            border: none;
+            background: transparent;
+            color: #2563eb;
+            font-size: 8px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           BOTÕES
+        ========================= */
+
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #edf0f4;
+        }
+
+        button {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .btn-clear {
+            height: 39px;
+            padding: 0 16px;
+            border: 1px solid #d7dce3;
+            border-radius: 7px;
+            background: white;
+            color: #667085;
+            font-size: 9px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-create {
+            height: 39px;
+            padding: 0 18px;
+            border: none;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 9px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-create:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           MENSAGEM
+        ========================= */
+
+        .message {
+            display: none;
+            margin-bottom: 18px;
+            padding: 12px;
+            border-radius: 7px;
+            font-size: 9px;
+        }
+
+        .message.success {
+            display: block;
+            background: #eaf8f0;
+            color: #087443;
+            border: 1px solid #b7e4ca;
+        }
+
+        .message.error {
+            display: block;
+            background: #fff1f0;
+            color: #b42318;
+            border: 1px solid #f1b8b3;
+        }
+
+        /* =========================
+           CAMPOS ESPECÍFICOS
+        ========================= */
+
+        #medicoFields {
+            display: none;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .types {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>
+                    Clínica Vida+
+                </h2>
+
+                <span>
+                    Administrador
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="usuarios.html" class="active">
+                <span>♙</span>
+                Usuários
+            </a>
+
+            <a href="gerenciamento.html">
+                <span>⚙</span>
+                Gerenciamento
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    AD
+                </div>
+
+                <div>
+
+                    <strong>
+                        Administrador
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout"
+                id="logoutButton"
+            >
+                ↪ &nbsp; Sair
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <main>
+
+
+        <header class="topbar">
+
+            <div>
+
+                <small>
+                    ADMINISTRAÇÃO
+                </small>
+
+                <h1>
+                    Cadastro de usuários
+                </h1>
+
+            </div>
+
+
+            <div class="clock">
+
+                <span id="currentDate">
+                    Carregando...
+                </span>
+
+                <strong id="currentTime">
+                    00:00:00
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <h2>
+                    Criar novo usuário
+                </h2>
+
+                <p>
+                    Cadastre médicos, recepcionistas e pacientes que terão acesso ao sistema da Clínica Vida+.
+                </p>
+
+            </div>
+
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+
+            <!-- TIPO -->
+
+            <div class="section-title">
+
+                <span class="section-number">
+                    01
+                </span>
+
+                <h3>
+                    Tipo de usuário
+                </h3>
+
+                <p>
+                    Selecione o perfil que deseja cadastrar.
+                </p>
+
+            </div>
+
+
+            <div class="types">
+
+
+                <div
+                    class="type-card selected"
+                    data-type="medico"
+                >
+
+                    <strong>
+                        Médico
+                    </strong>
+
+                    <span>
+                        Profissional responsável pelos atendimentos.
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="type-card"
+                    data-type="recepcionista"
+                >
+
+                    <strong>
+                        Recepcionista
+                    </strong>
+
+                    <span>
+                        Responsável pelos agendamentos e atendimento.
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="type-card"
+                    data-type="paciente"
+                >
+
+                    <strong>
+                        Paciente
+                    </strong>
+
+                    <span>
+                        Usuário que terá acesso às suas consultas.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DADOS PESSOAIS -->
+
+            <div class="form-section">
+
+                <span class="section-number">
+                    02
+                </span>
+
+                <h3>
+                    Informações pessoais
+                </h3>
+
+                <p>
+                    Dados básicos do usuário.
+                </p>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Nome completo *
+                        </label>
+
+                        <input
+                            id="nome"
+                            type="text"
+                            placeholder="Ex.: João da Silva"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            CPF *
+                        </label>
+
+                        <input
+                            id="cpf"
+                            type="text"
+                            placeholder="000.000.000-00"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            E-mail *
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="usuario@email.com"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Telefone *
+                        </label>
+
+                        <input
+                            id="telefone"
+                            type="text"
+                            placeholder="(00) 00000-0000"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- DADOS MÉDICO -->
+
+            <div
+                class="form-section"
+                id="medicoFields"
+            >
+
+                <span class="section-number">
+                    03
+                </span>
+
+                <h3>
+                    Informações profissionais
+                </h3>
+
+                <p>
+                    Dados necessários para o atendimento.
+                </p>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Especialidade *
+                        </label>
+
+                        <select id="especialidade">
+
+                            <option value="">
+                                Selecione uma especialidade
+                            </option>
+
+                            <option>
+                                Cardiologia
+                            </option>
+
+                            <option>
+                                Clínica Geral
+                            </option>
+
+                            <option>
+                                Dermatologia
+                            </option>
+
+                            <option>
+                                Ginecologia
+                            </option>
+
+                            <option>
+                                Neurologia
+                            </option>
+
+                            <option>
+                                Oftalmologia
+                            </option>
+
+                            <option>
+                                Ortopedia
+                            </option>
+
+                            <option>
+                                Pediatria
+                            </option>
+
+                            <option>
+                                Psiquiatria
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            CRM *
+                        </label>
+
+                        <input
+                            id="crm"
+                            type="text"
+                            placeholder="Ex.: 123456"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Andar de atendimento
+                        </label>
+
+                        <select id="andar">
+
+                            <option value="">
+                                Selecione o andar
+                            </option>
+
+                            <option>
+                                Térreo
+                            </option>
+
+                            <option>
+                                1º andar
+                            </option>
+
+                            <option>
+                                2º andar
+                            </option>
+
+                            <option>
+                                3º andar
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Sala
+                        </label>
+
+                        <input
+                            id="sala"
+                            type="text"
+                            placeholder="Ex.: 204"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACESSO -->
+
+            <div class="form-section">
+
+                <span class="section-number">
+                    04
+                </span>
+
+                <h3>
+                    Dados de acesso
+                </h3>
+
+                <p>
+                    Informações utilizadas para entrar no sistema.
+                </p>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Nome de usuário *
+                        </label>
+
+                        <input
+                            id="usuario"
+                            type="text"
+                            placeholder="Crie o nome de usuário"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Senha *
+                        </label>
+
+                        <div class="password-box">
+
+                            <input
+                                id="senha"
+                                type="password"
+                                placeholder="Crie uma senha"
+                            >
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                id="showPassword"
+                            >
+                                Mostrar
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BOTÕES -->
+
+            <div class="buttons">
+
+                <button
+                    type="button"
+                    class="btn-clear"
+                    id="clearButton"
+                >
+                    Limpar formulário
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn-create"
+                    id="createButton"
+                >
+                    Criar usuário →
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================
+           RELÓGIO
+        ========================= */
+
+        function updateClock() {
+
+            const now = new Date();
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+                now.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+            document.getElementById(
+                "currentTime"
+            ).textContent =
+                now.toLocaleTimeString("pt-BR");
+
+        }
+
+        updateClock();
+
+        setInterval(updateClock, 1000);
+
+
+
+        /* =========================
+           TIPO
+        ========================= */
+
+        let selectedType = "medico";
+
+
+        const typeCards =
+            document.querySelectorAll(
+                ".type-card"
+            );
+
+
+        typeCards.forEach(
+            function(card) {
+
+                card.addEventListener(
+                    "click",
+                    function() {
+
+                        typeCards.forEach(
+                            item =>
+                                item.classList.remove(
+                                    "selected"
+                                )
+                        );
+
+                        card.classList.add(
+                            "selected"
+                        );
+
+                        selectedType =
+                            card.dataset.type;
+
+
+                        const medicoFields =
+                            document.getElementById(
+                                "medicoFields"
+                            );
+
+
+                        if (
+                            selectedType === "medico"
+                        ) {
+
+                            medicoFields.style.display =
+                                "block";
+
+                        } else {
+
+                            medicoFields.style.display =
+                                "none";
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =========================
+           SENHA
+        ========================= */
+
+        document.getElementById(
+            "showPassword"
+        ).addEventListener(
+            "click",
+            function() {
+
+                const senha =
+                    document.getElementById(
+                        "senha"
+                    );
+
+                if (
+                    senha.type === "password"
+                ) {
+
+                    senha.type = "text";
+
+                    this.textContent =
+                        "Ocultar";
+
+                } else {
+
+                    senha.type = "password";
+
+                    this.textContent =
+                        "Mostrar";
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           MENSAGEM
+        ========================= */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+            message.textContent =
+                text;
+
+            message.className =
+                "message " + type;
+
+        }
+
+
+
+        /* =========================
+           LIMPAR
+        ========================= */
+
+        function clearForm() {
+
+            document
+                .getElementById("nome")
+                .value = "";
+
+            document
+                .getElementById("cpf")
+                .value = "";
+
+            document
+                .getElementById("email")
+                .value = "";
+
+            document
+                .getElementById("telefone")
+                .value = "";
+
+            document
+                .getElementById("especialidade")
+                .value = "";
+
+            document
+                .getElementById("crm")
+                .value = "";
+
+            document
+                .getElementById("andar")
+                .value = "";
+
+            document
+                .getElementById("sala")
+                .value = "";
+
+            document
+                .getElementById("usuario")
+                .value = "";
+
+            document
+                .getElementById("senha")
+                .value = "";
+
+        }
+
+
+        document.getElementById(
+            "clearButton"
+        ).addEventListener(
+            "click",
+            clearForm
+        );
+
+
+
+        /* =========================
+           CRIAR USUÁRIO
+        ========================= */
+
+        document.getElementById(
+            "createButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+
+                const nome =
+                    document
+                        .getElementById("nome")
+                        .value
+                        .trim();
+
+
+                const cpf =
+                    document
+                        .getElementById("cpf")
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                const telefone =
+                    document
+                        .getElementById("telefone")
+                        .value
+                        .trim();
+
+
+                const usuario =
+                    document
+                        .getElementById("usuario")
+                        .value
+                        .trim();
+
+
+                const senha =
+                    document
+                        .getElementById("senha")
+                        .value;
+
+
+                /* =========================
+                   VALIDAÇÃO
+                ========================= */
+
+                if (
+                    !nome ||
+                    !cpf ||
+                    !email ||
+                    !telefone ||
+                    !usuario ||
+                    !senha
+                ) {
+
+                    showMessage(
+                        "Preencha todos os campos obrigatórios.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    selectedType === "medico"
+                ) {
+
+                    const especialidade =
+                        document
+                            .getElementById(
+                                "especialidade"
+                            )
+                            .value;
+
+
+                    const crm =
+                        document
+                            .getElementById(
+                                "crm"
+                            )
+                            .value
+                            .trim();
+
+
+                    if (
+                        !especialidade ||
+                        !crm
+                    ) {
+
+                        showMessage(
+                            "Preencha a especialidade e o CRM do médico.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+                }
+
+
+
+                /* =========================
+                   BUSCAR USUÁRIOS
+                ========================= */
+
+                let users =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "clinicaUsuarios"
+                        )
+                    );
+
+
+                if (
+                    !Array.isArray(users)
+                ) {
+
+                    users = [];
+
+                }
+
+
+
+                /* =========================
+                   VERIFICAR DUPLICADOS
+                ========================= */
+
+                const duplicate =
+                    users.some(
+                        function(user) {
+
+                            return (
+                                user.cpf === cpf ||
+                                user.email.toLowerCase() ===
+                                email.toLowerCase() ||
+                                user.usuario?.toLowerCase() ===
+                                usuario.toLowerCase()
+                            );
+
+                        }
+                    );
+
+
+                if (duplicate) {
+
+                    showMessage(
+                        "Já existe um usuário com este CPF, e-mail ou nome de usuário.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* =========================
+                   NOVO USUÁRIO
+                ========================= */
+
+                const newUser = {
+
+                    id:
+                        Date.now(),
+
+                    nome:
+                        nome,
+
+                    cpf:
+                        cpf,
+
+                    email:
+                        email,
+
+                    telefone:
+                        telefone,
+
+                    usuario:
+                        usuario,
+
+                    senha:
+                        senha,
+
+                    tipo:
+                        selectedType,
+
+                    status:
+                        "ativo"
+
+                };
+
+
+
+                /* DADOS MÉDICO */
+
+                if (
+                    selectedType === "medico"
+                ) {
+
+                    newUser.especialidade =
+                        document
+                            .getElementById(
+                                "especialidade"
+                            )
+                            .value;
+
+                    newUser.crm =
+                        document
+                            .getElementById(
+                                "crm"
+                            )
+                            .value
+                            .trim();
+
+                    newUser.andar =
+                        document
+                            .getElementById(
+                                "andar"
+                            )
+                            .value;
+
+                    newUser.sala =
+                        document
+                            .getElementById(
+                                "sala"
+                            )
+                            .value
+                            .trim();
+
+                }
+
+
+
+                /* =========================
+                   SALVAR
+                ========================= */
+
+                users.push(
+                    newUser
+                );
+
+
+                localStorage.setItem(
+                    "clinicaUsuarios",
+                    JSON.stringify(users)
+                );
+
+
+
+                /* =========================
+                   SUCESSO
+                ========================= */
+
+                showMessage(
+                    "Usuário criado com sucesso! Ele já está disponível no gerenciamento.",
+                    "success"
+                );
+
+
+                clearForm();
+
+            }
+        );
+
+
+
+        /* =========================
+           SAIR
+        ========================= */
+
+        document.getElementById(
+            "logoutButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                window.location.href =
+                    "../login.html";
+
+            }
+        );
+
+
+    </script>
+
+</body>
+
+</html>
