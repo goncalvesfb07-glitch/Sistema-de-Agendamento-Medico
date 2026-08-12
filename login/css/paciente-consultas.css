@@ -1,0 +1,287 @@
+.consultations-section {
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    font-size: 17px;
+
+    margin-top: 5px;
+}
+
+.count-badge {
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    padding: 7px 10px;
+
+    border-radius: 15px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+/* CONSULTA */
+
+.consultation-list {
+    border-top: 1px solid #e5e9f0;
+}
+
+.consultation-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #e5e9f0;
+}
+
+.consultation-card:last-child {
+    border-bottom: none;
+}
+
+
+/* DATA */
+
+.consultation-date {
+    width: 65px;
+
+    min-width: 65px;
+
+    height: 75px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    border-radius: 9px;
+}
+
+.consultation-date span {
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.consultation-date strong {
+    font-size: 25px;
+
+    line-height: 28px;
+}
+
+.consultation-date small {
+    font-size: 8px;
+}
+
+.consultation-date.past {
+    background: #f2f4f7;
+
+    color: #667085;
+}
+
+
+/* PRINCIPAL */
+
+.consultation-main {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.doctor-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.doctor-avatar {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf1ff;
+
+    color: #2563eb;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.doctor-info h3 {
+    font-size: 12px;
+}
+
+.doctor-info span {
+    display: block;
+
+    color: #667085;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+
+/* DADOS */
+
+.consultation-data {
+    display: flex;
+
+    gap: 35px;
+
+    margin-top: 13px;
+}
+
+.consultation-data span,
+.consultation-data strong {
+    display: block;
+}
+
+.consultation-data span {
+    color: #667085;
+
+    font-size: 8px;
+}
+
+.consultation-data strong {
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+
+/* STATUS */
+
+.consultation-status {
+    min-width: 75px;
+
+    text-align: right;
+}
+
+.confirmed,
+.completed {
+    display: inline-block;
+
+    padding: 6px 8px;
+
+    border-radius: 12px;
+
+    font-size: 8px;
+
+    font-weight: bold;
+}
+
+.confirmed {
+    background: #e8f7ee;
+
+    color: #198754;
+}
+
+.completed {
+    background: #f2f4f7;
+
+    color: #667085;
+}
+
+
+/* AVISO */
+
+.appointment-notice {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    border: 1px solid #e5e9f0;
+
+    background: #f8fafc;
+
+    border-radius: 9px;
+}
+
+.appointment-notice > span {
+    font-size: 17px;
+}
+
+.appointment-notice strong {
+    display: block;
+
+    font-size: 10px;
+}
+
+.appointment-notice p {
+    color: #667085;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 750px) {
+
+    .consultation-card {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .consultation-status {
+        margin-left: 85px;
+
+        text-align: left;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .consultation-data {
+        gap: 15px;
+    }
+
+    .consultation-card {
+        gap: 12px;
+    }
+
+}

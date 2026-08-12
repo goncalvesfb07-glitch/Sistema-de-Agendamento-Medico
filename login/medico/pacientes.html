@@ -1,0 +1,710 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Clínica Vida+ | Pacientes</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../css/pacientes.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>
+                    Clínica Vida+
+                </h2>
+
+                <span>
+                    Área Médica
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a
+                href="dashboard.html"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ⌂
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="agenda.html"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ▣
+                </span>
+
+                <span>
+                    Agenda
+                </span>
+
+            </a>
+
+
+            <a
+                href="pacientes.html"
+                class="menu-item active"
+            >
+
+                <span class="menu-icon">
+                    ♙
+                </span>
+
+                <span>
+                    Pacientes
+                </span>
+
+            </a>
+
+
+            <a
+                href="prontuario.html"
+                class="menu-item"
+            >
+
+                <span class="menu-icon">
+                    ▤
+                </span>
+
+                <span>
+                    Prontuários
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="user-card">
+
+                <div class="avatar">
+                    DR
+                </div>
+
+                <div class="user-info">
+
+                    <strong>
+                        Dr. Carlos Silva
+                    </strong>
+
+                    <span>
+                        Médico
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout-button"
+                id="logoutButton"
+            >
+
+                <span>
+                    ↪
+                </span>
+
+                Sair
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="main-content">
+
+
+        <!-- TOPO -->
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    Área Médica
+                </span>
+
+                <h1>
+                    Pacientes
+                </h1>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <div class="current-date">
+
+                    <span id="currentDate">
+                        Carregando...
+                    </span>
+
+                    <strong id="currentTime">
+                        00:00:00
+                    </strong>
+
+                </div>
+
+
+                <div class="notification">
+                    🔔
+
+                    <i>
+                        3
+                    </i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- CABEÇALHO -->
+
+        <section class="patients-header card">
+
+            <div>
+
+                <span class="card-label">
+                    MEUS PACIENTES
+                </span>
+
+                <h2>
+                    Pacientes
+                </h2>
+
+                <p>
+                    Consulte os pacientes que possuem atendimento com você.
+                </p>
+
+            </div>
+
+
+            <div class="patients-total">
+
+                <span>
+                    Total de pacientes
+                </span>
+
+                <strong id="totalPatients">
+                    8
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PESQUISA -->
+
+        <section class="search-card card">
+
+            <div class="search-box">
+
+                <span>
+                    🔎
+                </span>
+
+                <input
+                    type="text"
+                    id="patientSearch"
+                    placeholder="Pesquisar por nome ou CPF..."
+                >
+
+            </div>
+
+
+            <select id="patientFilter">
+
+                <option value="todos">
+                    Todos os pacientes
+                </option>
+
+                <option value="recentes">
+                    Atendimento recente
+                </option>
+
+                <option value="pendentes">
+                    Prontuário pendente
+                </option>
+
+            </select>
+
+        </section>
+
+
+
+        <!-- LISTA -->
+
+        <section class="card patients-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <span class="card-label">
+                        PACIENTES
+                    </span>
+
+                    <h3>
+                        Lista de pacientes
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="patients-list"
+                id="patientsList"
+            >
+
+
+                <!-- PACIENTE 1 -->
+
+                <article
+                    class="patient-row"
+                    data-name="Ana Martins"
+                    data-cpf="12345678900"
+                    data-status="pendente"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            AM
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ana Martins
+                            </strong>
+
+                            <span>
+                                CPF: 123.456.789-00
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            Hoje, 14:30
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-1111
+                        </strong>
+
+                    </div>
+
+
+                    <span class="patient-status pending">
+                        Prontuário pendente
+                    </span>
+
+
+                    <button
+                        class="patient-button"
+                        onclick="abrirPaciente('Ana Martins')"
+                    >
+                        Abrir
+                    </button>
+
+                </article>
+
+
+
+                <!-- PACIENTE 2 -->
+
+                <article
+                    class="patient-row"
+                    data-name="João Pereira"
+                    data-cpf="23456789001"
+                    data-status="recente"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            JP
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                João Pereira
+                            </strong>
+
+                            <span>
+                                CPF: 234.567.890-01
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            Hoje, 13:30
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-2222
+                        </strong>
+
+                    </div>
+
+
+                    <span class="patient-status completed">
+                        Prontuário disponível
+                    </span>
+
+
+                    <button
+                        class="patient-button"
+                        onclick="abrirPaciente('João Pereira')"
+                    >
+                        Abrir
+                    </button>
+
+                </article>
+
+
+
+                <!-- PACIENTE 3 -->
+
+                <article
+                    class="patient-row"
+                    data-name="Mariana Souza"
+                    data-cpf="34567890112"
+                    data-status="recente"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            MS
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Mariana Souza
+                            </strong>
+
+                            <span>
+                                CPF: 345.678.901-12
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            05/08/2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-3333
+                        </strong>
+
+                    </div>
+
+
+                    <span class="patient-status completed">
+                        Prontuário disponível
+                    </span>
+
+
+                    <button
+                        class="patient-button"
+                        onclick="abrirPaciente('Mariana Souza')"
+                    >
+                        Abrir
+                    </button>
+
+                </article>
+
+
+
+                <!-- PACIENTE 4 -->
+
+                <article
+                    class="patient-row"
+                    data-name="Ricardo Costa"
+                    data-cpf="45678901223"
+                    data-status="pendente"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            RC
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Ricardo Costa
+                            </strong>
+
+                            <span>
+                                CPF: 456.789.012-23
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            01/08/2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-4444
+                        </strong>
+
+                    </div>
+
+
+                    <span class="patient-status pending">
+                        Prontuário pendente
+                    </span>
+
+
+                    <button
+                        class="patient-button"
+                        onclick="abrirPaciente('Ricardo Costa')"
+                    >
+                        Abrir
+                    </button>
+
+                </article>
+
+
+
+                <!-- PACIENTE 5 -->
+
+                <article
+                    class="patient-row"
+                    data-name="Pedro Oliveira"
+                    data-cpf="56789012334"
+                    data-status="recente"
+                >
+
+                    <div class="patient-person">
+
+                        <div class="patient-avatar">
+                            PO
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Pedro Oliveira
+                            </strong>
+
+                            <span>
+                                CPF: 567.890.123-34
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Última consulta
+                        </span>
+
+                        <strong>
+                            29/07/2026
+                        </strong>
+
+                    </div>
+
+
+                    <div class="patient-info">
+
+                        <span>
+                            Telefone
+                        </span>
+
+                        <strong>
+                            (55) 99999-5555
+                        </strong>
+
+                    </div>
+
+
+                    <span class="patient-status completed">
+                        Prontuário disponível
+                    </span>
+
+
+                    <button
+                        class="patient-button"
+                        onclick="abrirPaciente('Pedro Oliveira')"
+                    >
+                        Abrir
+                    </button>
+
+                </article>
+
+
+            </div>
+
+
+            <!-- SEM RESULTADO -->
+
+            <div
+                class="no-results"
+                id="noResults"
+            >
+
+                Nenhum paciente encontrado.
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <script src="../js/medico.js"></script>
+
+    <script src="../js/pacientes.js"></script>
+
+
+</body>
+
+</html>
+```
