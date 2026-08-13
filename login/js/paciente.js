@@ -49,29 +49,54 @@ setInterval(
 );
 
 
+
+// ======================================
+// USUÁRIO LOGADO
+// ======================================
+
+var usuarioLogado =
+    JSON.parse(
+        localStorage.getItem(
+            "usuarioLogado"
+        )
+    );
+
+
+// ======================================
+// VERIFICAR LOGIN
+// ======================================
+
+if (!usuarioLogado) {
+
+    window.location.href =
+        "../login/login.html";
+
+}
+
+
 // ======================================
 // NOME DO PACIENTE
 // ======================================
 
-var pacienteNome =
-    localStorage.getItem(
-        "pacienteLogado"
-    );
-
-
-if (pacienteNome) {
+if (usuarioLogado) {
 
     var nomeCompleto =
-        pacienteNome;
+        usuarioLogado.nome ||
+        usuarioLogado.name ||
+        "Paciente";
+
 
     var primeiroNome =
-        nomeCompleto.split(" ")[0];
+        nomeCompleto
+            .trim()
+            .split(" ")[0];
 
 
     var nameElement =
         document.getElementById(
             "patientName"
         );
+
 
     var sidebarElement =
         document.getElementById(
@@ -97,6 +122,7 @@ if (pacienteNome) {
 }
 
 
+
 // ======================================
 // LOGOUT
 // ======================================
@@ -114,11 +140,17 @@ if (logoutButton) {
         function () {
 
             localStorage.removeItem(
+                "usuarioLogado"
+            );
+
+
+            localStorage.removeItem(
                 "pacienteLogado"
             );
 
+
             window.location.href =
-                "../login.html";
+                "../login/login.html";
 
         }
     );

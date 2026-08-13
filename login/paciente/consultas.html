@@ -2,7 +2,9 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Clínica Vida+ | Minhas consultas</title>
@@ -21,7 +23,9 @@
             color: #172033;
         }
 
-        /* SIDEBAR */
+        /* =========================
+           SIDEBAR
+        ========================= */
 
         .sidebar {
             position: fixed;
@@ -180,7 +184,10 @@
             color: #d92d20;
         }
 
-        /* MAIN */
+
+        /* =========================
+           MAIN
+        ========================= */
 
         main {
             margin-left: 230px;
@@ -231,7 +238,10 @@
             font-size: 13px;
         }
 
-        /* CARD PRINCIPAL */
+
+        /* =========================
+           CARD
+        ========================= */
 
         .card {
             background: white;
@@ -269,7 +279,10 @@
             font-size: 8px;
         }
 
-        /* FILTROS */
+
+        /* =========================
+           FILTROS
+        ========================= */
 
         .filters {
             display: grid;
@@ -307,7 +320,10 @@
             border-color: #2563eb;
         }
 
-        /* SEÇÃO */
+
+        /* =========================
+           SEÇÃO
+        ========================= */
 
         .section-title {
             display: flex;
@@ -344,7 +360,10 @@
             font-weight: bold;
         }
 
-        /* CONSULTA */
+
+        /* =========================
+           CONSULTA
+        ========================= */
 
         .appointment {
             display: grid;
@@ -466,7 +485,10 @@
             color: #b42318;
         }
 
-        /* VAZIO */
+
+        /* =========================
+           VAZIO
+        ========================= */
 
         .empty {
             padding: 35px 20px;
@@ -513,7 +535,10 @@
             font-size: 8px;
         }
 
-        /* RESPONSIVO */
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
 
         @media (max-width: 800px) {
 
@@ -534,10 +559,12 @@
 
             .appointment-status {
                 grid-column: 2;
+
                 justify-self: start;
             }
 
         }
+
 
         @media (max-width: 600px) {
 
@@ -577,7 +604,9 @@
 <body>
 
 
-    <!-- SIDEBAR -->
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
     <aside class="sidebar">
 
@@ -604,7 +633,6 @@
 
 
         <nav>
-
 
             <a href="dashboard.html">
 
@@ -634,7 +662,6 @@
                 Prontuários
 
             </a>
-
 
         </nav>
 
@@ -680,7 +707,9 @@
 
 
 
-    <!-- MAIN -->
+    <!-- =========================
+         MAIN
+    ========================= -->
 
     <main>
 
@@ -737,10 +766,11 @@
 
 
 
-            <!-- FILTROS -->
+            <!-- =========================
+                 FILTROS
+            ========================= -->
 
             <div class="filters">
-
 
                 <input
                     type="text"
@@ -773,12 +803,13 @@
 
                 </select>
 
-
             </div>
 
 
 
-            <!-- PRÓXIMAS -->
+            <!-- =========================
+                 PRÓXIMAS
+            ========================= -->
 
             <div class="section-title">
 
@@ -796,13 +827,13 @@
             </div>
 
 
-            <div id="upcomingList">
-
-            </div>
+            <div id="upcomingList"></div>
 
 
 
-            <!-- ANTERIORES -->
+            <!-- =========================
+                 ANTERIORES
+            ========================= -->
 
             <div class="section-title">
 
@@ -820,9 +851,7 @@
             </div>
 
 
-            <div id="previousList">
-
-            </div>
+            <div id="previousList"></div>
 
 
         </section>
@@ -834,9 +863,9 @@
 
     <script>
 
-        /* =========================
-           PROTEÇÃO
-        ========================= */
+        /* ======================================
+           PROTEÇÃO DE LOGIN
+        ====================================== */
 
         const loggedUser =
             JSON.parse(
@@ -847,25 +876,40 @@
 
 
         if (
-            !loggedUser ||
-            loggedUser.tipo !== "paciente"
+            !loggedUser
         ) {
 
             window.location.href =
-                "../login.html";
+                "../login/login.html";
+
+        }
+
+
+        if (
+            loggedUser &&
+            String(
+                loggedUser.tipo || ""
+            ).toLowerCase() !== "paciente"
+        ) {
+
+            window.location.href =
+                "../login/login.html";
 
         }
 
 
 
-        /* =========================
+        /* ======================================
            INICIAIS
-        ========================= */
+        ====================================== */
 
         function initials(name) {
 
-            if (!name)
+            if (!name) {
+
                 return "PA";
+
+            }
 
 
             return name
@@ -873,10 +917,13 @@
                 .filter(Boolean)
                 .slice(0, 2)
                 .map(
-                    item =>
-                        item
+                    function(item) {
+
+                        return item
                             .charAt(0)
-                            .toUpperCase()
+                            .toUpperCase();
+
+                    }
                 )
                 .join("");
 
@@ -889,6 +936,7 @@
                 "profileName"
             ).textContent =
                 loggedUser.nome ||
+                loggedUser.name ||
                 "Paciente";
 
 
@@ -896,16 +944,17 @@
                 "profileAvatar"
             ).textContent =
                 initials(
-                    loggedUser.nome
+                    loggedUser.nome ||
+                    loggedUser.name
                 );
 
         }
 
 
 
-        /* =========================
-           RELÓGIO
-        ========================= */
+        /* ======================================
+           DATA E HORA
+        ====================================== */
 
         function updateClock() {
 
@@ -939,6 +988,7 @@
 
         updateClock();
 
+
         setInterval(
             updateClock,
             1000
@@ -946,9 +996,9 @@
 
 
 
-        /* =========================
+        /* ======================================
            CONSULTAS
-        ========================= */
+        ====================================== */
 
         let appointments =
             JSON.parse(
@@ -958,12 +1008,18 @@
             ) || [];
 
 
+
+        /* ======================================
+           DADOS DO PACIENTE
+        ====================================== */
+
         const patientId =
             loggedUser
                 ? String(
                     loggedUser.id ||
+                    loggedUser._id ||
                     ""
-                )
+                ).trim()
                 : "";
 
 
@@ -972,54 +1028,131 @@
                 ? String(
                     loggedUser.email ||
                     ""
-                ).toLowerCase()
+                )
+                .trim()
+                .toLowerCase()
+                : "";
+
+
+        const patientName =
+            loggedUser
+                ? String(
+                    loggedUser.nome ||
+                    loggedUser.name ||
+                    ""
+                )
+                .trim()
+                .toLowerCase()
                 : "";
 
 
 
-        /*
-         * Aceita diferentes nomes
-         * de propriedades para manter
-         * compatibilidade com o sistema
-         * de agendamento já criado.
-         */
+        /* ======================================
+           NORMALIZAR TEXTO
+        ====================================== */
+
+        function normalize(value) {
+
+            return String(
+                value || ""
+            )
+            .trim()
+            .toLowerCase();
+
+        }
+
+
+
+        /* ======================================
+           IDENTIFICAR PACIENTE
+        ====================================== */
 
         function isMyAppointment(
             appointment
         ) {
 
             const id =
-                String(
+                normalize(
                     appointment.pacienteId ||
                     appointment.idPaciente ||
                     appointment.patientId ||
-                    ""
+                    appointment.id_paciente
                 );
 
 
             const email =
-                String(
+                normalize(
                     appointment.pacienteEmail ||
                     appointment.emailPaciente ||
                     appointment.patientEmail ||
-                    ""
-                ).toLowerCase();
+                    appointment.email_paciente
+                );
 
 
-            return (
-                (
-                    patientId &&
-                    id === patientId
-                )
-                ||
-                (
-                    patientEmail &&
-                    email === patientEmail
-                )
-            );
+            const name =
+                normalize(
+                    appointment.pacienteNome ||
+                    appointment.nomePaciente ||
+                    appointment.patientName ||
+                    appointment.nome_paciente ||
+                    appointment.paciente
+                );
+
+
+            /*
+             * Primeiro tenta ID.
+             */
+
+            if (
+                patientId &&
+                id &&
+                id === patientId
+            ) {
+
+                return true;
+
+            }
+
+
+            /*
+             * Depois tenta e-mail.
+             */
+
+            if (
+                patientEmail &&
+                email &&
+                email === patientEmail
+            ) {
+
+                return true;
+
+            }
+
+
+            /*
+             * Por último tenta nome.
+             */
+
+            if (
+                patientName &&
+                name &&
+                name === patientName
+            ) {
+
+                return true;
+
+            }
+
+
+            return false;
 
         }
 
+
+
+        /* ======================================
+           DATA
+        ====================================== */
 
         function getDate(
             appointment
@@ -1028,12 +1161,44 @@
             const value =
                 appointment.data ||
                 appointment.dataConsulta ||
+                appointment.data_consulta ||
                 appointment.date ||
+                appointment.dataAgendamento ||
                 "";
 
 
-            if (!value)
+            if (!value) {
+
                 return null;
+
+            }
+
+
+            /*
+             * Datas no formato
+             * DD/MM/YYYY
+             */
+
+            if (
+                /^\d{2}\/\d{2}\/\d{4}$/
+                    .test(value)
+            ) {
+
+                const parts =
+                    value.split("/");
+
+
+                const date =
+                    new Date(
+                        Number(parts[2]),
+                        Number(parts[1]) - 1,
+                        Number(parts[0])
+                    );
+
+
+                return date;
+
+            }
 
 
             const date =
@@ -1056,6 +1221,11 @@
         }
 
 
+
+        /* ======================================
+           HORA
+        ====================================== */
+
         function getTime(
             appointment
         ) {
@@ -1064,11 +1234,17 @@
                 appointment.horario ||
                 appointment.hora ||
                 appointment.time ||
+                appointment.horaConsulta ||
                 "--:--"
             );
 
         }
 
+
+
+        /* ======================================
+           MÉDICO
+        ====================================== */
 
         function getDoctor(
             appointment
@@ -1078,11 +1254,17 @@
                 appointment.medicoNome ||
                 appointment.nomeMedico ||
                 appointment.medico ||
+                appointment.doctorName ||
                 "Médico"
             );
 
         }
 
+
+
+        /* ======================================
+           ESPECIALIDADE
+        ====================================== */
 
         function getSpecialty(
             appointment
@@ -1091,11 +1273,17 @@
             return (
                 appointment.especialidade ||
                 appointment.medicoEspecialidade ||
+                appointment.specialty ||
                 "Especialidade não informada"
             );
 
         }
 
+
+
+        /* ======================================
+           STATUS
+        ====================================== */
 
         function getStatus(
             appointment
@@ -1104,12 +1292,17 @@
             return String(
                 appointment.status ||
                 appointment.situacao ||
+                appointment.estado ||
                 "Agendada"
-            );
+            ).trim();
 
         }
 
 
+
+        /* ======================================
+           MINHAS CONSULTAS
+        ====================================== */
 
         let myAppointments =
             appointments.filter(
@@ -1118,56 +1311,63 @@
 
 
 
-        /* =========================
-           CLASSIFICAR
-        ========================= */
+        /* ======================================
+           CANCELADA
+        ====================================== */
 
         function isCancelled(
             appointment
         ) {
 
             const status =
-                getStatus(
-                    appointment
-                ).toLowerCase();
+                normalize(
+                    getStatus(
+                        appointment
+                    )
+                );
 
 
             return (
-                status.includes(
-                    "cancel"
-                )
+                status.includes("cancel") ||
+                status.includes("cancelada")
             );
 
         }
 
+
+
+        /* ======================================
+           REALIZADA
+        ====================================== */
 
         function isCompleted(
             appointment
         ) {
 
             const status =
-                getStatus(
-                    appointment
-                ).toLowerCase();
+                normalize(
+                    getStatus(
+                        appointment
+                    )
+                );
 
 
             return (
-                status.includes(
-                    "realiz"
-                ) ||
-                status.includes(
-                    "finaliz"
-                ) ||
-                status.includes(
-                    "conclu"
-                ) ||
-                status.includes(
-                    "atendido"
-                )
+                status.includes("realiz") ||
+                status.includes("finaliz") ||
+                status.includes("conclu") ||
+                status.includes("atendid") ||
+                status.includes("concluída") ||
+                status.includes("finalizada")
             );
 
         }
 
+
+
+        /* ======================================
+           PRÓXIMA CONSULTA
+        ====================================== */
 
         function isUpcoming(
             appointment
@@ -1179,42 +1379,161 @@
                 );
 
 
-            if (!date)
+            if (!date) {
+
                 return false;
 
+            }
 
-            const now =
+
+            if (
+                isCancelled(
+                    appointment
+                )
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                isCompleted(
+                    appointment
+                )
+            ) {
+
+                return false;
+
+            }
+
+
+            /*
+             * Considera somente a data
+             * para não esconder a consulta
+             * no dia do atendimento.
+             */
+
+            const today =
                 new Date();
 
 
+            today.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            const appointmentDate =
+                new Date(date);
+
+
+            appointmentDate.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
             return (
-                date >= now &&
-                !isCancelled(appointment) &&
-                !isCompleted(appointment)
+                appointmentDate >= today
             );
 
         }
 
 
 
-        /* =========================
-           RENDERIZAR
-        ========================= */
+        /* ======================================
+           ORDENAR
+        ====================================== */
+
+        function compareDates(
+            a,
+            b
+        ) {
+
+            const dateA =
+                getDate(a);
+
+            const dateB =
+                getDate(b);
+
+
+            if (!dateA && !dateB) {
+
+                return 0;
+
+            }
+
+
+            if (!dateA) {
+
+                return 1;
+
+            }
+
+
+            if (!dateB) {
+
+                return -1;
+
+            }
+
+
+            return (
+                dateA.getTime() -
+                dateB.getTime()
+            );
+
+        }
+
+
+
+        /* ======================================
+           RENDERIZAR CONSULTAS
+        ====================================== */
 
         function renderAppointments() {
+
+            /*
+             * Recarrega do localStorage.
+             * Isso permite que uma consulta
+             * criada pela recepcionista
+             * apareça sem precisar alterar
+             * o código.
+             */
+
+            appointments =
+                JSON.parse(
+                    localStorage.getItem(
+                        "clinicaConsultas"
+                    )
+                ) || [];
+
+
+            myAppointments =
+                appointments.filter(
+                    isMyAppointment
+                );
+
 
             const search =
                 document.getElementById(
                     "searchInput"
-                ).value
-                    .trim()
-                    .toLowerCase();
+                )
+                .value
+                .trim()
+                .toLowerCase();
 
 
             const filter =
                 document.getElementById(
                     "statusFilter"
-                ).value;
+                )
+                .value;
 
 
             let filtered =
@@ -1222,15 +1541,19 @@
                     function(appointment) {
 
                         const doctor =
-                            getDoctor(
-                                appointment
-                            ).toLowerCase();
+                            normalize(
+                                getDoctor(
+                                    appointment
+                                )
+                            );
 
 
                         const specialty =
-                            getSpecialty(
-                                appointment
-                            ).toLowerCase();
+                            normalize(
+                                getSpecialty(
+                                    appointment
+                                )
+                            );
 
 
                         const matchesSearch =
@@ -1239,14 +1562,11 @@
                             specialty.includes(search);
 
 
-                        if (!matchesSearch)
+                        if (!matchesSearch) {
+
                             return false;
 
-
-                        const status =
-                            getStatus(
-                                appointment
-                            ).toLowerCase();
+                        }
 
 
                         if (
@@ -1297,28 +1617,7 @@
 
 
             filtered.sort(
-                function(a, b) {
-
-                    const dateA =
-                        getDate(a);
-
-                    const dateB =
-                        getDate(b);
-
-
-                    if (!dateA)
-                        return 1;
-
-                    if (!dateB)
-                        return -1;
-
-
-                    return (
-                        dateA.getTime() -
-                        dateB.getTime()
-                    );
-
-                }
+                compareDates
             );
 
 
@@ -1330,14 +1629,30 @@
 
             const previous =
                 filtered.filter(
-                    function(item) {
+                    function(appointment) {
 
                         return !isUpcoming(
-                            item
+                            appointment
                         );
 
                     }
                 );
+
+
+            /*
+             * Mais recente primeiro
+             * nas consultas anteriores.
+             */
+
+            previous.sort(
+                function(a, b) {
+
+                    return (
+                        compareDates(b, a)
+                    );
+
+                }
+            );
 
 
             document.getElementById(
@@ -1369,9 +1684,9 @@
 
 
 
-        /* =========================
-           LISTA
-        ========================= */
+        /* ======================================
+           RENDERIZAR LISTA
+        ====================================== */
 
         function renderList(
             elementId,
@@ -1463,7 +1778,9 @@
                         statusClass =
                             "cancelled";
 
-                    } else if (
+                    }
+
+                    else if (
                         !isCompleted(
                             appointment
                         )
@@ -1548,6 +1865,7 @@
                                     }
                                 </span>
 
+
                                 <span>
                                     🕐 ${time}
                                 </span>
@@ -1577,57 +1895,88 @@
 
 
 
-        /* =========================
-           FILTROS
-        ========================= */
+        /* ======================================
+           FILTRO DE PESQUISA
+        ====================================== */
 
-        document.getElementById(
-            "searchInput"
-        ).addEventListener(
-            "input",
-            renderAppointments
-        );
-
-
-        document.getElementById(
-            "statusFilter"
-        ).addEventListener(
-            "change",
-            renderAppointments
-        );
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                renderAppointments
+            );
 
 
 
-        /* =========================
-           SAIR
-        ========================= */
+        /* ======================================
+           FILTRO DE STATUS
+        ====================================== */
 
-        document.getElementById(
-            "logoutButton"
-        ).addEventListener(
-            "click",
-            function() {
-
-                localStorage.removeItem(
-                    "usuarioLogado"
-                );
-
-
-                window.location.href =
-                    "../login.html";
-
-            }
-        );
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            .addEventListener(
+                "change",
+                renderAppointments
+            );
 
 
 
-        /* =========================
-           INICIAR
-        ========================= */
+        /* ======================================
+           LOGOUT
+        ====================================== */
+
+        document
+            .getElementById(
+                "logoutButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    localStorage.removeItem(
+                        "usuarioLogado"
+                    );
+
+
+                    localStorage.removeItem(
+                        "pacienteLogado"
+                    );
+
+
+                    window.location.href =
+                        "../login/login.html";
+
+                }
+            );
+
+
+
+        /* ======================================
+           ATUALIZA AUTOMATICAMENTE
+        ====================================== */
 
         renderAppointments();
 
+
+        /*
+         * Verifica novamente a cada 2 segundos.
+         * Assim, se a recepcionista alterar
+         * uma consulta enquanto esta página
+         * estiver aberta, ela poderá aparecer
+         * automaticamente.
+         */
+
+        setInterval(
+            renderAppointments,
+            2000
+        );
+
     </script>
+
 
 </body>
 

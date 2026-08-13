@@ -4,11 +4,9 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Clínica Vida+ | Cadastro de Usuários</title>
-
+    <title>Clínica Vida+ | Usuários</title>
 
     <style>
 
@@ -30,13 +28,17 @@
 
         .sidebar {
             position: fixed;
-            left: 0;
             top: 0;
+            left: 0;
             bottom: 0;
+
             width: 230px;
-            background: white;
+
+            background: #fff;
             border-right: 1px solid #e5e7eb;
+
             padding: 24px 15px;
+
             display: flex;
             flex-direction: column;
         }
@@ -45,6 +47,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+
             padding: 0 8px;
             margin-bottom: 40px;
         }
@@ -52,12 +55,16 @@
         .brand-icon {
             width: 40px;
             height: 40px;
+
             border-radius: 10px;
+
             background: #2563eb;
             color: white;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-size: 23px;
             font-weight: bold;
         }
@@ -68,9 +75,11 @@
 
         .brand span {
             display: block;
+
             margin-top: 3px;
-            font-size: 8px;
+
             color: #8a94a6;
+            font-size: 8px;
         }
 
         nav {
@@ -81,22 +90,24 @@
 
         nav a {
             height: 42px;
+
             display: flex;
             align-items: center;
             gap: 11px;
+
             padding: 0 12px;
+
             border-radius: 8px;
+
             text-decoration: none;
+
             color: #667085;
+
             font-size: 10px;
             font-weight: 600;
         }
 
-        nav a:hover {
-            background: #f3f6fb;
-            color: #2563eb;
-        }
-
+        nav a:hover,
         nav a.active {
             background: #edf3ff;
             color: #2563eb;
@@ -104,7 +115,9 @@
 
         nav a span {
             width: 18px;
+
             text-align: center;
+
             font-size: 14px;
         }
 
@@ -116,19 +129,25 @@
             display: flex;
             align-items: center;
             gap: 9px;
+
             padding: 13px 7px;
+
             border-top: 1px solid #edf0f4;
         }
 
         .profile-avatar {
             width: 35px;
             height: 35px;
+
             border-radius: 50%;
+
             background: #eaf1ff;
             color: #2563eb;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             font-size: 9px;
             font-weight: bold;
         }
@@ -140,7 +159,9 @@
 
         .profile small {
             display: block;
+
             margin-top: 3px;
+
             color: #98a2b3;
             font-size: 7px;
         }
@@ -148,13 +169,22 @@
         .logout {
             width: 100%;
             height: 37px;
+
             border: none;
             border-radius: 8px;
+
             background: #f7f8fa;
             color: #667085;
+
             cursor: pointer;
+
             font-size: 9px;
             font-weight: 600;
+        }
+
+        .logout:hover {
+            background: #fff1f1;
+            color: #d92d20;
         }
 
         /* =========================
@@ -163,7 +193,9 @@
 
         main {
             margin-left: 230px;
+
             min-height: 100vh;
+
             padding: 30px 38px 50px;
         }
 
@@ -171,18 +203,22 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             margin-bottom: 25px;
         }
 
         .topbar small {
             color: #2563eb;
+
             font-size: 8px;
             font-weight: bold;
+
             letter-spacing: 1px;
         }
 
         .topbar h1 {
             margin-top: 6px;
+
             font-size: 25px;
         }
 
@@ -190,14 +226,19 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
+
             gap: 4px;
+
             color: #8a94a6;
+
             font-size: 8px;
+
             text-transform: capitalize;
         }
 
         .clock strong {
             color: #344054;
+
             font-size: 13px;
         }
 
@@ -207,262 +248,520 @@
 
         .card {
             background: white;
+
             border: 1px solid #e5e9ef;
+
             border-radius: 13px;
-            padding: 25px;
-            box-shadow: 0 3px 12px rgba(16,24,40,.035);
+
+            padding: 22px;
+
+            box-shadow:
+                0 3px 12px rgba(16,24,40,.035);
         }
 
         .card-header {
-            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
         }
 
         .card-header h2 {
-            font-size: 17px;
+            font-size: 15px;
         }
 
         .card-header p {
             margin-top: 5px;
-            color: #8a94a6;
-            font-size: 9px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
         }
 
-        /* =========================
-           TIPO
-        ========================= */
+        .btn-primary {
+            border: none;
+            border-radius: 8px;
 
-        .section-title {
-            margin-bottom: 12px;
-        }
+            background: #2563eb;
+            color: white;
 
-        .section-number {
-            color: #2563eb;
+            padding: 10px 15px;
+
+            cursor: pointer;
+
             font-size: 8px;
             font-weight: bold;
         }
 
-        .section-title h3 {
-            margin-top: 5px;
-            font-size: 13px;
-        }
-
-        .section-title p {
-            margin-top: 4px;
-            color: #8a94a6;
-            font-size: 8px;
-        }
-
-        .types {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .type-card {
-            border: 1px solid #dfe4ea;
-            border-radius: 9px;
-            padding: 15px;
-            cursor: pointer;
-            background: white;
-            transition: .2s;
-        }
-
-        .type-card:hover {
-            border-color: #9ab7ed;
-            background: #f9fbff;
-        }
-
-        .type-card.selected {
-            border-color: #2563eb;
-            background: #edf3ff;
-        }
-
-        .type-card strong {
-            display: block;
-            font-size: 10px;
-            margin-bottom: 5px;
-        }
-
-        .type-card span {
-            color: #8a94a6;
-            font-size: 8px;
-            line-height: 1.4;
+        .btn-primary:hover {
+            background: #1d4ed8;
         }
 
         /* =========================
-           FORM
+           FILTROS
         ========================= */
 
-        .form-section {
-            border-top: 1px solid #edf0f4;
-            padding-top: 22px;
-            margin-top: 22px;
+        .filters {
+            display: grid;
+
+            grid-template-columns:
+                1fr 180px 170px;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
         }
 
-        .form-section h3 {
-            font-size: 13px;
+        .search,
+        .filter-select {
+            width: 100%;
+            height: 40px;
+
+            border: 1px solid #dfe4ea;
+
+            border-radius: 8px;
+
+            padding: 0 12px;
+
+            outline: none;
+
+            background: white;
+
+            font-size: 9px;
+        }
+
+        .search:focus,
+        .filter-select:focus {
+            border-color: #2563eb;
+        }
+
+        /* =========================
+           TABELA
+        ========================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 11px 10px;
+
+            text-align: left;
+
+            background: #f8fafc;
+
+            color: #667085;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .4px;
+        }
+
+        td {
+            padding: 13px 10px;
+
+            border-bottom: 1px solid #edf0f4;
+
+            color: #475467;
+
+            font-size: 8px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: #edf3ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .user-name strong {
+            display: block;
+
+            color: #344054;
+
+            font-size: 8px;
+        }
+
+        .user-name span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+        }
+
+        /* PERFIL */
+
+        .role {
+            display: inline-block;
+
+            padding: 5px 8px;
+
+            border-radius: 5px;
+
+            font-size: 6px;
+            font-weight: bold;
+        }
+
+        .role-administrador {
+            background: #f3e8ff;
+            color: #7e22ce;
+        }
+
+        .role-medico {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .role-recepcionista {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .role-paciente {
+            background: #ecfdf3;
+            color: #027a48;
+        }
+
+        /* STATUS */
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 8px;
+
+            border-radius: 5px;
+
+            font-size: 6px;
+            font-weight: bold;
+        }
+
+        .status.active {
+            background: #ecfdf3;
+            color: #027a48;
+        }
+
+        .status.inactive {
+            background: #fef3f2;
+            color: #b42318;
+        }
+
+        /* AÇÕES */
+
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-action {
+            border: none;
+
+            border-radius: 6px;
+
+            padding: 7px 9px;
+
+            cursor: pointer;
+
+            font-size: 7px;
+            font-weight: bold;
+        }
+
+        .btn-edit {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        .btn-delete {
+            background: #fef3f2;
+            color: #b42318;
+        }
+
+        .btn-action:hover {
+            opacity: .8;
+        }
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
+            padding: 45px 20px;
+
+            text-align: center;
+
+            border: 1px dashed #dfe4ea;
+
+            border-radius: 10px;
+
+            color: #98a2b3;
+        }
+
+        .empty-icon {
+            width: 50px;
+            height: 50px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 50%;
+
+            background: #f2f4f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+        }
+
+        .empty strong {
+            display: block;
+
+            color: #667085;
+
+            font-size: 9px;
+
             margin-bottom: 5px;
         }
 
-        .form-section > p {
-            color: #8a94a6;
+        .empty p {
             font-size: 8px;
-            margin-bottom: 18px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(16,24,40,.45);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 100;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 540px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: white;
+
+            border-radius: 13px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(16,24,40,.15);
+        }
+
+        .modal-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 15px;
+        }
+
+        .close {
+            width: 30px;
+            height: 30px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #f2f4f7;
+
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 14px;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
         }
 
         .form-group {
             display: flex;
+
             flex-direction: column;
-            gap: 6px;
+
+            gap: 5px;
         }
 
         .form-group.full {
             grid-column: 1 / -1;
         }
 
-        label {
+        .form-group label {
+            color: #475467;
+
             font-size: 8px;
+
             font-weight: bold;
-            color: #344054;
         }
 
-        input,
-        select {
-            height: 39px;
+        .form-group input,
+        .form-group select {
             width: 100%;
-            border: 1px solid #d7dce3;
+            height: 38px;
+
+            border: 1px solid #dfe4ea;
+
             border-radius: 7px;
-            padding: 0 11px;
+
+            padding: 0 10px;
+
             outline: none;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 9px;
+
             background: white;
-        }
 
-        input:focus,
-        select:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37,99,235,.08);
-        }
-
-        .password-box {
-            position: relative;
-        }
-
-        .password-box input {
-            padding-right: 60px;
-        }
-
-        .show-password {
-            position: absolute;
-            right: 7px;
-            top: 5px;
-            height: 29px;
-            border: none;
-            background: transparent;
-            color: #2563eb;
             font-size: 8px;
-            cursor: pointer;
         }
 
-        /* =========================
-           BOTÕES
-        ========================= */
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+        }
 
-        .buttons {
+        .password-help {
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            margin-top: 2px;
+        }
+
+        .modal-footer {
             display: flex;
+
             justify-content: flex-end;
+
             gap: 8px;
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #edf0f4;
+
+            margin-top: 20px;
         }
 
-        button {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .btn-clear {
-            height: 39px;
-            padding: 0 16px;
-            border: 1px solid #d7dce3;
-            border-radius: 7px;
-            background: white;
-            color: #667085;
-            font-size: 9px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .btn-create {
-            height: 39px;
-            padding: 0 18px;
+        .btn-cancel {
             border: none;
+
             border-radius: 7px;
-            background: #2563eb;
-            color: white;
-            font-size: 9px;
-            font-weight: bold;
+
+            padding: 10px 14px;
+
+            background: #f2f4f7;
+
+            color: #667085;
+
             cursor: pointer;
-        }
 
-        .btn-create:hover {
-            background: #1d4ed8;
-        }
+            font-size: 8px;
 
-        /* =========================
-           MENSAGEM
-        ========================= */
-
-        .message {
-            display: none;
-            margin-bottom: 18px;
-            padding: 12px;
-            border-radius: 7px;
-            font-size: 9px;
-        }
-
-        .message.success {
-            display: block;
-            background: #eaf8f0;
-            color: #087443;
-            border: 1px solid #b7e4ca;
-        }
-
-        .message.error {
-            display: block;
-            background: #fff1f0;
-            color: #b42318;
-            border: 1px solid #f1b8b3;
-        }
-
-        /* =========================
-           CAMPOS ESPECÍFICOS
-        ========================= */
-
-        #medicoFields {
-            display: none;
+            font-weight: bold;
         }
 
         /* =========================
            RESPONSIVO
         ========================= */
 
-        @media (max-width: 850px) {
+        @media (max-width: 800px) {
 
-            .types {
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+            }
+
+            main {
+                margin-left: 0;
+
+                padding: 25px 20px;
+            }
+
+            .topbar {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+            .clock {
+                align-items: flex-start;
+            }
+
+            .filters {
                 grid-template-columns: 1fr;
             }
 
             .form-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
             }
 
         }
@@ -475,7 +774,9 @@
 <body>
 
 
-    <!-- SIDEBAR -->
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
     <aside class="sidebar">
 
@@ -492,7 +793,7 @@
                 </h2>
 
                 <span>
-                    Administrador
+                    Área Administrativa
                 </span>
 
             </div>
@@ -507,14 +808,27 @@
                 Dashboard
             </a>
 
-            <a href="usuarios.html" class="active">
+            <a href="medicos.html">
                 <span>♙</span>
-                Usuários
+                Médicos
             </a>
 
-            <a href="gerenciamento.html">
+            <a href="pacientes.html">
+                <span>♙</span>
+                Pacientes
+            </a>
+
+            <a href="consultas.html">
+                <span>▣</span>
+                Consultas
+            </a>
+
+            <a
+                href="usuarios.html"
+                class="active"
+            >
                 <span>⚙</span>
-                Gerenciamento
+                Usuários
             </a>
 
         </nav>
@@ -524,13 +838,16 @@
 
             <div class="profile">
 
-                <div class="profile-avatar">
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
                     AD
                 </div>
 
                 <div>
 
-                    <strong>
+                    <strong id="profileName">
                         Administrador
                     </strong>
 
@@ -556,21 +873,22 @@
 
 
 
-    <!-- CONTEÚDO -->
+    <!-- =========================
+         MAIN
+    ========================= -->
 
     <main>
-
 
         <header class="topbar">
 
             <div>
 
                 <small>
-                    ADMINISTRAÇÃO
+                    ÁREA ADMINISTRATIVA
                 </small>
 
                 <h1>
-                    Cadastro de usuários
+                    Usuários
                 </h1>
 
             </div>
@@ -594,432 +912,403 @@
 
         <section class="card">
 
-
             <div class="card-header">
 
-                <h2>
-                    Criar novo usuário
-                </h2>
+                <div>
 
-                <p>
-                    Cadastre médicos, recepcionistas e pacientes que terão acesso ao sistema da Clínica Vida+.
-                </p>
+                    <h2>
+                        Usuários cadastrados
+                    </h2>
+
+                    <p>
+                        Gerencie os acessos ao sistema.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-primary"
+                    id="newUserButton"
+                >
+                    + Novo usuário
+                </button>
+
+            </div>
+
+
+
+            <!-- FILTROS -->
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    class="search"
+                    id="searchInput"
+                    placeholder="Pesquisar por nome ou e-mail..."
+                >
+
+
+                <select
+                    class="filter-select"
+                    id="roleFilter"
+                >
+
+                    <option value="todos">
+                        Todos os perfis
+                    </option>
+
+                    <option value="administrador">
+                        Administradores
+                    </option>
+
+                    <option value="medico">
+                        Médicos
+                    </option>
+
+                    <option value="recepcionista">
+                        Recepcionistas
+                    </option>
+
+                    <option value="paciente">
+                        Pacientes
+                    </option>
+
+                </select>
+
+
+                <select
+                    class="filter-select"
+                    id="statusFilter"
+                >
+
+                    <option value="todos">
+                        Todos os status
+                    </option>
+
+                    <option value="Ativo">
+                        Ativos
+                    </option>
+
+                    <option value="Inativo">
+                        Inativos
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- TABELA -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Usuário
+                            </th>
+
+                            <th>
+                                E-mail
+                            </th>
+
+                            <th>
+                                Perfil
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="usersTable">
+
+                    </tbody>
+
+                </table>
 
             </div>
 
 
             <div
-                id="message"
-                class="message"
-            ></div>
-
-
-
-            <!-- TIPO -->
-
-            <div class="section-title">
-
-                <span class="section-number">
-                    01
-                </span>
-
-                <h3>
-                    Tipo de usuário
-                </h3>
-
-                <p>
-                    Selecione o perfil que deseja cadastrar.
-                </p>
-
-            </div>
-
-
-            <div class="types">
-
-
-                <div
-                    class="type-card selected"
-                    data-type="medico"
-                >
-
-                    <strong>
-                        Médico
-                    </strong>
-
-                    <span>
-                        Profissional responsável pelos atendimentos.
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="type-card"
-                    data-type="recepcionista"
-                >
-
-                    <strong>
-                        Recepcionista
-                    </strong>
-
-                    <span>
-                        Responsável pelos agendamentos e atendimento.
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="type-card"
-                    data-type="paciente"
-                >
-
-                    <strong>
-                        Paciente
-                    </strong>
-
-                    <span>
-                        Usuário que terá acesso às suas consultas.
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- DADOS PESSOAIS -->
-
-            <div class="form-section">
-
-                <span class="section-number">
-                    02
-                </span>
-
-                <h3>
-                    Informações pessoais
-                </h3>
-
-                <p>
-                    Dados básicos do usuário.
-                </p>
-
-
-                <div class="form-grid">
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Nome completo *
-                        </label>
-
-                        <input
-                            id="nome"
-                            type="text"
-                            placeholder="Ex.: João da Silva"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            CPF *
-                        </label>
-
-                        <input
-                            id="cpf"
-                            type="text"
-                            placeholder="000.000.000-00"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            E-mail *
-                        </label>
-
-                        <input
-                            id="email"
-                            type="email"
-                            placeholder="usuario@email.com"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Telefone *
-                        </label>
-
-                        <input
-                            id="telefone"
-                            type="text"
-                            placeholder="(00) 00000-0000"
-                        >
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-
-            <!-- DADOS MÉDICO -->
-
-            <div
-                class="form-section"
-                id="medicoFields"
+                class="empty"
+                id="emptyState"
+                style="display:none;"
             >
 
-                <span class="section-number">
-                    03
-                </span>
-
-                <h3>
-                    Informações profissionais
-                </h3>
-
-                <p>
-                    Dados necessários para o atendimento.
-                </p>
-
-
-                <div class="form-grid">
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Especialidade *
-                        </label>
-
-                        <select id="especialidade">
-
-                            <option value="">
-                                Selecione uma especialidade
-                            </option>
-
-                            <option>
-                                Cardiologia
-                            </option>
-
-                            <option>
-                                Clínica Geral
-                            </option>
-
-                            <option>
-                                Dermatologia
-                            </option>
-
-                            <option>
-                                Ginecologia
-                            </option>
-
-                            <option>
-                                Neurologia
-                            </option>
-
-                            <option>
-                                Oftalmologia
-                            </option>
-
-                            <option>
-                                Ortopedia
-                            </option>
-
-                            <option>
-                                Pediatria
-                            </option>
-
-                            <option>
-                                Psiquiatria
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            CRM *
-                        </label>
-
-                        <input
-                            id="crm"
-                            type="text"
-                            placeholder="Ex.: 123456"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Andar de atendimento
-                        </label>
-
-                        <select id="andar">
-
-                            <option value="">
-                                Selecione o andar
-                            </option>
-
-                            <option>
-                                Térreo
-                            </option>
-
-                            <option>
-                                1º andar
-                            </option>
-
-                            <option>
-                                2º andar
-                            </option>
-
-                            <option>
-                                3º andar
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Sala
-                        </label>
-
-                        <input
-                            id="sala"
-                            type="text"
-                            placeholder="Ex.: 204"
-                        >
-
-                    </div>
-
-
+                <div class="empty-icon">
+                    ⚙
                 </div>
 
-            </div>
-
-
-
-            <!-- ACESSO -->
-
-            <div class="form-section">
-
-                <span class="section-number">
-                    04
-                </span>
-
-                <h3>
-                    Dados de acesso
-                </h3>
+                <strong>
+                    Nenhum usuário encontrado
+                </strong>
 
                 <p>
-                    Informações utilizadas para entrar no sistema.
+                    Cadastre um usuário ou altere os filtros.
                 </p>
 
-
-                <div class="form-grid">
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Nome de usuário *
-                        </label>
-
-                        <input
-                            id="usuario"
-                            type="text"
-                            placeholder="Crie o nome de usuário"
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Senha *
-                        </label>
-
-                        <div class="password-box">
-
-                            <input
-                                id="senha"
-                                type="password"
-                                placeholder="Crie uma senha"
-                            >
-
-                            <button
-                                type="button"
-                                class="show-password"
-                                id="showPassword"
-                            >
-                                Mostrar
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
             </div>
-
-
-
-            <!-- BOTÕES -->
-
-            <div class="buttons">
-
-                <button
-                    type="button"
-                    class="btn-clear"
-                    id="clearButton"
-                >
-                    Limpar formulário
-                </button>
-
-
-                <button
-                    type="button"
-                    class="btn-create"
-                    id="createButton"
-                >
-                    Criar usuário →
-                </button>
-
-            </div>
-
 
         </section>
-
 
     </main>
 
 
 
+    <!-- =========================
+         MODAL
+    ========================= -->
+
+    <div
+        class="modal"
+        id="userModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Novo usuário
+                </h2>
+
+                <button
+                    class="close"
+                    id="closeModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="userForm">
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Nome completo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="userName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="userEmail"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Perfil
+                        </label>
+
+                        <select
+                            id="userRole"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione o perfil
+                            </option>
+
+                            <option value="administrador">
+                                Administrador
+                            </option>
+
+                            <option value="medico">
+                                Médico
+                            </option>
+
+                            <option value="recepcionista">
+                                Recepcionista
+                            </option>
+
+                            <option value="paciente">
+                                Paciente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select id="userStatus">
+
+                            <option value="Ativo">
+                                Ativo
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Senha
+                        </label>
+
+                        <input
+                            type="password"
+                            id="userPassword"
+                            placeholder="Digite a senha"
+                        >
+
+                        <span class="password-help">
+                            Ao editar, deixe em branco para manter a senha atual.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        id="cancelModal"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Salvar usuário
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
     <script>
+
+        /* =========================
+           PROTEÇÃO
+        ========================= */
+
+        const loggedUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "usuarioLogado"
+                )
+            );
+
+
+        if (
+            !loggedUser ||
+            loggedUser.tipo !== "administrador"
+        ) {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        /* =========================
+           PERFIL
+        ========================= */
+
+        function initials(name) {
+
+            if (!name)
+                return "AD";
+
+
+            return name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(
+                    item =>
+                        item
+                            .charAt(0)
+                            .toUpperCase()
+                )
+                .join("");
+
+        }
+
+
+        if (loggedUser) {
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                loggedUser.nome ||
+                "Administrador";
+
+
+            document.getElementById(
+                "profileAvatar"
+            ).textContent =
+                initials(
+                    loggedUser.nome
+                );
+
+        }
+
+
 
         /* =========================
            RELÓGIO
@@ -1027,7 +1316,9 @@
 
         function updateClock() {
 
-            const now = new Date();
+            const now =
+                new Date();
+
 
             document.getElementById(
                 "currentDate"
@@ -1042,363 +1333,599 @@
                     }
                 );
 
+
             document.getElementById(
                 "currentTime"
             ).textContent =
-                now.toLocaleTimeString("pt-BR");
+                now.toLocaleTimeString(
+                    "pt-BR"
+                );
 
         }
+
 
         updateClock();
 
-        setInterval(updateClock, 1000);
+
+        setInterval(
+            updateClock,
+            1000
+        );
 
 
 
         /* =========================
-           TIPO
+           DADOS
         ========================= */
 
-        let selectedType = "medico";
+        let users =
+            JSON.parse(
+                localStorage.getItem(
+                    "clinicaUsuarios"
+                )
+            ) || [];
 
 
-        const typeCards =
-            document.querySelectorAll(
-                ".type-card"
+        /*
+         * Caso o sistema já tenha usuários
+         * cadastrados em outra chave,
+         * tenta aproveitar os dados.
+         */
+
+        if (
+            users.length === 0
+        ) {
+
+            const oldUsers =
+                JSON.parse(
+                    localStorage.getItem(
+                        "usuarios"
+                    )
+                ) || [];
+
+
+            if (
+                oldUsers.length > 0
+            ) {
+
+                users =
+                    oldUsers;
+
+            }
+
+        }
+
+
+        let editingId = null;
+
+
+
+        /* =========================
+           ELEMENTOS
+        ========================= */
+
+        const modal =
+            document.getElementById(
+                "userModal"
             );
 
 
-        typeCards.forEach(
-            function(card) {
-
-                card.addEventListener(
-                    "click",
-                    function() {
-
-                        typeCards.forEach(
-                            item =>
-                                item.classList.remove(
-                                    "selected"
-                                )
-                        );
-
-                        card.classList.add(
-                            "selected"
-                        );
-
-                        selectedType =
-                            card.dataset.type;
+        const form =
+            document.getElementById(
+                "userForm"
+            );
 
 
-                        const medicoFields =
-                            document.getElementById(
-                                "medicoFields"
+        const table =
+            document.getElementById(
+                "usersTable"
+            );
+
+
+        const emptyState =
+            document.getElementById(
+                "emptyState"
+            );
+
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+
+        const roleFilter =
+            document.getElementById(
+                "roleFilter"
+            );
+
+
+        const statusFilter =
+            document.getElementById(
+                "statusFilter"
+            );
+
+
+
+        /* =========================
+           NORMALIZAR PERFIL
+        ========================= */
+
+        function normalizeRole(role) {
+
+            if (!role)
+                return "paciente";
+
+
+            role =
+                String(role)
+                    .toLowerCase()
+                    .trim();
+
+
+            if (
+                role === "admin" ||
+                role === "administrador"
+            ) {
+
+                return "administrador";
+
+            }
+
+
+            if (
+                role === "medico" ||
+                role === "médico"
+            ) {
+
+                return "medico";
+
+            }
+
+
+            if (
+                role === "recepcionista"
+            ) {
+
+                return "recepcionista";
+
+            }
+
+
+            return "paciente";
+
+        }
+
+
+
+        /* =========================
+           TEXTO DO PERFIL
+        ========================= */
+
+        function roleText(role) {
+
+            role =
+                normalizeRole(
+                    role
+                );
+
+
+            if (
+                role === "administrador"
+            )
+                return "Administrador";
+
+
+            if (
+                role === "medico"
+            )
+                return "Médico";
+
+
+            if (
+                role === "recepcionista"
+            )
+                return "Recepcionista";
+
+
+            return "Paciente";
+
+        }
+
+
+
+        /* =========================
+           RENDERIZAR
+        ========================= */
+
+        function renderUsers() {
+
+            users =
+                JSON.parse(
+                    localStorage.getItem(
+                        "clinicaUsuarios"
+                    )
+                ) || users;
+
+
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const selectedRole =
+                roleFilter.value;
+
+
+            const selectedStatus =
+                statusFilter.value;
+
+
+            table.innerHTML = "";
+
+
+            const filtered =
+                users.filter(
+                    user => {
+
+                        const name =
+                            String(
+                                user.nome ||
+                                user.name ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const email =
+                            String(
+                                user.email ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const role =
+                            normalizeRole(
+                                user.tipo ||
+                                user.role ||
+                                user.perfil
                             );
 
 
-                        if (
-                            selectedType === "medico"
-                        ) {
+                        const status =
+                            user.status ||
+                            "Ativo";
 
-                            medicoFields.style.display =
-                                "block";
 
-                        } else {
+                        const matchesSearch =
+                            name.includes(
+                                search
+                            ) ||
+                            email.includes(
+                                search
+                            );
 
-                            medicoFields.style.display =
-                                "none";
 
-                        }
+                        const matchesRole =
+                            selectedRole ===
+                                "todos" ||
+                            role ===
+                                selectedRole;
+
+
+                        const matchesStatus =
+                            selectedStatus ===
+                                "todos" ||
+                            status ===
+                                selectedStatus;
+
+
+                        return (
+                            matchesSearch &&
+                            matchesRole &&
+                            matchesStatus
+                        );
 
                     }
                 );
 
+
+            if (
+                filtered.length === 0
+            ) {
+
+                emptyState.style.display =
+                    "block";
+
+                return;
+
             }
-        );
 
 
+            emptyState.style.display =
+                "none";
 
-        /* =========================
-           SENHA
-        ========================= */
 
-        document.getElementById(
-            "showPassword"
-        ).addEventListener(
-            "click",
-            function() {
+            filtered.forEach(
+                user => {
 
-                const senha =
-                    document.getElementById(
-                        "senha"
+                    const id =
+                        user.id;
+
+
+                    const name =
+                        user.nome ||
+                        user.name ||
+                        "Usuário";
+
+
+                    const email =
+                        user.email ||
+                        "Não informado";
+
+
+                    const role =
+                        normalizeRole(
+                            user.tipo ||
+                            user.role ||
+                            user.perfil
+                        );
+
+
+                    const status =
+                        user.status ||
+                        "Ativo";
+
+
+                    const statusClass =
+                        status === "Ativo"
+                            ? "active"
+                            : "inactive";
+
+
+                    const tr =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    tr.innerHTML = `
+
+                        <td>
+
+                            <div class="user-cell">
+
+                                <div class="user-avatar">
+
+                                    ${initials(name)}
+
+                                </div>
+
+
+                                <div class="user-name">
+
+                                    <strong>
+                                        ${name}
+                                    </strong>
+
+                                    <span>
+                                        Usuário do sistema
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${email}
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="role role-${role}"
+                            >
+
+                                ${roleText(role)}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="status ${statusClass}"
+                            >
+
+                                ${status}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <div class="actions">
+
+                                <button
+                                    class="btn-action btn-edit"
+                                    onclick="editUser('${id}')"
+                                >
+                                    Editar
+                                </button>
+
+
+                                <button
+                                    class="btn-action btn-delete"
+                                    onclick="deleteUser('${id}')"
+                                >
+                                    Excluir
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    table.appendChild(
+                        tr
                     );
 
-                if (
-                    senha.type === "password"
-                ) {
-
-                    senha.type = "text";
-
-                    this.textContent =
-                        "Ocultar";
-
-                } else {
-
-                    senha.type = "password";
-
-                    this.textContent =
-                        "Mostrar";
-
                 }
+            );
+
+        }
+
+
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        function openModal() {
+
+            modal.classList.add(
+                "show"
+            );
+
+        }
+
+
+        function closeModal() {
+
+            modal.classList.remove(
+                "show"
+            );
+
+            form.reset();
+
+            editingId = null;
+
+            document.getElementById(
+                "modalTitle"
+            ).textContent =
+                "Novo usuário";
+
+
+            document.getElementById(
+                "userPassword"
+            ).placeholder =
+                "Digite a senha";
+
+        }
+
+
+        document.getElementById(
+            "newUserButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                closeModal();
+
+                openModal();
 
             }
         );
 
 
-
-        /* =========================
-           MENSAGEM
-        ========================= */
-
-        function showMessage(
-            text,
-            type
-        ) {
-
-            const message =
-                document.getElementById(
-                    "message"
-                );
-
-            message.textContent =
-                text;
-
-            message.className =
-                "message " + type;
-
-        }
-
-
-
-        /* =========================
-           LIMPAR
-        ========================= */
-
-        function clearForm() {
-
-            document
-                .getElementById("nome")
-                .value = "";
-
-            document
-                .getElementById("cpf")
-                .value = "";
-
-            document
-                .getElementById("email")
-                .value = "";
-
-            document
-                .getElementById("telefone")
-                .value = "";
-
-            document
-                .getElementById("especialidade")
-                .value = "";
-
-            document
-                .getElementById("crm")
-                .value = "";
-
-            document
-                .getElementById("andar")
-                .value = "";
-
-            document
-                .getElementById("sala")
-                .value = "";
-
-            document
-                .getElementById("usuario")
-                .value = "";
-
-            document
-                .getElementById("senha")
-                .value = "";
-
-        }
+        document.getElementById(
+            "closeModal"
+        ).addEventListener(
+            "click",
+            closeModal
+        );
 
 
         document.getElementById(
-            "clearButton"
+            "cancelModal"
         ).addEventListener(
             "click",
-            clearForm
+            closeModal
         );
 
 
 
         /* =========================
-           CRIAR USUÁRIO
+           SALVAR
         ========================= */
 
-        document.getElementById(
-            "createButton"
-        ).addEventListener(
-            "click",
-            function() {
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
 
 
-                const nome =
-                    document
-                        .getElementById("nome")
-                        .value
-                        .trim();
-
-
-                const cpf =
-                    document
-                        .getElementById("cpf")
-                        .value
-                        .trim();
+                const name =
+                    document.getElementById(
+                        "userName"
+                    ).value.trim();
 
 
                 const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
+                    document.getElementById(
+                        "userEmail"
+                    ).value.trim();
 
 
-                const telefone =
-                    document
-                        .getElementById("telefone")
-                        .value
-                        .trim();
+                const role =
+                    document.getElementById(
+                        "userRole"
+                    ).value;
 
 
-                const usuario =
-                    document
-                        .getElementById("usuario")
-                        .value
-                        .trim();
+                const status =
+                    document.getElementById(
+                        "userStatus"
+                    ).value;
 
 
-                const senha =
-                    document
-                        .getElementById("senha")
-                        .value;
+                const password =
+                    document.getElementById(
+                        "userPassword"
+                    ).value;
 
 
-                /* =========================
-                   VALIDAÇÃO
-                ========================= */
+                /*
+                 * Não permite dois usuários
+                 * com o mesmo e-mail.
+                 */
 
-                if (
-                    !nome ||
-                    !cpf ||
-                    !email ||
-                    !telefone ||
-                    !usuario ||
-                    !senha
-                ) {
-
-                    showMessage(
-                        "Preencha todos os campos obrigatórios.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                if (
-                    selectedType === "medico"
-                ) {
-
-                    const especialidade =
-                        document
-                            .getElementById(
-                                "especialidade"
-                            )
-                            .value;
-
-
-                    const crm =
-                        document
-                            .getElementById(
-                                "crm"
-                            )
-                            .value
-                            .trim();
-
-
-                    if (
-                        !especialidade ||
-                        !crm
-                    ) {
-
-                        showMessage(
-                            "Preencha a especialidade e o CRM do médico.",
-                            "error"
-                        );
-
-                        return;
-
-                    }
-
-                }
-
-
-
-                /* =========================
-                   BUSCAR USUÁRIOS
-                ========================= */
-
-                let users =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "clinicaUsuarios"
-                        )
-                    );
-
-
-                if (
-                    !Array.isArray(users)
-                ) {
-
-                    users = [];
-
-                }
-
-
-
-                /* =========================
-                   VERIFICAR DUPLICADOS
-                ========================= */
-
-                const duplicate =
+                const emailExists =
                     users.some(
-                        function(user) {
-
-                            return (
-                                user.cpf === cpf ||
-                                user.email.toLowerCase() ===
-                                email.toLowerCase() ||
-                                user.usuario?.toLowerCase() ===
-                                usuario.toLowerCase()
-                            );
-
-                        }
+                        user =>
+                            String(
+                                user.email ||
+                                ""
+                            ).toLowerCase() ===
+                            email.toLowerCase() &&
+                            String(
+                                user.id
+                            ) !==
+                            String(
+                                editingId
+                            )
                     );
 
 
-                if (duplicate) {
+                if (
+                    emailExists
+                ) {
 
-                    showMessage(
-                        "Já existe um usuário com este CPF, e-mail ou nome de usuário.",
-                        "error"
+                    alert(
+                        "Já existe um usuário com este e-mail."
                     );
 
                     return;
@@ -1406,111 +1933,343 @@
                 }
 
 
+                if (
+                    !editingId &&
+                    !password
+                ) {
 
-                /* =========================
-                   NOVO USUÁRIO
-                ========================= */
+                    alert(
+                        "Digite uma senha para o usuário."
+                    );
+
+                    return;
+
+                }
+
 
                 const newUser = {
 
                     id:
-                        Date.now(),
+                        editingId ||
+                        Date.now().toString(),
 
                     nome:
-                        nome,
-
-                    cpf:
-                        cpf,
+                        name,
 
                     email:
                         email,
 
-                    telefone:
-                        telefone,
-
-                    usuario:
-                        usuario,
-
-                    senha:
-                        senha,
-
                     tipo:
-                        selectedType,
+                        role,
 
                     status:
-                        "ativo"
+                        status
 
                 };
 
 
-
-                /* DADOS MÉDICO */
+                /*
+                 * Mantém a senha antiga
+                 * quando estiver editando.
+                 */
 
                 if (
-                    selectedType === "medico"
+                    password
                 ) {
 
-                    newUser.especialidade =
-                        document
-                            .getElementById(
-                                "especialidade"
-                            )
-                            .value;
+                    newUser.senha =
+                        password;
 
-                    newUser.crm =
-                        document
-                            .getElementById(
-                                "crm"
-                            )
-                            .value
-                            .trim();
-
-                    newUser.andar =
-                        document
-                            .getElementById(
-                                "andar"
-                            )
-                            .value;
-
-                    newUser.sala =
-                        document
-                            .getElementById(
-                                "sala"
-                            )
-                            .value
-                            .trim();
+                    newUser.password =
+                        password;
 
                 }
 
 
+                if (
+                    editingId
+                ) {
 
-                /* =========================
-                   SALVAR
-                ========================= */
+                    const index =
+                        users.findIndex(
+                            user =>
+                                String(
+                                    user.id
+                                ) ===
+                                String(
+                                    editingId
+                                )
+                        );
 
-                users.push(
-                    newUser
-                );
+
+                    if (
+                        index !== -1
+                    ) {
+
+                        users[index] = {
+
+                            ...users[index],
+
+                            ...newUser
+
+                        };
+
+                    }
+
+                } else {
+
+                    users.push(
+                        newUser
+                    );
+
+                }
 
 
                 localStorage.setItem(
                     "clinicaUsuarios",
-                    JSON.stringify(users)
+                    JSON.stringify(
+                        users
+                    )
                 );
 
 
+                /*
+                 * Também mantém uma cópia
+                 * na chave antiga caso o
+                 * login esteja usando ela.
+                 */
 
-                /* =========================
-                   SUCESSO
-                ========================= */
-
-                showMessage(
-                    "Usuário criado com sucesso! Ele já está disponível no gerenciamento.",
-                    "success"
+                localStorage.setItem(
+                    "usuarios",
+                    JSON.stringify(
+                        users
+                    )
                 );
 
 
-                clearForm();
+                renderUsers();
+
+                closeModal();
+
+            }
+        );
+
+
+
+        /* =========================
+           EDITAR
+        ========================= */
+
+        window.editUser =
+            function(id) {
+
+                const user =
+                    users.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!user)
+                    return;
+
+
+                editingId =
+                    user.id;
+
+
+                document.getElementById(
+                    "modalTitle"
+                ).textContent =
+                    "Editar usuário";
+
+
+                document.getElementById(
+                    "userName"
+                ).value =
+                    user.nome ||
+                    user.name ||
+                    "";
+
+
+                document.getElementById(
+                    "userEmail"
+                ).value =
+                    user.email ||
+                    "";
+
+
+                document.getElementById(
+                    "userRole"
+                ).value =
+                    normalizeRole(
+                        user.tipo ||
+                        user.role ||
+                        user.perfil
+                    );
+
+
+                document.getElementById(
+                    "userStatus"
+                ).value =
+                    user.status ||
+                    "Ativo";
+
+
+                document.getElementById(
+                    "userPassword"
+                ).value =
+                    "";
+
+
+                document.getElementById(
+                    "userPassword"
+                ).placeholder =
+                    "Deixe em branco para manter a senha";
+
+
+                openModal();
+
+            };
+
+
+
+        /* =========================
+           EXCLUIR
+        ========================= */
+
+        window.deleteUser =
+            function(id) {
+
+                const user =
+                    users.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!user)
+                    return;
+
+
+                /*
+                 * Impede apagar o usuário
+                 * que está atualmente logado.
+                 */
+
+                if (
+                    loggedUser &&
+                    String(
+                        loggedUser.id
+                    ) ===
+                    String(id)
+                ) {
+
+                    alert(
+                        "Você não pode excluir o usuário que está logado."
+                    );
+
+                    return;
+
+                }
+
+
+                const name =
+                    user.nome ||
+                    user.name ||
+                    "este usuário";
+
+
+                const confirmed =
+                    confirm(
+                        "Deseja realmente excluir " +
+                        name +
+                        "?"
+                    );
+
+
+                if (
+                    !confirmed
+                )
+                    return;
+
+
+                users =
+                    users.filter(
+                        item =>
+                            String(
+                                item.id
+                            ) !==
+                            String(id)
+                    );
+
+
+                localStorage.setItem(
+                    "clinicaUsuarios",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "usuarios",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+                renderUsers();
+
+            };
+
+
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        searchInput.addEventListener(
+            "input",
+            renderUsers
+        );
+
+
+        roleFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+
+        statusFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+
+
+        /* =========================
+           FECHAR MODAL
+        ========================= */
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeModal();
+
+                }
 
             }
         );
@@ -1527,12 +2286,24 @@
             "click",
             function() {
 
+                localStorage.removeItem(
+                    "usuarioLogado"
+                );
+
+
                 window.location.href =
                     "../login.html";
 
             }
         );
 
+
+
+        /* =========================
+           INICIAR
+        ========================= */
+
+        renderUsers();
 
     </script>
 
