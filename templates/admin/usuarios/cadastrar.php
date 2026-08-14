@@ -8,7 +8,7 @@
 |--------------------------------------------------------------------------
 */
 
-require_once __DIR__ . "../../includes/verificar_admin.php";
+require_once __DIR__ . "/../../../includes/verificar_admin.php";
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ require_once __DIR__ . "../../includes/verificar_admin.php";
 
 
 
-<form action="../../actions/usuarios/cadastrar.php" method="POST">
+<form action="/Sistema-de-Agendamento-Medico/actions/usuarios/cadastrar.php" method="POST">
 
 
     <label>
@@ -90,7 +90,7 @@ require_once __DIR__ . "../../includes/verificar_admin.php";
     <br>
 
 
-    <select name="perfil" required>
+    <select name="perfil" id="perfil" required>
 
 
         <option value="">
@@ -107,10 +107,6 @@ require_once __DIR__ . "../../includes/verificar_admin.php";
             Recepcionista
         </option>
 
-
-        <option value="Medico">
-            Médico
-        </option>
 
 
     </select>
