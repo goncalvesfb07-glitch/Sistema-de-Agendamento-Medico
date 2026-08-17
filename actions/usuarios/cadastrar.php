@@ -12,7 +12,7 @@
 */
 
 
- "../../config/conexao.php";
+require_once "../../config/conexao.php";
 
 // Verificar Envio de Formulários
 
@@ -80,7 +80,7 @@ if($resultado->num_rows > 0) {
     echo "
     Este email já está cadastrado!
     <br>
-    <a href='../../admin/usuarios/cadastrar.php'>
+    <a href='../../templates/admin/usuarios/cadastrar.php'>
     Voltar
     </a>
     ";
@@ -135,18 +135,17 @@ $stmt->bind_param(
 
 
 
-if(stmt->execute()){
+if($stmt->execute()){
 
 
-    echo "
+echo "
     Usuário cadastrado com sucesso!
     <br><br>
 
-    <a href='../../admin/usuarios/cadastrar.php'>
-    Cadastar outro usuário
+    <a href='/Sistema-de-Agendamento-Medico/templates/admin/usuarios/cadastrar.php'>
+        Cadastrar outro usuário
     </a>
-
-    ";
+";
 
 
 }else{
