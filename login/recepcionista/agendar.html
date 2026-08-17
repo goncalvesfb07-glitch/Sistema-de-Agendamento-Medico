@@ -134,6 +134,8 @@
     <main class="main-content">
 
 
+        <!-- TOPO -->
+
         <header class="topbar">
 
             <div>
@@ -175,7 +177,7 @@
 
 
 
-        <!-- INDICADOR DE ETAPAS -->
+        <!-- ETAPAS -->
 
         <section class="steps card">
 
@@ -285,6 +287,7 @@
 
 
                 <div class="form-grid">
+
 
                     <div class="form-group">
 
@@ -401,11 +404,19 @@
 
                 <div class="form-grid">
 
+
                     <div class="form-group">
 
                         <label for="patient">
                             Paciente
                         </label>
+
+
+                        <!--
+                            IMPORTANTE:
+                            Os pacientes são carregados
+                            automaticamente pelo JavaScript.
+                        -->
 
                         <select
                             id="patient"
@@ -413,27 +424,7 @@
                         >
 
                             <option value="">
-                                Selecione um paciente
-                            </option>
-
-                            <option value="Ana Martins">
-                                Ana Martins — CPF 123.456.789-00
-                            </option>
-
-                            <option value="João Pereira">
-                                João Pereira — CPF 234.567.890-01
-                            </option>
-
-                            <option value="Mariana Costa">
-                                Mariana Costa — CPF 345.678.901-12
-                            </option>
-
-                            <option value="Ricardo Costa">
-                                Ricardo Costa — CPF 456.789.012-23
-                            </option>
-
-                            <option value="Pedro Oliveira">
-                                Pedro Oliveira — CPF 567.890.123-34
+                                Carregando pacientes...
                             </option>
 
                         </select>
@@ -515,7 +506,6 @@
                         </select>
 
                     </div>
-
 
                 </div>
 
@@ -618,6 +608,8 @@
 
     </main>
 
+
+    <!-- JAVASCRIPT -->
 
     <script src="../js/agendar.js"></script>
 

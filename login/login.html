@@ -395,7 +395,6 @@
 
         <section class="left">
 
-
             <div class="logo">
                 +
             </div>
@@ -429,7 +428,6 @@
 
             </div>
 
-
         </section>
 
 
@@ -459,12 +457,16 @@
 
 
 
+            <!-- MENSAGEM -->
+
             <div
                 id="message"
                 class="message"
             ></div>
 
 
+
+            <!-- FORMULÁRIO -->
 
             <form id="loginForm">
 
@@ -557,6 +559,8 @@
 
 
 
+                <!-- BOTÃO -->
+
                 <button
                     type="submit"
                     class="login-button"
@@ -592,12 +596,10 @@
             .getElementById("showPassword")
             .addEventListener(
                 "click",
-                function() {
+                function () {
 
                     const senha =
-                        document.getElementById(
-                            "senha"
-                        );
+                        document.getElementById("senha");
 
 
                     if (
@@ -633,9 +635,7 @@
         ) {
 
             const message =
-                document.getElementById(
-                    "message"
-                );
+                document.getElementById("message");
 
 
             message.textContent =
@@ -657,33 +657,27 @@
             .getElementById("loginForm")
             .addEventListener(
                 "submit",
-                function(event) {
+                function (event) {
 
                     event.preventDefault();
 
 
                     const usuario =
                         document
-                            .getElementById(
-                                "usuario"
-                            )
+                            .getElementById("usuario")
                             .value
                             .trim();
 
 
                     const senha =
                         document
-                            .getElementById(
-                                "senha"
-                            )
+                            .getElementById("senha")
                             .value;
 
 
                     const perfil =
                         document
-                            .getElementById(
-                                "perfil"
-                            )
+                            .getElementById("perfil")
                             .value;
 
 
@@ -710,43 +704,37 @@
 
 
                     /* =========================
-                       BUSCAR USUÁRIOS
-                    ========================= */
-
-                    const users =
-                        JSON.parse(
-                            localStorage.getItem(
-                                "clinicaUsuarios"
-                            )
-                        ) || [];
-
-
-
-                    /* =========================
                        ADMINISTRADOR PADRÃO
                     ========================= */
 
-                    /*
-                       Este acesso é mantido para
-                       não perdermos o acesso ao
-                       sistema enquanto ainda estamos
-                       desenvolvendo o projeto.
-                    */
-
                     if (
-                        usuario === "admin" &&
+                        usuario.toLowerCase() === "admin" &&
                         senha === "1234" &&
                         perfil === "administrador"
                     ) {
 
+                        const admin = {
+
+                            id: "admin",
+
+                            nome: "Administrador",
+
+                            usuario: "admin",
+
+                            email: "admin",
+
+                            senha: "1234",
+
+                            tipo: "administrador",
+
+                            status: "Ativo"
+
+                        };
+
+
                         localStorage.setItem(
                             "usuarioLogado",
-                            JSON.stringify({
-                                nome: "Administrador",
-                                usuario: "admin",
-                                tipo: "administrador",
-                                status: "ativo"
-                            })
+                            JSON.stringify(admin)
                         );
 
 
@@ -757,7 +745,7 @@
 
 
                         setTimeout(
-                            function() {
+                            function () {
 
                                 window.location.href =
                                     "administrador/dashboard.html";
@@ -774,21 +762,130 @@
 
 
                     /* =========================
+                       BUSCAR USUÁRIOS
+                    ========================= */
+
+                    let users =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "clinicaUsuarios"
+                            )
+                        ) || [];
+
+
+
+                    /*
+                     * Compatibilidade com a lista
+                     * antiga de usuários.
+                     */
+
+                    if (
+                        users.length === 0
+                    ) {
+
+                        users =
+                            JSON.parse(
+                                localStorage.getItem(
+                                    "usuarios"
+                                )
+                            ) || [];
+
+                    }
+
+
+
+                    /* =========================
                        PROCURAR USUÁRIO
                     ========================= */
 
                     const foundUser =
                         users.find(
-                            function(user) {
+                            function (user) {
+
+                                const email =
+                                    String(
+                                        user.email || ""
+                                    )
+                                    .trim()
+                                    .toLowerCase();
+
+
+                                const nome =
+                                    String(
+                                        user.nome ||
+                                        user.name ||
+                                        ""
+                                    )
+                                    .trim()
+                                    .toLowerCase();
+
+
+                                const loginUsuario =
+                                    String(
+                                        user.usuario ||
+                                        user.username ||
+                                        ""
+                                    )
+                                    .trim()
+                                    .toLowerCase();
+
+
+                                const usuarioDigitado =
+                                    usuario
+                                        .toLowerCase();
+
+
+                                const senhaUsuario =
+                                    String(
+                                        user.senha ||
+                                        user.password ||
+                                        ""
+                                    );
+
+
+                                const tipoUsuario =
+                                    String(
+                                        user.tipo ||
+                                        user.role ||
+                                        user.perfil ||
+                                        ""
+                                    )
+                                    .toLowerCase()
+                                    .trim();
+
+
+                                /*
+                                 * Pode entrar usando:
+                                 * - usuário
+                                 * - e-mail
+                                 * - nome
+                                 */
+
+                                const usuarioCorreto =
+                                    email ===
+                                        usuarioDigitado ||
+
+                                    nome ===
+                                        usuarioDigitado ||
+
+                                    loginUsuario ===
+                                        usuarioDigitado;
+
+
+                                const senhaCorreta =
+                                    senhaUsuario ===
+                                    senha;
+
+
+                                const perfilCorreto =
+                                    tipoUsuario ===
+                                    perfil;
+
 
                                 return (
-                                    user.usuario &&
-                                    user.usuario.toLowerCase() ===
-                                    usuario.toLowerCase() &&
-
-                                    user.senha === senha &&
-
-                                    user.tipo === perfil
+                                    usuarioCorreto &&
+                                    senhaCorreta &&
+                                    perfilCorreto
                                 );
 
                             }
@@ -814,11 +911,20 @@
 
 
                     /* =========================
-                       USUÁRIO INATIVO
+                       VERIFICAR STATUS
                     ========================= */
 
+                    const status =
+                        String(
+                            foundUser.status ||
+                            "Ativo"
+                        )
+                        .toLowerCase()
+                        .trim();
+
+
                     if (
-                        foundUser.status !== "ativo"
+                        status !== "ativo"
                     ) {
 
                         showMessage(
@@ -833,17 +939,45 @@
 
 
                     /* =========================
+                       NORMALIZAR USUÁRIO
+                    ========================= */
+
+                    const usuarioLogado = {
+
+                        ...foundUser,
+
+                        nome:
+                            foundUser.nome ||
+                            foundUser.name ||
+                            "Usuário",
+
+                        tipo:
+                            foundUser.tipo ||
+                            foundUser.role ||
+                            foundUser.perfil,
+
+                        status: "Ativo"
+
+                    };
+
+
+
+                    /* =========================
                        SALVAR LOGIN
                     ========================= */
 
                     localStorage.setItem(
                         "usuarioLogado",
                         JSON.stringify(
-                            foundUser
+                            usuarioLogado
                         )
                     );
 
 
+
+                    /* =========================
+                       MENSAGEM
+                    ========================= */
 
                     showMessage(
                         "Login realizado com sucesso. Entrando...",
@@ -857,11 +991,11 @@
                     ========================= */
 
                     setTimeout(
-                        function() {
+                        function () {
 
 
                             if (
-                                foundUser.tipo ===
+                                usuarioLogado.tipo ===
                                 "medico"
                             ) {
 
@@ -872,7 +1006,7 @@
 
 
                             else if (
-                                foundUser.tipo ===
+                                usuarioLogado.tipo ===
                                 "recepcionista"
                             ) {
 
@@ -883,7 +1017,7 @@
 
 
                             else if (
-                                foundUser.tipo ===
+                                usuarioLogado.tipo ===
                                 "paciente"
                             ) {
 
@@ -894,12 +1028,22 @@
 
 
                             else if (
-                                foundUser.tipo ===
+                                usuarioLogado.tipo ===
                                 "administrador"
                             ) {
 
                                 window.location.href =
                                     "administrador/dashboard.html";
+
+                            }
+
+
+                            else {
+
+                                showMessage(
+                                    "Perfil de usuário inválido.",
+                                    "error"
+                                );
 
                             }
 

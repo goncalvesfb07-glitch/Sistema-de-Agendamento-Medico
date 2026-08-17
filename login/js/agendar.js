@@ -116,8 +116,160 @@ var day =
 var todayString =
     year + "-" + month + "-" + day;
 
-appointmentDate.min =
-    todayString;
+if (appointmentDate) {
+
+    appointmentDate.min =
+        todayString;
+
+}
+
+
+// ======================================
+// CARREGAR PACIENTES DO LOCALSTORAGE
+// ======================================
+
+function carregarPacientes() {
+
+    if (!patient) {
+
+        return;
+
+    }
+
+
+    // Mantém os pacientes que já estão
+    // escritos no HTML.
+
+    var pacientesCadastrados =
+        localStorage.getItem(
+            "pacientesCadastrados"
+        );
+
+
+    if (!pacientesCadastrados) {
+
+        return;
+
+    }
+
+
+    try {
+
+        var pacientes =
+            JSON.parse(
+                pacientesCadastrados
+            ) || [];
+
+
+        pacientes.forEach(
+            function (paciente) {
+
+                // Verifica se o paciente
+                // já existe no select.
+
+                var cpfNumerico =
+                    String(
+                        paciente.cpf || ""
+                    ).replace(/\D/g, "");
+
+
+                var existe =
+                    Array.from(
+                        patient.options
+                    ).some(
+                        function (option) {
+
+                            return (
+                                option.getAttribute(
+                                    "data-cpf"
+                                ) ===
+                                cpfNumerico
+                            );
+
+                        }
+                    );
+
+
+                if (existe) {
+
+                    return;
+
+                }
+
+
+                var option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    paciente.nome;
+
+
+                option.textContent =
+                    paciente.nome +
+                    " — CPF " +
+                    formatarCPF(
+                        paciente.cpf
+                    );
+
+
+                option.setAttribute(
+                    "data-cpf",
+                    cpfNumerico
+                );
+
+
+                patient.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao carregar pacientes:",
+            erro
+        );
+
+    }
+
+}
+
+
+// ======================================
+// FORMATAR CPF
+// ======================================
+
+function formatarCPF(cpf) {
+
+    var valor =
+        String(cpf || "")
+            .replace(/\D/g, "");
+
+
+    if (valor.length !== 11) {
+
+        return cpf || "";
+
+    }
+
+
+    return (
+        valor.substring(0, 3) +
+        "." +
+        valor.substring(3, 6) +
+        "." +
+        valor.substring(6, 9) +
+        "-" +
+        valor.substring(9, 11)
+    );
+
+}
 
 
 // ======================================
@@ -129,7 +281,11 @@ var savedDoctor =
         "medicoSelecionado"
     );
 
-if (savedDoctor && doctors[savedDoctor]) {
+
+if (
+    savedDoctor &&
+    doctors[savedDoctor]
+) {
 
     doctor.value =
         savedDoctor;
@@ -170,15 +326,21 @@ function atualizarMedico() {
 
     if (!selected) {
 
-        specialty.textContent = "—";
-        days.textContent = "—";
-        room.textContent = "—";
+        specialty.textContent =
+            "—";
+
+        days.textContent =
+            "—";
+
+        room.textContent =
+            "—";
 
         limparHorarios();
 
         atualizarResumo();
 
         return;
+
     }
 
 
@@ -257,9 +419,8 @@ function gerarHorarios() {
 
 
             /*
-             * Alguns horários ficam
-             * ocupados apenas para
-             * simulação.
+             * Horários ocupados apenas
+             * para demonstração.
              */
 
             var occupied =
@@ -399,6 +560,7 @@ appointmentTime.addEventListener(
                         "selected"
                     );
 
+
                     if (
                         button.textContent ===
                         appointmentTime.value
@@ -475,7 +637,8 @@ function atualizarResumo() {
     if (patient.value) {
 
         texto +=
-            " · " + patient.value;
+            " · " +
+            patient.value;
 
     }
 
@@ -484,6 +647,7 @@ function atualizarResumo() {
 
         var partes =
             appointmentDate.value.split("-");
+
 
         texto +=
             " · " +
@@ -529,7 +693,7 @@ function limparHorarios() {
 
 
 // ======================================
-// SUBMIT
+// AGENDAR CONSULTA
 // ======================================
 
 document
@@ -589,10 +753,39 @@ document
             };
 
 
+            // ----------------------------------
+            // SALVAR ÚLTIMA CONSULTA
+            // ----------------------------------
+
             localStorage.setItem(
                 "ultimaConsulta",
                 JSON.stringify(
                     consulta
+                )
+            );
+
+
+            // ----------------------------------
+            // SALVAR NO BANCO DE CONSULTAS
+            // ----------------------------------
+
+            var consultas =
+                JSON.parse(
+                    localStorage.getItem(
+                        "consultas"
+                    )
+                ) || [];
+
+
+            consultas.push(
+                consulta
+            );
+
+
+            localStorage.setItem(
+                "consultas",
+                JSON.stringify(
+                    consultas
                 )
             );
 
@@ -664,3 +857,10 @@ setInterval(
     atualizarDataHora,
     1000
 );
+
+
+// ======================================
+// INICIAR
+// ======================================
+
+carregarPacientes();
