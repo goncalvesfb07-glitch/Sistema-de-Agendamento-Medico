@@ -188,16 +188,28 @@ if (isset($_SESSION["erro"])) {
 
                 <td>
 
-                    <a href="editar.php?id=<?= $paciente["id"]; ?>">
-                        Editar
-                    </a>
+                <a href="editar.php?id=<?= $paciente["id"]; ?>">
+    Editar
+</a>
 
-                    |
+|
 
-                    <a href="visualizar.php?id=<?= $paciente["id"]; ?>">
-                        Visualizar
-                    </a>
+<a href="visualizar.php?id=<?= $paciente["id"]; ?>">
+    Visualizar
+</a>
 
+<?php if ($paciente["ativo"] == 1): ?>
+
+    |
+
+    <a
+        href="../../../actions/pacientes/excluir.php?id=<?= $paciente["id"]; ?>"
+        onclick="return confirm('Deseja realmente desativar este paciente?');"
+    >
+        Excluir
+    </a>
+
+<?php endif; ?>
                 </td>
 
             </tr>
