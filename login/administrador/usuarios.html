@@ -1,0 +1,2312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica Vida+ | Usuários</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            width: 230px;
+
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+
+            padding: 24px 15px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 0 8px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .brand h2 {
+            font-size: 15px;
+        }
+
+        .brand span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #8a94a6;
+            font-size: 8px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        nav a {
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 0 12px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #667085;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        nav a span {
+            width: 18px;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 13px 7px;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .profile-avatar {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background: #eaf1ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .profile strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .profile small {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+            font-size: 7px;
+        }
+
+        .logout {
+            width: 100%;
+            height: 37px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #f7f8fa;
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .logout:hover {
+            background: #fff1f1;
+            color: #d92d20;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            margin-left: 230px;
+
+            min-height: 100vh;
+
+            padding: 30px 38px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .topbar small {
+            color: #2563eb;
+
+            font-size: 8px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .topbar h1 {
+            margin-top: 6px;
+
+            font-size: 25px;
+        }
+
+        .clock {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            gap: 4px;
+
+            color: #8a94a6;
+
+            font-size: 8px;
+
+            text-transform: capitalize;
+        }
+
+        .clock strong {
+            color: #344054;
+
+            font-size: 13px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+
+            border-radius: 13px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 3px 12px rgba(16,24,40,.035);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .card-header h2 {
+            font-size: 15px;
+        }
+
+        .card-header p {
+            margin-top: 5px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+        }
+
+        .btn-primary {
+            border: none;
+            border-radius: 8px;
+
+            background: #2563eb;
+            color: white;
+
+            padding: 10px 15px;
+
+            cursor: pointer;
+
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        .filters {
+            display: grid;
+
+            grid-template-columns:
+                1fr 180px 170px;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+        .search,
+        .filter-select {
+            width: 100%;
+            height: 40px;
+
+            border: 1px solid #dfe4ea;
+
+            border-radius: 8px;
+
+            padding: 0 12px;
+
+            outline: none;
+
+            background: white;
+
+            font-size: 9px;
+        }
+
+        .search:focus,
+        .filter-select:focus {
+            border-color: #2563eb;
+        }
+
+        /* =========================
+           TABELA
+        ========================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 11px 10px;
+
+            text-align: left;
+
+            background: #f8fafc;
+
+            color: #667085;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+
+            letter-spacing: .4px;
+        }
+
+        td {
+            padding: 13px 10px;
+
+            border-bottom: 1px solid #edf0f4;
+
+            color: #475467;
+
+            font-size: 8px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .user-cell {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .user-avatar {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: #edf3ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        .user-name strong {
+            display: block;
+
+            color: #344054;
+
+            font-size: 8px;
+        }
+
+        .user-name span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+        }
+
+        /* PERFIL */
+
+        .role {
+            display: inline-block;
+
+            padding: 5px 8px;
+
+            border-radius: 5px;
+
+            font-size: 6px;
+            font-weight: bold;
+        }
+
+        .role-administrador {
+            background: #f3e8ff;
+            color: #7e22ce;
+        }
+
+        .role-medico {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .role-recepcionista {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .role-paciente {
+            background: #ecfdf3;
+            color: #027a48;
+        }
+
+        /* STATUS */
+
+        .status {
+            display: inline-block;
+
+            padding: 5px 8px;
+
+            border-radius: 5px;
+
+            font-size: 6px;
+            font-weight: bold;
+        }
+
+        .status.active {
+            background: #ecfdf3;
+            color: #027a48;
+        }
+
+        .status.inactive {
+            background: #fef3f2;
+            color: #b42318;
+        }
+
+        /* AÇÕES */
+
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-action {
+            border: none;
+
+            border-radius: 6px;
+
+            padding: 7px 9px;
+
+            cursor: pointer;
+
+            font-size: 7px;
+            font-weight: bold;
+        }
+
+        .btn-edit {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        .btn-delete {
+            background: #fef3f2;
+            color: #b42318;
+        }
+
+        .btn-action:hover {
+            opacity: .8;
+        }
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty {
+            padding: 45px 20px;
+
+            text-align: center;
+
+            border: 1px dashed #dfe4ea;
+
+            border-radius: 10px;
+
+            color: #98a2b3;
+        }
+
+        .empty-icon {
+            width: 50px;
+            height: 50px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 50%;
+
+            background: #f2f4f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 18px;
+        }
+
+        .empty strong {
+            display: block;
+
+            color: #667085;
+
+            font-size: 9px;
+
+            margin-bottom: 5px;
+        }
+
+        .empty p {
+            font-size: 8px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(16,24,40,.45);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 100;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 540px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: white;
+
+            border-radius: 13px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(16,24,40,.15);
+        }
+
+        .modal-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            font-size: 15px;
+        }
+
+        .close {
+            width: 30px;
+            height: 30px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #f2f4f7;
+
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 12px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            color: #475467;
+
+            font-size: 8px;
+
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 38px;
+
+            border: 1px solid #dfe4ea;
+
+            border-radius: 7px;
+
+            padding: 0 10px;
+
+            outline: none;
+
+            background: white;
+
+            font-size: 8px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+        }
+
+        .password-help {
+            color: #98a2b3;
+
+            font-size: 7px;
+
+            margin-top: 2px;
+        }
+
+        .modal-footer {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+        .btn-cancel {
+            border: none;
+
+            border-radius: 7px;
+
+            padding: 10px 14px;
+
+            background: #f2f4f7;
+
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 8px;
+
+            font-weight: bold;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+            }
+
+            main {
+                margin-left: 0;
+
+                padding: 25px 20px;
+            }
+
+            .topbar {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+            .clock {
+                align-items: flex-start;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>
+                    Clínica Vida+
+                </h2>
+
+                <span>
+                    Área Administrativa
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="medicos.html">
+                <span>♙</span>
+                Médicos
+            </a>
+
+            <a href="pacientes.html">
+                <span>♙</span>
+                Pacientes
+            </a>
+
+            <a href="consultas.html">
+                <span>▣</span>
+                Consultas
+            </a>
+
+            <a
+                href="usuarios.html"
+                class="active"
+            >
+                <span>⚙</span>
+                Usuários
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="profile">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    AD
+                </div>
+
+                <div>
+
+                    <strong id="profileName">
+                        Administrador
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout"
+                id="logoutButton"
+            >
+                ↪ &nbsp; Sair
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main>
+
+        <header class="topbar">
+
+            <div>
+
+                <small>
+                    ÁREA ADMINISTRATIVA
+                </small>
+
+                <h1>
+                    Usuários
+                </h1>
+
+            </div>
+
+
+            <div class="clock">
+
+                <span id="currentDate">
+                    Carregando...
+                </span>
+
+                <strong id="currentTime">
+                    00:00:00
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Usuários cadastrados
+                    </h2>
+
+                    <p>
+                        Gerencie os acessos ao sistema.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-primary"
+                    id="newUserButton"
+                >
+                    + Novo usuário
+                </button>
+
+            </div>
+
+
+
+            <!-- FILTROS -->
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    class="search"
+                    id="searchInput"
+                    placeholder="Pesquisar por nome ou e-mail..."
+                >
+
+
+                <select
+                    class="filter-select"
+                    id="roleFilter"
+                >
+
+                    <option value="todos">
+                        Todos os perfis
+                    </option>
+
+                    <option value="administrador">
+                        Administradores
+                    </option>
+
+                    <option value="medico">
+                        Médicos
+                    </option>
+
+                    <option value="recepcionista">
+                        Recepcionistas
+                    </option>
+
+                    <option value="paciente">
+                        Pacientes
+                    </option>
+
+                </select>
+
+
+                <select
+                    class="filter-select"
+                    id="statusFilter"
+                >
+
+                    <option value="todos">
+                        Todos os status
+                    </option>
+
+                    <option value="Ativo">
+                        Ativos
+                    </option>
+
+                    <option value="Inativo">
+                        Inativos
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- TABELA -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Usuário
+                            </th>
+
+                            <th>
+                                E-mail
+                            </th>
+
+                            <th>
+                                Perfil
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="usersTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                class="empty"
+                id="emptyState"
+                style="display:none;"
+            >
+
+                <div class="empty-icon">
+                    ⚙
+                </div>
+
+                <strong>
+                    Nenhum usuário encontrado
+                </strong>
+
+                <p>
+                    Cadastre um usuário ou altere os filtros.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================
+         MODAL
+    ========================= -->
+
+    <div
+        class="modal"
+        id="userModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+
+                <h2 id="modalTitle">
+                    Novo usuário
+                </h2>
+
+                <button
+                    class="close"
+                    id="closeModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="userForm">
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Nome completo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="userName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="userEmail"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Perfil
+                        </label>
+
+                        <select
+                            id="userRole"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione o perfil
+                            </option>
+
+                            <option value="administrador">
+                                Administrador
+                            </option>
+
+                            <option value="medico">
+                                Médico
+                            </option>
+
+                            <option value="recepcionista">
+                                Recepcionista
+                            </option>
+
+                            <option value="paciente">
+                                Paciente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <select id="userStatus">
+
+                            <option value="Ativo">
+                                Ativo
+                            </option>
+
+                            <option value="Inativo">
+                                Inativo
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Senha
+                        </label>
+
+                        <input
+                            type="password"
+                            id="userPassword"
+                            placeholder="Digite a senha"
+                        >
+
+                        <span class="password-help">
+                            Ao editar, deixe em branco para manter a senha atual.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        id="cancelModal"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Salvar usuário
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        /* =========================
+           PROTEÇÃO
+        ========================= */
+
+        const loggedUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "usuarioLogado"
+                )
+            );
+
+
+        if (
+            !loggedUser ||
+            loggedUser.tipo !== "administrador"
+        ) {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        /* =========================
+           PERFIL
+        ========================= */
+
+        function initials(name) {
+
+            if (!name)
+                return "AD";
+
+
+            return name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(
+                    item =>
+                        item
+                            .charAt(0)
+                            .toUpperCase()
+                )
+                .join("");
+
+        }
+
+
+        if (loggedUser) {
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                loggedUser.nome ||
+                "Administrador";
+
+
+            document.getElementById(
+                "profileAvatar"
+            ).textContent =
+                initials(
+                    loggedUser.nome
+                );
+
+        }
+
+
+
+        /* =========================
+           RELÓGIO
+        ========================= */
+
+        function updateClock() {
+
+            const now =
+                new Date();
+
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+                now.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            document.getElementById(
+                "currentTime"
+            ).textContent =
+                now.toLocaleTimeString(
+                    "pt-BR"
+                );
+
+        }
+
+
+        updateClock();
+
+
+        setInterval(
+            updateClock,
+            1000
+        );
+
+
+
+        /* =========================
+           DADOS
+        ========================= */
+
+        let users =
+            JSON.parse(
+                localStorage.getItem(
+                    "clinicaUsuarios"
+                )
+            ) || [];
+
+
+        /*
+         * Caso o sistema já tenha usuários
+         * cadastrados em outra chave,
+         * tenta aproveitar os dados.
+         */
+
+        if (
+            users.length === 0
+        ) {
+
+            const oldUsers =
+                JSON.parse(
+                    localStorage.getItem(
+                        "usuarios"
+                    )
+                ) || [];
+
+
+            if (
+                oldUsers.length > 0
+            ) {
+
+                users =
+                    oldUsers;
+
+            }
+
+        }
+
+
+        let editingId = null;
+
+
+
+        /* =========================
+           ELEMENTOS
+        ========================= */
+
+        const modal =
+            document.getElementById(
+                "userModal"
+            );
+
+
+        const form =
+            document.getElementById(
+                "userForm"
+            );
+
+
+        const table =
+            document.getElementById(
+                "usersTable"
+            );
+
+
+        const emptyState =
+            document.getElementById(
+                "emptyState"
+            );
+
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+
+        const roleFilter =
+            document.getElementById(
+                "roleFilter"
+            );
+
+
+        const statusFilter =
+            document.getElementById(
+                "statusFilter"
+            );
+
+
+
+        /* =========================
+           NORMALIZAR PERFIL
+        ========================= */
+
+        function normalizeRole(role) {
+
+            if (!role)
+                return "paciente";
+
+
+            role =
+                String(role)
+                    .toLowerCase()
+                    .trim();
+
+
+            if (
+                role === "admin" ||
+                role === "administrador"
+            ) {
+
+                return "administrador";
+
+            }
+
+
+            if (
+                role === "medico" ||
+                role === "médico"
+            ) {
+
+                return "medico";
+
+            }
+
+
+            if (
+                role === "recepcionista"
+            ) {
+
+                return "recepcionista";
+
+            }
+
+
+            return "paciente";
+
+        }
+
+
+
+        /* =========================
+           TEXTO DO PERFIL
+        ========================= */
+
+        function roleText(role) {
+
+            role =
+                normalizeRole(
+                    role
+                );
+
+
+            if (
+                role === "administrador"
+            )
+                return "Administrador";
+
+
+            if (
+                role === "medico"
+            )
+                return "Médico";
+
+
+            if (
+                role === "recepcionista"
+            )
+                return "Recepcionista";
+
+
+            return "Paciente";
+
+        }
+
+
+
+        /* =========================
+           RENDERIZAR
+        ========================= */
+
+        function renderUsers() {
+
+            users =
+                JSON.parse(
+                    localStorage.getItem(
+                        "clinicaUsuarios"
+                    )
+                ) || users;
+
+
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const selectedRole =
+                roleFilter.value;
+
+
+            const selectedStatus =
+                statusFilter.value;
+
+
+            table.innerHTML = "";
+
+
+            const filtered =
+                users.filter(
+                    user => {
+
+                        const name =
+                            String(
+                                user.nome ||
+                                user.name ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const email =
+                            String(
+                                user.email ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const role =
+                            normalizeRole(
+                                user.tipo ||
+                                user.role ||
+                                user.perfil
+                            );
+
+
+                        const status =
+                            user.status ||
+                            "Ativo";
+
+
+                        const matchesSearch =
+                            name.includes(
+                                search
+                            ) ||
+                            email.includes(
+                                search
+                            );
+
+
+                        const matchesRole =
+                            selectedRole ===
+                                "todos" ||
+                            role ===
+                                selectedRole;
+
+
+                        const matchesStatus =
+                            selectedStatus ===
+                                "todos" ||
+                            status ===
+                                selectedStatus;
+
+
+                        return (
+                            matchesSearch &&
+                            matchesRole &&
+                            matchesStatus
+                        );
+
+                    }
+                );
+
+
+            if (
+                filtered.length === 0
+            ) {
+
+                emptyState.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            emptyState.style.display =
+                "none";
+
+
+            filtered.forEach(
+                user => {
+
+                    const id =
+                        user.id;
+
+
+                    const name =
+                        user.nome ||
+                        user.name ||
+                        "Usuário";
+
+
+                    const email =
+                        user.email ||
+                        "Não informado";
+
+
+                    const role =
+                        normalizeRole(
+                            user.tipo ||
+                            user.role ||
+                            user.perfil
+                        );
+
+
+                    const status =
+                        user.status ||
+                        "Ativo";
+
+
+                    const statusClass =
+                        status === "Ativo"
+                            ? "active"
+                            : "inactive";
+
+
+                    const tr =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    tr.innerHTML = `
+
+                        <td>
+
+                            <div class="user-cell">
+
+                                <div class="user-avatar">
+
+                                    ${initials(name)}
+
+                                </div>
+
+
+                                <div class="user-name">
+
+                                    <strong>
+                                        ${name}
+                                    </strong>
+
+                                    <span>
+                                        Usuário do sistema
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${email}
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="role role-${role}"
+                            >
+
+                                ${roleText(role)}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span
+                                class="status ${statusClass}"
+                            >
+
+                                ${status}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <div class="actions">
+
+                                <button
+                                    class="btn-action btn-edit"
+                                    onclick="editUser('${id}')"
+                                >
+                                    Editar
+                                </button>
+
+
+                                <button
+                                    class="btn-action btn-delete"
+                                    onclick="deleteUser('${id}')"
+                                >
+                                    Excluir
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    `;
+
+
+                    table.appendChild(
+                        tr
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        function openModal() {
+
+            modal.classList.add(
+                "show"
+            );
+
+        }
+
+
+        function closeModal() {
+
+            modal.classList.remove(
+                "show"
+            );
+
+            form.reset();
+
+            editingId = null;
+
+            document.getElementById(
+                "modalTitle"
+            ).textContent =
+                "Novo usuário";
+
+
+            document.getElementById(
+                "userPassword"
+            ).placeholder =
+                "Digite a senha";
+
+        }
+
+
+        document.getElementById(
+            "newUserButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                closeModal();
+
+                openModal();
+
+            }
+        );
+
+
+        document.getElementById(
+            "closeModal"
+        ).addEventListener(
+            "click",
+            closeModal
+        );
+
+
+        document.getElementById(
+            "cancelModal"
+        ).addEventListener(
+            "click",
+            closeModal
+        );
+
+
+
+        /* =========================
+           SALVAR
+        ========================= */
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById(
+                        "userName"
+                    ).value.trim();
+
+
+                const email =
+                    document.getElementById(
+                        "userEmail"
+                    ).value.trim();
+
+
+                const role =
+                    document.getElementById(
+                        "userRole"
+                    ).value;
+
+
+                const status =
+                    document.getElementById(
+                        "userStatus"
+                    ).value;
+
+
+                const password =
+                    document.getElementById(
+                        "userPassword"
+                    ).value;
+
+
+                /*
+                 * Não permite dois usuários
+                 * com o mesmo e-mail.
+                 */
+
+                const emailExists =
+                    users.some(
+                        user =>
+                            String(
+                                user.email ||
+                                ""
+                            ).toLowerCase() ===
+                            email.toLowerCase() &&
+                            String(
+                                user.id
+                            ) !==
+                            String(
+                                editingId
+                            )
+                    );
+
+
+                if (
+                    emailExists
+                ) {
+
+                    alert(
+                        "Já existe um usuário com este e-mail."
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    !editingId &&
+                    !password
+                ) {
+
+                    alert(
+                        "Digite uma senha para o usuário."
+                    );
+
+                    return;
+
+                }
+
+
+                const newUser = {
+
+                    id:
+                        editingId ||
+                        Date.now().toString(),
+
+                    nome:
+                        name,
+
+                    email:
+                        email,
+
+                    tipo:
+                        role,
+
+                    status:
+                        status
+
+                };
+
+
+                /*
+                 * Mantém a senha antiga
+                 * quando estiver editando.
+                 */
+
+                if (
+                    password
+                ) {
+
+                    newUser.senha =
+                        password;
+
+                    newUser.password =
+                        password;
+
+                }
+
+
+                if (
+                    editingId
+                ) {
+
+                    const index =
+                        users.findIndex(
+                            user =>
+                                String(
+                                    user.id
+                                ) ===
+                                String(
+                                    editingId
+                                )
+                        );
+
+
+                    if (
+                        index !== -1
+                    ) {
+
+                        users[index] = {
+
+                            ...users[index],
+
+                            ...newUser
+
+                        };
+
+                    }
+
+                } else {
+
+                    users.push(
+                        newUser
+                    );
+
+                }
+
+
+                localStorage.setItem(
+                    "clinicaUsuarios",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+                /*
+                 * Também mantém uma cópia
+                 * na chave antiga caso o
+                 * login esteja usando ela.
+                 */
+
+                localStorage.setItem(
+                    "usuarios",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+                renderUsers();
+
+                closeModal();
+
+            }
+        );
+
+
+
+        /* =========================
+           EDITAR
+        ========================= */
+
+        window.editUser =
+            function(id) {
+
+                const user =
+                    users.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!user)
+                    return;
+
+
+                editingId =
+                    user.id;
+
+
+                document.getElementById(
+                    "modalTitle"
+                ).textContent =
+                    "Editar usuário";
+
+
+                document.getElementById(
+                    "userName"
+                ).value =
+                    user.nome ||
+                    user.name ||
+                    "";
+
+
+                document.getElementById(
+                    "userEmail"
+                ).value =
+                    user.email ||
+                    "";
+
+
+                document.getElementById(
+                    "userRole"
+                ).value =
+                    normalizeRole(
+                        user.tipo ||
+                        user.role ||
+                        user.perfil
+                    );
+
+
+                document.getElementById(
+                    "userStatus"
+                ).value =
+                    user.status ||
+                    "Ativo";
+
+
+                document.getElementById(
+                    "userPassword"
+                ).value =
+                    "";
+
+
+                document.getElementById(
+                    "userPassword"
+                ).placeholder =
+                    "Deixe em branco para manter a senha";
+
+
+                openModal();
+
+            };
+
+
+
+        /* =========================
+           EXCLUIR
+        ========================= */
+
+        window.deleteUser =
+            function(id) {
+
+                const user =
+                    users.find(
+                        item =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!user)
+                    return;
+
+
+                /*
+                 * Impede apagar o usuário
+                 * que está atualmente logado.
+                 */
+
+                if (
+                    loggedUser &&
+                    String(
+                        loggedUser.id
+                    ) ===
+                    String(id)
+                ) {
+
+                    alert(
+                        "Você não pode excluir o usuário que está logado."
+                    );
+
+                    return;
+
+                }
+
+
+                const name =
+                    user.nome ||
+                    user.name ||
+                    "este usuário";
+
+
+                const confirmed =
+                    confirm(
+                        "Deseja realmente excluir " +
+                        name +
+                        "?"
+                    );
+
+
+                if (
+                    !confirmed
+                )
+                    return;
+
+
+                users =
+                    users.filter(
+                        item =>
+                            String(
+                                item.id
+                            ) !==
+                            String(id)
+                    );
+
+
+                localStorage.setItem(
+                    "clinicaUsuarios",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+                localStorage.setItem(
+                    "usuarios",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+                renderUsers();
+
+            };
+
+
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        searchInput.addEventListener(
+            "input",
+            renderUsers
+        );
+
+
+        roleFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+
+        statusFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+
+
+        /* =========================
+           FECHAR MODAL
+        ========================= */
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           SAIR
+        ========================= */
+
+        document.getElementById(
+            "logoutButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem(
+                    "usuarioLogado"
+                );
+
+
+                window.location.href =
+                    "../login.html";
+
+            }
+        );
+
+
+
+        /* =========================
+           INICIAR
+        ========================= */
+
+        renderUsers();
+
+    </script>
+
+</body>
+
+</html>

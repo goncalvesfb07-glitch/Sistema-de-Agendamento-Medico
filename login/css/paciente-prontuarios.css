@@ -1,0 +1,492 @@
+.intro-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+.intro-icon {
+    width: 50px;
+    height: 50px;
+
+    min-width: 50px;
+
+    border-radius: 10px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.intro-card h2 {
+    font-size: 18px;
+
+    margin-top: 5px;
+}
+
+.intro-card p {
+    color: #667085;
+
+    font-size: 10px;
+
+    max-width: 650px;
+
+    line-height: 1.5;
+
+    margin-top: 5px;
+}
+
+
+/* CABEÇALHO */
+
+.records-card {
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.section-header h2 {
+    font-size: 17px;
+
+    margin-top: 5px;
+}
+
+.records-count {
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    padding: 7px 10px;
+
+    border-radius: 15px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+
+/* LISTA */
+
+.records-list {
+    border-top: 1px solid #e5e9f0;
+}
+
+.record-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #e5e9f0;
+}
+
+.record-item:last-child {
+    border-bottom: none;
+}
+
+
+/* DATA */
+
+.record-date {
+    width: 65px;
+
+    min-width: 65px;
+
+    height: 75px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.record-date span {
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.record-date strong {
+    font-size: 25px;
+
+    line-height: 28px;
+}
+
+.record-date small {
+    font-size: 8px;
+}
+
+
+/* PRINCIPAL */
+
+.record-main {
+    flex: 1;
+}
+
+.doctor-row {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+}
+
+.doctor-avatar {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #eaf1ff;
+
+    color: #2563eb;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+.doctor-avatar.large {
+    width: 45px;
+    height: 45px;
+}
+
+.doctor-row h3 {
+    font-size: 12px;
+}
+
+.doctor-row span {
+    display: block;
+
+    color: #667085;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+
+/* DIAGNÓSTICO */
+
+.diagnosis-box {
+    margin-top: 12px;
+
+    background: #f8fafc;
+
+    border-radius: 7px;
+
+    padding: 9px 11px;
+}
+
+.diagnosis-box span {
+    display: block;
+
+    color: #667085;
+
+    font-size: 7px;
+
+    font-weight: bold;
+
+    margin-bottom: 3px;
+}
+
+.diagnosis-box strong {
+    font-size: 10px;
+}
+
+
+/* BOTÃO */
+
+.view-record {
+    border: 1px solid #dce2ea;
+
+    background: white;
+
+    color: #2563eb;
+
+    border-radius: 7px;
+
+    padding: 9px 12px;
+
+    cursor: pointer;
+
+    font-size: 9px;
+
+    font-weight: bold;
+}
+
+.view-record:hover {
+    background: #eef4ff;
+}
+
+
+/* AVISO */
+
+.pending-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px;
+
+    border-radius: 9px;
+
+    background: #f8fafc;
+
+    border: 1px solid #e5e9f0;
+}
+
+.pending-icon {
+    font-size: 18px;
+}
+
+.pending-card strong {
+    font-size: 10px;
+}
+
+.pending-card p {
+    color: #667085;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+
+/* MODAL */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.45);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.record-modal {
+    width: 100%;
+
+    max-width: 600px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+}
+
+.modal-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 22px;
+}
+
+.modal-header h2 {
+    font-size: 18px;
+
+    margin-top: 5px;
+}
+
+.close-modal {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    background: #f2f4f7;
+
+    color: #667085;
+
+    border-radius: 7px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* MÉDICO MODAL */
+
+.modal-doctor {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    background: #f8fafc;
+
+    border-radius: 8px;
+}
+
+.modal-doctor strong,
+.modal-doctor span {
+    display: block;
+}
+
+.modal-doctor strong {
+    font-size: 11px;
+}
+
+.modal-doctor span {
+    color: #667085;
+
+    font-size: 9px;
+
+    margin-top: 3px;
+}
+
+
+/* DATA MODAL */
+
+.record-info {
+    margin-top: 18px;
+
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #e5e9f0;
+}
+
+.record-info span {
+    display: block;
+
+    color: #667085;
+
+    font-size: 8px;
+}
+
+.record-info strong {
+    display: block;
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+
+/* SEÇÕES MÉDICAS */
+
+.medical-section {
+    padding: 15px 0;
+
+    border-bottom: 1px solid #e5e9f0;
+}
+
+.medical-section span {
+    display: block;
+
+    color: #667085;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+.medical-section p {
+    color: #344054;
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* RODAPÉ */
+
+.modal-footer {
+    padding-top: 15px;
+
+    color: #667085;
+
+    font-size: 8px;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+
+    .record-item {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .view-record {
+        margin-left: 85px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .intro-card {
+        align-items: flex-start;
+    }
+
+}
