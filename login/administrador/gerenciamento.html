@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica Vida+ | Cadastro</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            width: 230px;
+
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+
+            padding: 24px 15px;
+
+            display: flex;
+            flex-direction: column;
+
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 0 8px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .brand h2 {
+            font-size: 15px;
+        }
+
+        .brand span {
+            display: block;
+            margin-top: 3px;
+
+            color: #8a94a6;
+            font-size: 8px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        nav a {
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            padding: 0 12px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #667085;
+
+            font-size: 10px;
+            font-weight: 600;
+
+            transition: .2s;
+        }
+
+        nav a:hover {
+            background: #f3f6fb;
+            color: #2563eb;
+        }
+
+        nav a.active {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        nav a span {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 13px 7px;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .profile-avatar {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background: #eaf1ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .profile strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .profile small {
+            display: block;
+            margin-top: 3px;
+
+            color: #98a2b3;
+            font-size: 7px;
+        }
+
+        .logout {
+            width: 100%;
+            height: 37px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #f7f8fa;
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .logout:hover {
+            background: #fff1f1;
+            color: #d92d20;
+        }
+
+        /* MAIN */
+
+        main {
+            margin-left: 230px;
+
+            min-height: 100vh;
+
+            padding: 30px 38px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .topbar small {
+            color: #2563eb;
+
+            font-size: 8px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .topbar h1 {
+            margin-top: 6px;
+            font-size: 25px;
+        }
+
+        .clock {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            gap: 4px;
+
+            color: #8a94a6;
+
+            font-size: 8px;
+            text-transform: capitalize;
+        }
+
+        .clock strong {
+            color: #344054;
+            font-size: 13px;
+        }
+
+        /* CONTEÚDO */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(16,24,40,.035);
+        }
+
+        .card-header {
+            margin-bottom: 22px;
+        }
+
+        .card-header h2 {
+            font-size: 15px;
+        }
+
+        .card-header p {
+            margin-top: 5px;
+
+            color: #98a2b3;
+            font-size: 8px;
+        }
+
+        /* TIPOS */
+
+        .user-types {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+
+            margin-bottom: 25px;
+        }
+
+        .type-button {
+            min-height: 70px;
+
+            border: 1px solid #e2e6eb;
+
+            border-radius: 9px;
+
+            background: white;
+
+            padding: 12px;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .type-button:hover {
+            border-color: #2563eb;
+        }
+
+        .type-button.active {
+            border-color: #2563eb;
+            background: #f4f7ff;
+        }
+
+        .type-icon {
+            color: #2563eb;
+
+            font-size: 15px;
+
+            margin-bottom: 8px;
+        }
+
+        .type-button strong {
+            display: block;
+
+            font-size: 8px;
+        }
+
+        .type-button span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: #98a2b3;
+
+            font-size: 7px;
+        }
+
+        /* FORMULÁRIO */
+
+        .form-title {
+            padding-top: 20px;
+
+            border-top: 1px solid #edf0f4;
+
+            margin-bottom: 18px;
+        }
+
+        .form-title h3 {
+            font-size: 12px;
+        }
+
+        .form-title p {
+            margin-top: 4px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            margin-bottom: 6px;
+
+            color: #667085;
+
+            font-size: 8px;
+
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 39px;
+
+            border: 1px solid #dfe4ea;
+
+            border-radius: 8px;
+
+            padding: 0 11px;
+
+            outline: none;
+
+            color: #344054;
+
+            background: white;
+
+            font-size: 9px;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            padding-right: 40px;
+        }
+
+        .show-password {
+            position: absolute;
+
+            right: 10px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+            background: none;
+
+            cursor: pointer;
+
+            color: #98a2b3;
+
+            font-size: 11px;
+        }
+
+        .buttons {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 8px;
+
+            margin-top: 22px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .clear-button,
+        .save-button {
+            height: 38px;
+
+            padding: 0 17px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 9px;
+
+            font-weight: bold;
+        }
+
+        .clear-button {
+            border: 1px solid #dfe4ea;
+
+            background: white;
+
+            color: #667085;
+        }
+
+        .save-button {
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+        .save-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* MENSAGEM */
+
+        .message {
+            display: none;
+
+            margin-bottom: 18px;
+
+            padding: 11px 13px;
+
+            border-radius: 8px;
+
+            font-size: 8px;
+
+            font-weight: bold;
+        }
+
+        .message.success {
+            display: block;
+
+            background: #ecfdf3;
+
+            color: #027a48;
+
+            border: 1px solid #abefc6;
+        }
+
+        .message.error {
+            display: block;
+
+            background: #fef3f2;
+
+            color: #b42318;
+
+            border: 1px solid #fecdca;
+        }
+
+        /* RESPONSIVO */
+
+        @media (max-width: 950px) {
+
+            .user-types {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 190px;
+            }
+
+            main {
+                margin-left: 190px;
+
+                padding: 25px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+            }
+
+            main {
+                margin-left: 0;
+            }
+
+            .topbar {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+            .clock {
+                align-items: flex-start;
+            }
+
+            .user-types {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>
+                    Clínica Vida+
+                </h2>
+
+                <span>
+                    Área Administrativa
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+
+            <a href="dashboard.html">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a href="usuarios.html">
+
+                <span>♙</span>
+
+                Usuários
+
+            </a>
+
+
+            <a
+                href="cadastro.html"
+                class="active"
+            >
+
+                <span>+</span>
+
+                Cadastro / Gerenciamento
+
+            </a>
+
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <div class="profile">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    AD
+                </div>
+
+                <div>
+
+                    <strong id="profileName">
+                        Administrador
+                    </strong>
+
+                    <small>
+                        Administrador
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout"
+                id="logoutButton"
+            >
+                ↪ &nbsp; Sair
+            </button>
+
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN -->
+
+    <main>
+
+
+        <header class="topbar">
+
+            <div>
+
+                <small>
+                    ÁREA ADMINISTRATIVA
+                </small>
+
+                <h1>
+                    Cadastro / Gerenciamento
+                </h1>
+
+            </div>
+
+
+            <div class="clock">
+
+                <span id="currentDate">
+                    Carregando...
+                </span>
+
+                <strong id="currentTime">
+                    00:00:00
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <h2>
+                    Cadastrar novo usuário
+                </h2>
+
+                <p>
+                    Selecione o tipo de usuário e preencha os dados abaixo.
+                </p>
+
+            </div>
+
+
+
+            <div
+                class="message"
+                id="message"
+            ></div>
+
+
+
+            <!-- TIPOS -->
+
+            <div class="user-types">
+
+
+                <button
+                    type="button"
+                    class="type-button active"
+                    data-type="medico"
+                >
+
+                    <div class="type-icon">
+                        ⚕
+                    </div>
+
+                    <strong>
+                        Médico
+                    </strong>
+
+                    <span>
+                        Profissional da clínica
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="type-button"
+                    data-type="recepcionista"
+                >
+
+                    <div class="type-icon">
+                        ♙
+                    </div>
+
+                    <strong>
+                        Recepcionista
+                    </strong>
+
+                    <span>
+                        Atendimento e agenda
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="type-button"
+                    data-type="paciente"
+                >
+
+                    <div class="type-icon">
+                        ♙
+                    </div>
+
+                    <strong>
+                        Paciente
+                    </strong>
+
+                    <span>
+                        Usuário da clínica
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="type-button"
+                    data-type="administrador"
+                >
+
+                    <div class="type-icon">
+                        ⚙
+                    </div>
+
+                    <strong>
+                        Administrador
+                    </strong>
+
+                    <span>
+                        Controle do sistema
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="form-title">
+
+                <h3 id="formTitle">
+                    Dados do médico
+                </h3>
+
+                <p id="formDescription">
+                    Cadastre os dados de acesso do profissional.
+                </p>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form id="registerForm">
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            NOME COMPLETO
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Digite o nome completo"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            E-MAIL
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="exemplo@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            TELEFONE
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="(00) 00000-0000"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="document">
+                            CPF
+                        </label>
+
+                        <input
+                            type="text"
+                            id="document"
+                            placeholder="000.000.000-00"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="form-group"
+                        id="specialtyGroup"
+                    >
+
+                        <label for="specialty">
+                            ESPECIALIDADE
+                        </label>
+
+                        <input
+                            type="text"
+                            id="specialty"
+                            placeholder="Ex.: Cardiologia"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="form-group"
+                        id="crmGroup"
+                    >
+
+                        <label for="crm">
+                            CRM
+                        </label>
+
+                        <input
+                            type="text"
+                            id="crm"
+                            placeholder="Número do CRM"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            SENHA
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Digite uma senha"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                id="showPassword"
+                            >
+                                ◉
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            CONFIRMAR SENHA
+                        </label>
+
+                        <div class="password-wrapper">
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirme a senha"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                class="show-password"
+                                id="showConfirmPassword"
+                            >
+                                ◉
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="buttons">
+
+                    <button
+                        type="button"
+                        class="clear-button"
+                        id="clearButton"
+                    >
+                        Limpar
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+                        Cadastrar usuário
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* =========================
+           PROTEÇÃO
+        ========================= */
+
+        const loggedUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "usuarioLogado"
+                )
+            );
+
+
+        if (
+            !loggedUser ||
+            loggedUser.tipo !== "administrador"
+        ) {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        /* =========================
+           PERFIL
+        ========================= */
+
+        function initials(name) {
+
+            if (!name)
+                return "AD";
+
+
+            return name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(
+                    item =>
+                        item
+                            .charAt(0)
+                            .toUpperCase()
+                )
+                .join("");
+
+        }
+
+
+        if (loggedUser) {
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                loggedUser.nome ||
+                "Administrador";
+
+
+            document.getElementById(
+                "profileAvatar"
+            ).textContent =
+                initials(
+                    loggedUser.nome
+                );
+
+        }
+
+
+
+        /* =========================
+           RELÓGIO
+        ========================= */
+
+        function updateClock() {
+
+            const now =
+                new Date();
+
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+                now.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            document.getElementById(
+                "currentTime"
+            ).textContent =
+                now.toLocaleTimeString(
+                    "pt-BR"
+                );
+
+        }
+
+
+        updateClock();
+
+        setInterval(
+            updateClock,
+            1000
+        );
+
+
+
+        /* =========================
+           ELEMENTOS
+        ========================= */
+
+        const form =
+            document.getElementById(
+                "registerForm"
+            );
+
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+        const typeButtons =
+            document.querySelectorAll(
+                ".type-button"
+            );
+
+        const formTitle =
+            document.getElementById(
+                "formTitle"
+            );
+
+        const formDescription =
+            document.getElementById(
+                "formDescription"
+            );
+
+        const specialtyGroup =
+            document.getElementById(
+                "specialtyGroup"
+            );
+
+        const crmGroup =
+            document.getElementById(
+                "crmGroup"
+            );
+
+        let selectedType =
+            "medico";
+
+
+
+        /* =========================
+           TEXTOS
+        ========================= */
+
+        const typeTexts = {
+
+            medico: {
+
+                title:
+                    "Dados do médico",
+
+                description:
+                    "Cadastre os dados de acesso do profissional."
+
+            },
+
+            recepcionista: {
+
+                title:
+                    "Dados do recepcionista",
+
+                description:
+                    "Cadastre os dados de acesso do profissional da recepção."
+
+            },
+
+            paciente: {
+
+                title:
+                    "Dados do paciente",
+
+                description:
+                    "Cadastre os dados de acesso do paciente."
+
+            },
+
+            administrador: {
+
+                title:
+                    "Dados do administrador",
+
+                description:
+                    "Cadastre um novo usuário com acesso administrativo."
+
+            }
+
+        };
+
+
+
+        /* =========================
+           SELECIONAR TIPO
+        ========================= */
+
+        typeButtons.forEach(
+            function(button) {
+
+                button.addEventListener(
+                    "click",
+                    function() {
+
+                        typeButtons.forEach(
+                            item =>
+                                item.classList.remove(
+                                    "active"
+                                )
+                        );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        selectedType =
+                            button.dataset.type;
+
+
+                        formTitle.textContent =
+                            typeTexts[
+                                selectedType
+                            ].title;
+
+
+                        formDescription.textContent =
+                            typeTexts[
+                                selectedType
+                            ].description;
+
+
+                        /*
+                         * Especialidade e CRM
+                         * aparecem somente
+                         * para médico.
+                         */
+
+                        const isDoctor =
+                            selectedType ===
+                            "medico";
+
+
+                        specialtyGroup.style.display =
+                            isDoctor
+                                ? "flex"
+                                : "none";
+
+
+                        crmGroup.style.display =
+                            isDoctor
+                                ? "flex"
+                                : "none";
+
+
+                        hideMessage();
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =========================
+           SENHA
+        ========================= */
+
+        function togglePassword(
+            inputId,
+            button
+        ) {
+
+            const input =
+                document.getElementById(
+                    inputId
+                );
+
+
+            if (
+                input.type ===
+                "password"
+            ) {
+
+                input.type =
+                    "text";
+
+                button.textContent =
+                    "◉";
+
+            } else {
+
+                input.type =
+                    "password";
+
+                button.textContent =
+                    "◉";
+
+            }
+
+        }
+
+
+        document.getElementById(
+            "showPassword"
+        ).addEventListener(
+            "click",
+            function() {
+
+                togglePassword(
+                    "password",
+                    this
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "showConfirmPassword"
+        ).addEventListener(
+            "click",
+            function() {
+
+                togglePassword(
+                    "confirmPassword",
+                    this
+                );
+
+            }
+        );
+
+
+
+        /* =========================
+           MENSAGEM
+        ========================= */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            message.textContent =
+                text;
+
+            message.className =
+                "message " +
+                type;
+
+        }
+
+
+        function hideMessage() {
+
+            message.textContent =
+                "";
+
+            message.className =
+                "message";
+
+        }
+
+
+
+        /* =========================
+           ID
+        ========================= */
+
+        function generateId() {
+
+            return (
+                Date.now()
+                .toString() +
+                Math.floor(
+                    Math.random() * 1000
+                )
+            );
+
+        }
+
+
+
+        /* =========================
+           CADASTRAR
+        ========================= */
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                hideMessage();
+
+
+                const name =
+                    document.getElementById(
+                        "name"
+                    ).value.trim();
+
+
+                const email =
+                    document.getElementById(
+                        "email"
+                    ).value.trim()
+                    .toLowerCase();
+
+
+                const phone =
+                    document.getElementById(
+                        "phone"
+                    ).value.trim();
+
+
+                const documentValue =
+                    document.getElementById(
+                        "document"
+                    ).value.trim();
+
+
+                const specialty =
+                    document.getElementById(
+                        "specialty"
+                    ).value.trim();
+
+
+                const crm =
+                    document.getElementById(
+                        "crm"
+                    ).value.trim();
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                const confirmPassword =
+                    document.getElementById(
+                        "confirmPassword"
+                    ).value;
+
+
+
+                /* VALIDAÇÕES */
+
+                if (
+                    name.length < 3
+                ) {
+
+                    showMessage(
+                        "Digite o nome completo.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    !email
+                ) {
+
+                    showMessage(
+                        "Digite um e-mail.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    password.length < 4
+                ) {
+
+                    showMessage(
+                        "A senha deve ter pelo menos 4 caracteres.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    password !==
+                    confirmPassword
+                ) {
+
+                    showMessage(
+                        "As senhas não coincidem.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    selectedType ===
+                    "medico" &&
+                    !crm
+                ) {
+
+                    showMessage(
+                        "Informe o CRM do médico.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* USUÁRIOS EXISTENTES */
+
+                let users =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "clinicaUsuarios"
+                        )
+                    ) || [];
+
+
+                const emailExists =
+                    users.some(
+                        user =>
+                            String(
+                                user.email ||
+                                ""
+                            ).toLowerCase() ===
+                            email
+                    );
+
+
+                if (
+                    emailExists
+                ) {
+
+                    showMessage(
+                        "Já existe um usuário cadastrado com este e-mail.",
+                        "error"
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* NOVO USUÁRIO */
+
+                const newUser = {
+
+                    id:
+                        generateId(),
+
+                    nome:
+                        name,
+
+                    email:
+                        email,
+
+                    senha:
+                        password,
+
+                    tipo:
+                        selectedType,
+
+                    telefone:
+                        phone,
+
+                    cpf:
+                        documentValue,
+
+                    ativo:
+                        true,
+
+                    criadoEm:
+                        new Date()
+                            .toISOString()
+
+                };
+
+
+                if (
+                    selectedType ===
+                    "medico"
+                ) {
+
+                    newUser.especialidade =
+                        specialty;
+
+                    newUser.crm =
+                        crm;
+
+                }
+
+
+
+                users.push(
+                    newUser
+                );
+
+
+                localStorage.setItem(
+                    "clinicaUsuarios",
+                    JSON.stringify(users)
+                );
+
+
+
+                /* SUCESSO */
+
+                showMessage(
+                    "Usuário cadastrado com sucesso!",
+                    "success"
+                );
+
+
+                form.reset();
+
+
+                /*
+                 * Volta para médico
+                 * após limpar.
+                 */
+
+                selectedType =
+                    "medico";
+
+
+                typeButtons.forEach(
+                    item =>
+                        item.classList.remove(
+                            "active"
+                        )
+                );
+
+
+                document
+                    .querySelector(
+                        '[data-type="medico"]'
+                    )
+                    .classList.add(
+                        "active"
+                    );
+
+
+                formTitle.textContent =
+                    typeTexts.medico.title;
+
+
+                formDescription.textContent =
+                    typeTexts.medico.description;
+
+
+                specialtyGroup.style.display =
+                    "flex";
+
+
+                crmGroup.style.display =
+                    "flex";
+
+            }
+        );
+
+
+
+        /* =========================
+           LIMPAR
+        ========================= */
+
+        document.getElementById(
+            "clearButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                form.reset();
+
+                hideMessage();
+
+            }
+        );
+
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        document.getElementById(
+            "logoutButton"
+        ).addEventListener(
+            "click",
+            function() {
+
+                localStorage.removeItem(
+                    "usuarioLogado"
+                );
+
+
+                window.location.href =
+                    "../login.html";
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

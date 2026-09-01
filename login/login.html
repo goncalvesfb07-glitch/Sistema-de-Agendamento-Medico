@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica Vida+ | Login</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #f1f5fb;
+
+            color: #172033;
+        }
+
+
+        .container {
+            width: 900px;
+            min-height: 520px;
+
+            display: grid;
+            grid-template-columns: 42% 58%;
+
+            background: white;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 15px 40px
+                rgba(16, 24, 40, .10);
+        }
+
+
+        /* =========================
+           LADO ESQUERDO
+        ========================= */
+
+        .left {
+            background: linear-gradient(
+                145deg,
+                #2563eb,
+                #1d4ed8
+            );
+
+            color: white;
+
+            padding: 45px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .logo {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 14px;
+
+            background: rgba(255,255,255,.15);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 32px;
+            font-weight: bold;
+
+            margin-bottom: 25px;
+        }
+
+
+        .left h1 {
+            font-size: 30px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .left p {
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            opacity: .9;
+
+            max-width: 280px;
+        }
+
+
+        .left-info {
+            margin-top: 35px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+
+        .info-item {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 9px;
+
+            opacity: .9;
+        }
+
+
+        /* =========================
+           LADO DIREITO
+        ========================= */
+
+        .right {
+            padding: 45px 50px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .right-header {
+            margin-bottom: 28px;
+        }
+
+
+        .right-header small {
+            color: #2563eb;
+
+            font-size: 8px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .right-header h2 {
+            margin-top: 7px;
+
+            font-size: 25px;
+        }
+
+
+        .right-header p {
+            margin-top: 7px;
+
+            color: #8a94a6;
+
+            font-size: 9px;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #344054;
+
+            font-size: 9px;
+
+            font-weight: bold;
+        }
+
+
+        input,
+        select {
+            width: 100%;
+
+            height: 43px;
+
+            border: 1px solid #d7dce3;
+
+            border-radius: 8px;
+
+            padding: 0 12px;
+
+            outline: none;
+
+            background: white;
+
+            color: #172033;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            font-size: 10px;
+        }
+
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37,99,235,.08);
+        }
+
+
+        /* =========================
+           SENHA
+        ========================= */
+
+        .password-box {
+            position: relative;
+        }
+
+
+        .password-box input {
+            padding-right: 70px;
+        }
+
+
+        #showPassword {
+            position: absolute;
+
+            right: 7px;
+            top: 7px;
+
+            height: 29px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #2563eb;
+
+            cursor: pointer;
+
+            font-size: 8px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        .login-button {
+            width: 100%;
+
+            height: 43px;
+
+            margin-top: 8px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            transition: .2s;
+        }
+
+
+        .login-button:hover {
+            background: #1d4ed8;
+        }
+
+
+        /* =========================
+           MENSAGEM
+        ========================= */
+
+        .message {
+            display: none;
+
+            margin-bottom: 15px;
+
+            padding: 11px;
+
+            border-radius: 7px;
+
+            font-size: 9px;
+
+            line-height: 1.4;
+        }
+
+
+        .message.error {
+            display: block;
+
+            background: #fff1f0;
+
+            border: 1px solid #f1b8b3;
+
+            color: #b42318;
+        }
+
+
+        .message.success {
+            display: block;
+
+            background: #eaf8f0;
+
+            border: 1px solid #b7e4ca;
+
+            color: #087443;
+        }
+
+
+        .footer {
+            margin-top: 22px;
+
+            text-align: center;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+        }
+
+
+        @media (max-width: 750px) {
+
+            .container {
+                width: calc(100% - 30px);
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .left {
+                display: none;
+            }
+
+
+            .right {
+                padding: 35px 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- =========================
+             ESQUERDA
+        ========================= -->
+
+        <section class="left">
+
+            <div class="logo">
+                +
+            </div>
+
+
+            <h1>
+                Clínica Vida+
+            </h1>
+
+
+            <p>
+                Sistema integrado para gerenciamento
+                de consultas, pacientes e atendimento
+                médico.
+            </p>
+
+
+            <div class="left-info">
+
+                <div class="info-item">
+                    ✓ &nbsp; Atendimento organizado
+                </div>
+
+                <div class="info-item">
+                    ✓ &nbsp; Prontuário digital
+                </div>
+
+                <div class="info-item">
+                    ✓ &nbsp; Agendamento de consultas
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             DIREITA
+        ========================= -->
+
+        <section class="right">
+
+
+            <div class="right-header">
+
+                <small>
+                    ACESSO AO SISTEMA
+                </small>
+
+                <h2>
+                    Bem-vindo!
+                </h2>
+
+                <p>
+                    Entre com seus dados para continuar.
+                </p>
+
+            </div>
+
+
+
+            <!-- MENSAGEM -->
+
+            <div
+                id="message"
+                class="message"
+            ></div>
+
+
+
+            <!-- FORMULÁRIO -->
+
+            <form id="loginForm">
+
+
+                <!-- USUÁRIO -->
+
+                <div class="form-group">
+
+                    <label for="usuario">
+                        Usuário
+                    </label>
+
+                    <input
+                        type="text"
+                        id="usuario"
+                        placeholder="Digite seu usuário"
+                        autocomplete="username"
+                    >
+
+                </div>
+
+
+
+                <!-- SENHA -->
+
+                <div class="form-group">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="senha"
+                            placeholder="Digite sua senha"
+                            autocomplete="current-password"
+                        >
+
+
+                        <button
+                            type="button"
+                            id="showPassword"
+                        >
+                            Mostrar
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PERFIL -->
+
+                <div class="form-group">
+
+                    <label for="perfil">
+                        Tipo de usuário
+                    </label>
+
+
+                    <select id="perfil">
+
+                        <option value="">
+                            Selecione seu perfil
+                        </option>
+
+                        <option value="medico">
+                            Médico
+                        </option>
+
+                        <option value="recepcionista">
+                            Recepcionista
+                        </option>
+
+                        <option value="paciente">
+                            Paciente
+                        </option>
+
+                        <option value="administrador">
+                            Administrador
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Entrar no sistema
+                </button>
+
+
+            </form>
+
+
+
+            <div class="footer">
+                Clínica Vida+ © 2026
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        /* =====================================
+           MOSTRAR / ESCONDER SENHA
+        ===================================== */
+
+        document
+            .getElementById("showPassword")
+            .addEventListener(
+                "click",
+                function () {
+
+                    const senha =
+                        document.getElementById("senha");
+
+
+                    if (
+                        senha.type === "password"
+                    ) {
+
+                        senha.type = "text";
+
+                        this.textContent =
+                            "Ocultar";
+
+                    } else {
+
+                        senha.type = "password";
+
+                        this.textContent =
+                            "Mostrar";
+
+                    }
+
+                }
+            );
+
+
+
+        /* =====================================
+           MENSAGEM
+        ===================================== */
+
+        function showMessage(
+            text,
+            type
+        ) {
+
+            const message =
+                document.getElementById("message");
+
+
+            message.textContent =
+                text;
+
+
+            message.className =
+                "message " + type;
+
+        }
+
+
+
+        /* =====================================
+           LOGIN
+        ===================================== */
+
+        document
+            .getElementById("loginForm")
+            .addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+
+                    const usuario =
+                        document
+                            .getElementById("usuario")
+                            .value
+                            .trim();
+
+
+                    const senha =
+                        document
+                            .getElementById("senha")
+                            .value;
+
+
+                    const perfil =
+                        document
+                            .getElementById("perfil")
+                            .value;
+
+
+
+                    /* =========================
+                       VALIDAÇÃO
+                    ========================= */
+
+                    if (
+                        !usuario ||
+                        !senha ||
+                        !perfil
+                    ) {
+
+                        showMessage(
+                            "Preencha usuário, senha e tipo de usuário.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+
+                    /* =========================
+                       ADMINISTRADOR PADRÃO
+                    ========================= */
+
+                    if (
+                        usuario.toLowerCase() === "admin" &&
+                        senha === "1234" &&
+                        perfil === "administrador"
+                    ) {
+
+                        const admin = {
+
+                            id: "admin",
+
+                            nome: "Administrador",
+
+                            usuario: "admin",
+
+                            email: "admin",
+
+                            senha: "1234",
+
+                            tipo: "administrador",
+
+                            status: "Ativo"
+
+                        };
+
+
+                        localStorage.setItem(
+                            "usuarioLogado",
+                            JSON.stringify(admin)
+                        );
+
+
+                        showMessage(
+                            "Login realizado. Entrando...",
+                            "success"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    "administrador/dashboard.html";
+
+                            },
+                            500
+                        );
+
+
+                        return;
+
+                    }
+
+
+
+                    /* =========================
+                       BUSCAR USUÁRIOS
+                    ========================= */
+
+                    let users =
+                        JSON.parse(
+                            localStorage.getItem(
+                                "clinicaUsuarios"
+                            )
+                        ) || [];
+
+
+
+                    /*
+                     * Compatibilidade com a lista
+                     * antiga de usuários.
+                     */
+
+                    if (
+                        users.length === 0
+                    ) {
+
+                        users =
+                            JSON.parse(
+                                localStorage.getItem(
+                                    "usuarios"
+                                )
+                            ) || [];
+
+                    }
+
+
+
+                    /* =========================
+                       PROCURAR USUÁRIO
+                    ========================= */
+
+                    const foundUser =
+                        users.find(
+                            function (user) {
+
+                                const email =
+                                    String(
+                                        user.email || ""
+                                    )
+                                    .trim()
+                                    .toLowerCase();
+
+
+                                const nome =
+                                    String(
+                                        user.nome ||
+                                        user.name ||
+                                        ""
+                                    )
+                                    .trim()
+                                    .toLowerCase();
+
+
+                                const loginUsuario =
+                                    String(
+                                        user.usuario ||
+                                        user.username ||
+                                        ""
+                                    )
+                                    .trim()
+                                    .toLowerCase();
+
+
+                                const usuarioDigitado =
+                                    usuario
+                                        .toLowerCase();
+
+
+                                const senhaUsuario =
+                                    String(
+                                        user.senha ||
+                                        user.password ||
+                                        ""
+                                    );
+
+
+                                const tipoUsuario =
+                                    String(
+                                        user.tipo ||
+                                        user.role ||
+                                        user.perfil ||
+                                        ""
+                                    )
+                                    .toLowerCase()
+                                    .trim();
+
+
+                                /*
+                                 * Pode entrar usando:
+                                 * - usuário
+                                 * - e-mail
+                                 * - nome
+                                 */
+
+                                const usuarioCorreto =
+                                    email ===
+                                        usuarioDigitado ||
+
+                                    nome ===
+                                        usuarioDigitado ||
+
+                                    loginUsuario ===
+                                        usuarioDigitado;
+
+
+                                const senhaCorreta =
+                                    senhaUsuario ===
+                                    senha;
+
+
+                                const perfilCorreto =
+                                    tipoUsuario ===
+                                    perfil;
+
+
+                                return (
+                                    usuarioCorreto &&
+                                    senhaCorreta &&
+                                    perfilCorreto
+                                );
+
+                            }
+                        );
+
+
+
+                    /* =========================
+                       USUÁRIO NÃO ENCONTRADO
+                    ========================= */
+
+                    if (!foundUser) {
+
+                        showMessage(
+                            "Usuário, senha ou tipo de usuário incorreto.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+
+                    /* =========================
+                       VERIFICAR STATUS
+                    ========================= */
+
+                    const status =
+                        String(
+                            foundUser.status ||
+                            "Ativo"
+                        )
+                        .toLowerCase()
+                        .trim();
+
+
+                    if (
+                        status !== "ativo"
+                    ) {
+
+                        showMessage(
+                            "Este usuário está inativo e não pode acessar o sistema.",
+                            "error"
+                        );
+
+                        return;
+
+                    }
+
+
+
+                    /* =========================
+                       NORMALIZAR USUÁRIO
+                    ========================= */
+
+                    const usuarioLogado = {
+
+                        ...foundUser,
+
+                        nome:
+                            foundUser.nome ||
+                            foundUser.name ||
+                            "Usuário",
+
+                        tipo:
+                            foundUser.tipo ||
+                            foundUser.role ||
+                            foundUser.perfil,
+
+                        status: "Ativo"
+
+                    };
+
+
+
+                    /* =========================
+                       SALVAR LOGIN
+                    ========================= */
+
+                    localStorage.setItem(
+                        "usuarioLogado",
+                        JSON.stringify(
+                            usuarioLogado
+                        )
+                    );
+
+
+
+                    /* =========================
+                       MENSAGEM
+                    ========================= */
+
+                    showMessage(
+                        "Login realizado com sucesso. Entrando...",
+                        "success"
+                    );
+
+
+
+                    /* =========================
+                       REDIRECIONAMENTO
+                    ========================= */
+
+                    setTimeout(
+                        function () {
+
+
+                            if (
+                                usuarioLogado.tipo ===
+                                "medico"
+                            ) {
+
+                                window.location.href =
+                                    "medico/dashboard.html";
+
+                            }
+
+
+                            else if (
+                                usuarioLogado.tipo ===
+                                "recepcionista"
+                            ) {
+
+                                window.location.href =
+                                    "recepcionista/dashboard.html";
+
+                            }
+
+
+                            else if (
+                                usuarioLogado.tipo ===
+                                "paciente"
+                            ) {
+
+                                window.location.href =
+                                    "paciente/dashboard.html";
+
+                            }
+
+
+                            else if (
+                                usuarioLogado.tipo ===
+                                "administrador"
+                            ) {
+
+                                window.location.href =
+                                    "administrador/dashboard.html";
+
+                            }
+
+
+                            else {
+
+                                showMessage(
+                                    "Perfil de usuário inválido.",
+                                    "error"
+                                );
+
+                            }
+
+
+                        },
+                        500
+                    );
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>

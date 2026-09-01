@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica Vida+ | Minhas consultas</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            width: 230px;
+
+            background: #fff;
+            border-right: 1px solid #e5e7eb;
+
+            padding: 24px 15px;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 0 8px;
+            margin-bottom: 40px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+            font-weight: bold;
+        }
+
+        .brand h2 {
+            font-size: 15px;
+        }
+
+        .brand span {
+            display: block;
+            margin-top: 3px;
+
+            color: #8a94a6;
+            font-size: 8px;
+        }
+
+        nav {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        nav a {
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 0 12px;
+
+            border-radius: 8px;
+
+            text-decoration: none;
+
+            color: #667085;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background: #edf3ff;
+            color: #2563eb;
+        }
+
+        nav a span {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 13px 7px;
+
+            border-top: 1px solid #edf0f4;
+        }
+
+        .profile-avatar {
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            background: #eaf1ff;
+            color: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+            font-weight: bold;
+        }
+
+        .profile strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .profile small {
+            display: block;
+            margin-top: 3px;
+
+            color: #98a2b3;
+            font-size: 7px;
+        }
+
+        .logout {
+            width: 100%;
+            height: 37px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #f7f8fa;
+            color: #667085;
+
+            cursor: pointer;
+
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .logout:hover {
+            background: #fff1f1;
+            color: #d92d20;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        main {
+            margin-left: 230px;
+
+            min-height: 100vh;
+
+            padding: 30px 38px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .topbar small {
+            color: #2563eb;
+
+            font-size: 8px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .topbar h1 {
+            margin-top: 6px;
+
+            font-size: 25px;
+        }
+
+        .clock {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            gap: 4px;
+
+            color: #8a94a6;
+
+            font-size: 8px;
+            text-transform: capitalize;
+        }
+
+        .clock strong {
+            color: #344054;
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+            border-radius: 13px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 3px 12px
+                rgba(16,24,40,.035);
+        }
+
+        .card-header {
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            margin-bottom: 20px;
+        }
+
+        .card-header h2 {
+            font-size: 15px;
+        }
+
+        .card-header p {
+            margin-top: 5px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+        }
+
+
+        /* =========================
+           FILTROS
+        ========================= */
+
+        .filters {
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr;
+
+            gap: 10px;
+
+            margin-bottom: 22px;
+        }
+
+        .input,
+        .select {
+            width: 100%;
+            height: 38px;
+
+            border: 1px solid #dfe4ea;
+
+            border-radius: 8px;
+
+            padding: 0 11px;
+
+            outline: none;
+
+            background: white;
+
+            color: #344054;
+
+            font-size: 9px;
+        }
+
+        .input:focus,
+        .select:focus {
+            border-color: #2563eb;
+        }
+
+
+        /* =========================
+           SEÇÃO
+        ========================= */
+
+        .section-title {
+            display: flex;
+
+            align-items: center;
+            gap: 8px;
+
+            margin: 22px 0 11px;
+
+            padding-bottom: 10px;
+
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .section-title h3 {
+            font-size: 11px;
+        }
+
+        .section-count {
+            padding: 4px 7px;
+
+            border-radius: 6px;
+
+            background: #edf3ff;
+
+            color: #2563eb;
+
+            font-size: 7px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           CONSULTA
+        ========================= */
+
+        .appointment {
+            display: grid;
+
+            grid-template-columns:
+                65px 1fr auto;
+
+            align-items: center;
+
+            gap: 15px;
+
+            padding: 15px;
+
+            margin-bottom: 9px;
+
+            border: 1px solid #e7ebf0;
+
+            border-radius: 10px;
+
+            background: #fff;
+
+            transition: .2s;
+        }
+
+        .appointment:hover {
+            border-color: #cbd8ef;
+
+            box-shadow:
+                0 3px 10px
+                rgba(16,24,40,.04);
+        }
+
+        .date-box {
+            width: 58px;
+            height: 58px;
+
+            border-radius: 9px;
+
+            background: #edf3ff;
+            color: #2563eb;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .date-box strong {
+            font-size: 17px;
+        }
+
+        .date-box span {
+            margin-top: 2px;
+
+            font-size: 7px;
+
+            text-transform: uppercase;
+        }
+
+        .appointment-info strong {
+            display: block;
+
+            color: #344054;
+
+            font-size: 10px;
+        }
+
+        .appointment-info span {
+            display: block;
+
+            margin-top: 5px;
+
+            color: #98a2b3;
+
+            font-size: 8px;
+        }
+
+        .appointment-details {
+            display: flex;
+
+            gap: 14px;
+
+            margin-top: 8px;
+        }
+
+        .appointment-details span {
+            margin: 0;
+
+            color: #667085;
+
+            font-size: 7px;
+        }
+
+        .appointment-status {
+            min-width: 72px;
+
+            text-align: center;
+
+            padding: 6px 8px;
+
+            border-radius: 6px;
+
+            background: #ecfdf3;
+            color: #027a48;
+
+            font-size: 7px;
+
+            font-weight: bold;
+        }
+
+        .appointment-status.pending {
+            background: #fffaeb;
+            color: #b54708;
+        }
+
+        .appointment-status.cancelled {
+            background: #fef3f2;
+            color: #b42318;
+        }
+
+
+        /* =========================
+           VAZIO
+        ========================= */
+
+        .empty {
+            padding: 35px 20px;
+
+            text-align: center;
+
+            border: 1px dashed #dfe4ea;
+
+            border-radius: 10px;
+
+            color: #98a2b3;
+        }
+
+        .empty-icon {
+            width: 48px;
+            height: 48px;
+
+            margin: 0 auto 10px;
+
+            border-radius: 50%;
+
+            background: #f2f4f7;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #98a2b3;
+
+            font-size: 18px;
+        }
+
+        .empty strong {
+            display: block;
+
+            color: #667085;
+
+            font-size: 9px;
+
+            margin-bottom: 5px;
+        }
+
+        .empty p {
+            font-size: 8px;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 190px;
+            }
+
+            main {
+                margin-left: 190px;
+
+                padding: 25px 20px;
+            }
+
+            .appointment {
+                grid-template-columns:
+                    58px 1fr;
+            }
+
+            .appointment-status {
+                grid-column: 2;
+
+                justify-self: start;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+            }
+
+            main {
+                margin-left: 0;
+            }
+
+            .topbar {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+            .clock {
+                align-items: flex-start;
+            }
+
+            .filters {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                +
+            </div>
+
+            <div>
+
+                <h2>
+                    Clínica Vida+
+                </h2>
+
+                <span>
+                    Área do Paciente
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="dashboard.html">
+
+                <span>⌂</span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="consultas.html"
+                class="active"
+            >
+
+                <span>▣</span>
+
+                Minhas consultas
+
+            </a>
+
+
+            <a href="prontuarios.html">
+
+                <span>▤</span>
+
+                Prontuários
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+
+            <div class="profile">
+
+                <div
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    PA
+                </div>
+
+                <div>
+
+                    <strong id="profileName">
+                        Paciente
+                    </strong>
+
+                    <small>
+                        Paciente
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout"
+                id="logoutButton"
+            >
+                ↪ &nbsp; Sair
+            </button>
+
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main>
+
+
+        <header class="topbar">
+
+            <div>
+
+                <small>
+                    ÁREA DO PACIENTE
+                </small>
+
+                <h1>
+                    Minhas consultas
+                </h1>
+
+            </div>
+
+
+            <div class="clock">
+
+                <span id="currentDate">
+                    Carregando...
+                </span>
+
+                <strong id="currentTime">
+                    00:00:00
+                </strong>
+
+            </div>
+
+        </header>
+
+
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Histórico de consultas
+                    </h2>
+
+                    <p>
+                        Consulte suas próximas consultas e seu histórico de atendimentos.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 FILTROS
+            ========================= -->
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    class="input"
+                    id="searchInput"
+                    placeholder="Pesquisar por médico ou especialidade..."
+                >
+
+
+                <select
+                    class="select"
+                    id="statusFilter"
+                >
+
+                    <option value="todas">
+                        Todas as consultas
+                    </option>
+
+                    <option value="agendadas">
+                        Agendadas
+                    </option>
+
+                    <option value="realizadas">
+                        Realizadas
+                    </option>
+
+                    <option value="canceladas">
+                        Canceladas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- =========================
+                 PRÓXIMAS
+            ========================= -->
+
+            <div class="section-title">
+
+                <h3>
+                    Próximas consultas
+                </h3>
+
+                <span
+                    class="section-count"
+                    id="upcomingCount"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div id="upcomingList"></div>
+
+
+
+            <!-- =========================
+                 ANTERIORES
+            ========================= -->
+
+            <div class="section-title">
+
+                <h3>
+                    Consultas anteriores
+                </h3>
+
+                <span
+                    class="section-count"
+                    id="previousCount"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div id="previousList"></div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <script>
+
+        /* ======================================
+           PROTEÇÃO DE LOGIN
+        ====================================== */
+
+        const loggedUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "usuarioLogado"
+                )
+            );
+
+
+        if (
+            !loggedUser
+        ) {
+
+            window.location.href =
+                "../login/login.html";
+
+        }
+
+
+        if (
+            loggedUser &&
+            String(
+                loggedUser.tipo || ""
+            ).toLowerCase() !== "paciente"
+        ) {
+
+            window.location.href =
+                "../login/login.html";
+
+        }
+
+
+
+        /* ======================================
+           INICIAIS
+        ====================================== */
+
+        function initials(name) {
+
+            if (!name) {
+
+                return "PA";
+
+            }
+
+
+            return name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(
+                    function(item) {
+
+                        return item
+                            .charAt(0)
+                            .toUpperCase();
+
+                    }
+                )
+                .join("");
+
+        }
+
+
+        if (loggedUser) {
+
+            document.getElementById(
+                "profileName"
+            ).textContent =
+                loggedUser.nome ||
+                loggedUser.name ||
+                "Paciente";
+
+
+            document.getElementById(
+                "profileAvatar"
+            ).textContent =
+                initials(
+                    loggedUser.nome ||
+                    loggedUser.name
+                );
+
+        }
+
+
+
+        /* ======================================
+           DATA E HORA
+        ====================================== */
+
+        function updateClock() {
+
+            const now =
+                new Date();
+
+
+            document.getElementById(
+                "currentDate"
+            ).textContent =
+                now.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        weekday: "long",
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            document.getElementById(
+                "currentTime"
+            ).textContent =
+                now.toLocaleTimeString(
+                    "pt-BR"
+                );
+
+        }
+
+
+        updateClock();
+
+
+        setInterval(
+            updateClock,
+            1000
+        );
+
+
+
+        /* ======================================
+           CONSULTAS
+        ====================================== */
+
+        let appointments =
+            JSON.parse(
+                localStorage.getItem(
+                    "clinicaConsultas"
+                )
+            ) || [];
+
+
+
+        /* ======================================
+           DADOS DO PACIENTE
+        ====================================== */
+
+        const patientId =
+            loggedUser
+                ? String(
+                    loggedUser.id ||
+                    loggedUser._id ||
+                    ""
+                ).trim()
+                : "";
+
+
+        const patientEmail =
+            loggedUser
+                ? String(
+                    loggedUser.email ||
+                    ""
+                )
+                .trim()
+                .toLowerCase()
+                : "";
+
+
+        const patientName =
+            loggedUser
+                ? String(
+                    loggedUser.nome ||
+                    loggedUser.name ||
+                    ""
+                )
+                .trim()
+                .toLowerCase()
+                : "";
+
+
+
+        /* ======================================
+           NORMALIZAR TEXTO
+        ====================================== */
+
+        function normalize(value) {
+
+            return String(
+                value || ""
+            )
+            .trim()
+            .toLowerCase();
+
+        }
+
+
+
+        /* ======================================
+           IDENTIFICAR PACIENTE
+        ====================================== */
+
+        function isMyAppointment(
+            appointment
+        ) {
+
+            const id =
+                normalize(
+                    appointment.pacienteId ||
+                    appointment.idPaciente ||
+                    appointment.patientId ||
+                    appointment.id_paciente
+                );
+
+
+            const email =
+                normalize(
+                    appointment.pacienteEmail ||
+                    appointment.emailPaciente ||
+                    appointment.patientEmail ||
+                    appointment.email_paciente
+                );
+
+
+            const name =
+                normalize(
+                    appointment.pacienteNome ||
+                    appointment.nomePaciente ||
+                    appointment.patientName ||
+                    appointment.nome_paciente ||
+                    appointment.paciente
+                );
+
+
+            /*
+             * Primeiro tenta ID.
+             */
+
+            if (
+                patientId &&
+                id &&
+                id === patientId
+            ) {
+
+                return true;
+
+            }
+
+
+            /*
+             * Depois tenta e-mail.
+             */
+
+            if (
+                patientEmail &&
+                email &&
+                email === patientEmail
+            ) {
+
+                return true;
+
+            }
+
+
+            /*
+             * Por último tenta nome.
+             */
+
+            if (
+                patientName &&
+                name &&
+                name === patientName
+            ) {
+
+                return true;
+
+            }
+
+
+            return false;
+
+        }
+
+
+
+        /* ======================================
+           DATA
+        ====================================== */
+
+        function getDate(
+            appointment
+        ) {
+
+            const value =
+                appointment.data ||
+                appointment.dataConsulta ||
+                appointment.data_consulta ||
+                appointment.date ||
+                appointment.dataAgendamento ||
+                "";
+
+
+            if (!value) {
+
+                return null;
+
+            }
+
+
+            /*
+             * Datas no formato
+             * DD/MM/YYYY
+             */
+
+            if (
+                /^\d{2}\/\d{2}\/\d{4}$/
+                    .test(value)
+            ) {
+
+                const parts =
+                    value.split("/");
+
+
+                const date =
+                    new Date(
+                        Number(parts[2]),
+                        Number(parts[1]) - 1,
+                        Number(parts[0])
+                    );
+
+
+                return date;
+
+            }
+
+
+            const date =
+                new Date(value);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return null;
+
+            }
+
+
+            return date;
+
+        }
+
+
+
+        /* ======================================
+           HORA
+        ====================================== */
+
+        function getTime(
+            appointment
+        ) {
+
+            return (
+                appointment.horario ||
+                appointment.hora ||
+                appointment.time ||
+                appointment.horaConsulta ||
+                "--:--"
+            );
+
+        }
+
+
+
+        /* ======================================
+           MÉDICO
+        ====================================== */
+
+        function getDoctor(
+            appointment
+        ) {
+
+            return (
+                appointment.medicoNome ||
+                appointment.nomeMedico ||
+                appointment.medico ||
+                appointment.doctorName ||
+                "Médico"
+            );
+
+        }
+
+
+
+        /* ======================================
+           ESPECIALIDADE
+        ====================================== */
+
+        function getSpecialty(
+            appointment
+        ) {
+
+            return (
+                appointment.especialidade ||
+                appointment.medicoEspecialidade ||
+                appointment.specialty ||
+                "Especialidade não informada"
+            );
+
+        }
+
+
+
+        /* ======================================
+           STATUS
+        ====================================== */
+
+        function getStatus(
+            appointment
+        ) {
+
+            return String(
+                appointment.status ||
+                appointment.situacao ||
+                appointment.estado ||
+                "Agendada"
+            ).trim();
+
+        }
+
+
+
+        /* ======================================
+           MINHAS CONSULTAS
+        ====================================== */
+
+        let myAppointments =
+            appointments.filter(
+                isMyAppointment
+            );
+
+
+
+        /* ======================================
+           CANCELADA
+        ====================================== */
+
+        function isCancelled(
+            appointment
+        ) {
+
+            const status =
+                normalize(
+                    getStatus(
+                        appointment
+                    )
+                );
+
+
+            return (
+                status.includes("cancel") ||
+                status.includes("cancelada")
+            );
+
+        }
+
+
+
+        /* ======================================
+           REALIZADA
+        ====================================== */
+
+        function isCompleted(
+            appointment
+        ) {
+
+            const status =
+                normalize(
+                    getStatus(
+                        appointment
+                    )
+                );
+
+
+            return (
+                status.includes("realiz") ||
+                status.includes("finaliz") ||
+                status.includes("conclu") ||
+                status.includes("atendid") ||
+                status.includes("concluída") ||
+                status.includes("finalizada")
+            );
+
+        }
+
+
+
+        /* ======================================
+           PRÓXIMA CONSULTA
+        ====================================== */
+
+        function isUpcoming(
+            appointment
+        ) {
+
+            const date =
+                getDate(
+                    appointment
+                );
+
+
+            if (!date) {
+
+                return false;
+
+            }
+
+
+            if (
+                isCancelled(
+                    appointment
+                )
+            ) {
+
+                return false;
+
+            }
+
+
+            if (
+                isCompleted(
+                    appointment
+                )
+            ) {
+
+                return false;
+
+            }
+
+
+            /*
+             * Considera somente a data
+             * para não esconder a consulta
+             * no dia do atendimento.
+             */
+
+            const today =
+                new Date();
+
+
+            today.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            const appointmentDate =
+                new Date(date);
+
+
+            appointmentDate.setHours(
+                0,
+                0,
+                0,
+                0
+            );
+
+
+            return (
+                appointmentDate >= today
+            );
+
+        }
+
+
+
+        /* ======================================
+           ORDENAR
+        ====================================== */
+
+        function compareDates(
+            a,
+            b
+        ) {
+
+            const dateA =
+                getDate(a);
+
+            const dateB =
+                getDate(b);
+
+
+            if (!dateA && !dateB) {
+
+                return 0;
+
+            }
+
+
+            if (!dateA) {
+
+                return 1;
+
+            }
+
+
+            if (!dateB) {
+
+                return -1;
+
+            }
+
+
+            return (
+                dateA.getTime() -
+                dateB.getTime()
+            );
+
+        }
+
+
+
+        /* ======================================
+           RENDERIZAR CONSULTAS
+        ====================================== */
+
+        function renderAppointments() {
+
+            /*
+             * Recarrega do localStorage.
+             * Isso permite que uma consulta
+             * criada pela recepcionista
+             * apareça sem precisar alterar
+             * o código.
+             */
+
+            appointments =
+                JSON.parse(
+                    localStorage.getItem(
+                        "clinicaConsultas"
+                    )
+                ) || [];
+
+
+            myAppointments =
+                appointments.filter(
+                    isMyAppointment
+                );
+
+
+            const search =
+                document.getElementById(
+                    "searchInput"
+                )
+                .value
+                .trim()
+                .toLowerCase();
+
+
+            const filter =
+                document.getElementById(
+                    "statusFilter"
+                )
+                .value;
+
+
+            let filtered =
+                myAppointments.filter(
+                    function(appointment) {
+
+                        const doctor =
+                            normalize(
+                                getDoctor(
+                                    appointment
+                                )
+                            );
+
+
+                        const specialty =
+                            normalize(
+                                getSpecialty(
+                                    appointment
+                                )
+                            );
+
+
+                        const matchesSearch =
+                            !search ||
+                            doctor.includes(search) ||
+                            specialty.includes(search);
+
+
+                        if (!matchesSearch) {
+
+                            return false;
+
+                        }
+
+
+                        if (
+                            filter ===
+                            "agendadas"
+                        ) {
+
+                            return (
+                                !isCancelled(
+                                    appointment
+                                ) &&
+                                !isCompleted(
+                                    appointment
+                                )
+                            );
+
+                        }
+
+
+                        if (
+                            filter ===
+                            "realizadas"
+                        ) {
+
+                            return isCompleted(
+                                appointment
+                            );
+
+                        }
+
+
+                        if (
+                            filter ===
+                            "canceladas"
+                        ) {
+
+                            return isCancelled(
+                                appointment
+                            );
+
+                        }
+
+
+                        return true;
+
+                    }
+                );
+
+
+            filtered.sort(
+                compareDates
+            );
+
+
+            const upcoming =
+                filtered.filter(
+                    isUpcoming
+                );
+
+
+            const previous =
+                filtered.filter(
+                    function(appointment) {
+
+                        return !isUpcoming(
+                            appointment
+                        );
+
+                    }
+                );
+
+
+            /*
+             * Mais recente primeiro
+             * nas consultas anteriores.
+             */
+
+            previous.sort(
+                function(a, b) {
+
+                    return (
+                        compareDates(b, a)
+                    );
+
+                }
+            );
+
+
+            document.getElementById(
+                "upcomingCount"
+            ).textContent =
+                upcoming.length;
+
+
+            document.getElementById(
+                "previousCount"
+            ).textContent =
+                previous.length;
+
+
+            renderList(
+                "upcomingList",
+                upcoming,
+                "Nenhuma próxima consulta"
+            );
+
+
+            renderList(
+                "previousList",
+                previous,
+                "Nenhuma consulta anterior"
+            );
+
+        }
+
+
+
+        /* ======================================
+           RENDERIZAR LISTA
+        ====================================== */
+
+        function renderList(
+            elementId,
+            list,
+            emptyText
+        ) {
+
+            const container =
+                document.getElementById(
+                    elementId
+                );
+
+
+            container.innerHTML = "";
+
+
+            if (
+                list.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div class="empty">
+
+                        <div class="empty-icon">
+                            ▣
+                        </div>
+
+                        <strong>
+                            ${emptyText}
+                        </strong>
+
+                        <p>
+                            Não há consultas para exibir nesta seção.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            list.forEach(
+                function(appointment) {
+
+                    const date =
+                        getDate(
+                            appointment
+                        );
+
+
+                    const doctor =
+                        getDoctor(
+                            appointment
+                        );
+
+
+                    const specialty =
+                        getSpecialty(
+                            appointment
+                        );
+
+
+                    const time =
+                        getTime(
+                            appointment
+                        );
+
+
+                    const status =
+                        getStatus(
+                            appointment
+                        );
+
+
+                    let statusClass =
+                        "";
+
+
+                    if (
+                        isCancelled(
+                            appointment
+                        )
+                    ) {
+
+                        statusClass =
+                            "cancelled";
+
+                    }
+
+                    else if (
+                        !isCompleted(
+                            appointment
+                        )
+                    ) {
+
+                        statusClass =
+                            "pending";
+
+                    }
+
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    div.className =
+                        "appointment";
+
+
+                    let dateNumber =
+                        "--";
+
+
+                    let month =
+                        "--";
+
+
+                    if (date) {
+
+                        dateNumber =
+                            date.getDate();
+
+
+                        month =
+                            date.toLocaleDateString(
+                                "pt-BR",
+                                {
+                                    month: "short"
+                                }
+                            );
+
+                    }
+
+
+                    div.innerHTML = `
+
+                        <div class="date-box">
+
+                            <strong>
+                                ${dateNumber}
+                            </strong>
+
+                            <span>
+                                ${month}
+                            </span>
+
+                        </div>
+
+
+                        <div class="appointment-info">
+
+                            <strong>
+                                ${doctor}
+                            </strong>
+
+                            <span>
+                                ${specialty}
+                            </span>
+
+
+                            <div class="appointment-details">
+
+                                <span>
+                                    📅 ${
+                                        date
+                                            ? date.toLocaleDateString(
+                                                "pt-BR"
+                                            )
+                                            : "Data não informada"
+                                    }
+                                </span>
+
+
+                                <span>
+                                    🕐 ${time}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="appointment-status ${statusClass}">
+
+                            ${status}
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(
+                        div
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* ======================================
+           FILTRO DE PESQUISA
+        ====================================== */
+
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .addEventListener(
+                "input",
+                renderAppointments
+            );
+
+
+
+        /* ======================================
+           FILTRO DE STATUS
+        ====================================== */
+
+        document
+            .getElementById(
+                "statusFilter"
+            )
+            .addEventListener(
+                "change",
+                renderAppointments
+            );
+
+
+
+        /* ======================================
+           LOGOUT
+        ====================================== */
+
+        document
+            .getElementById(
+                "logoutButton"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    localStorage.removeItem(
+                        "usuarioLogado"
+                    );
+
+
+                    localStorage.removeItem(
+                        "pacienteLogado"
+                    );
+
+
+                    window.location.href =
+                        "../login/login.html";
+
+                }
+            );
+
+
+
+        /* ======================================
+           ATUALIZA AUTOMATICAMENTE
+        ====================================== */
+
+        renderAppointments();
+
+
+        /*
+         * Verifica novamente a cada 2 segundos.
+         * Assim, se a recepcionista alterar
+         * uma consulta enquanto esta página
+         * estiver aberta, ela poderá aparecer
+         * automaticamente.
+         */
+
+        setInterval(
+            renderAppointments,
+            2000
+        );
+
+    </script>
+
+
+</body>
+
+</html>
