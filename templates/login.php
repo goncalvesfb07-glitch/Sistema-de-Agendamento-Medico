@@ -1,84 +1,38 @@
-<?php
-session_start();
-?>
-
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Agendamento Médico</title>
-
-    <link rel="stylesheet" href="../public/css/style.css">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Vida+ | Login</title>
+<link rel="stylesheet" href="../public/css/app.css">
 </head>
-
 <body>
-
-<div class="container">
-
-    <div class="left">
-        <div class="logo">
-            <i class="fa-solid fa-hospital"></i>
+<div class="login-page">
+    <div class="login-card">
+        <div class="login-brand">
+            <div class="icon">✚</div>
+            <h1>Clínica Vida+</h1>
+            <p>Sistema de Agendamento Médico</p>
         </div>
 
-        <h1>Clínica Vida+</h1>
-
-        <p>Sistema de Agendamento Médico</p>
-    </div>
-
-    <div class="right">
+        <?php if (isset($_SESSION["erro"])): ?>
+            <div class="alert alert-error"><?= htmlspecialchars($_SESSION["erro"]) ?></div>
+            <?php unset($_SESSION["erro"]); ?>
+        <?php endif; ?>
 
         <form action="../auth.php" method="POST">
-
-            <h2>Login</h2>
-
-            <?php
-            if (isset($_SESSION["erro"])) {
-                echo "<p style='color:red; text-align:center; margin-bottom:15px;'>"
-                    . $_SESSION["erro"] .
-                    "</p>";
-
-                unset($_SESSION["erro"]);
-
-            }
-            ?>
-
-
-<div class="inputBox">
-                <i class="fa-solid fa-envelope"></i>
-
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="E-mail"
-                    required>
+            <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" type="email" name="email" required autocomplete="email">
             </div>
-
-            <div class="inputBox">
-                <i class="fa-solid fa-lock"></i>
-
-                <input
-                    type="password"
-                    name="senha"
-                    placeholder="Senha"
-                    required>
+            <div class="field">
+                <label for="senha">Senha</label>
+                <input id="senha" type="password" name="senha" required autocomplete="current-password">
             </div>
-
-            <button type="submit">
-                Entrar
-            </button>
-
+            <button class="btn-primary" type="submit">Entrar</button>
         </form>
-
     </div>
-
 </div>
-
-<script src="../public/js/script.js"></script>
-
 </body>
 </html>

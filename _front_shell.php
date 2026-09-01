@@ -1,0 +1,4 @@
+<?php
+$links=$links??[];$title=$title??"Clínica Vida+";$role=$role??"Sistema";$depth=$depth??2;
+$asset=str_repeat("../",$depth)."assets/";$logout=str_repeat("../",$depth)."logout.php";
+?><!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?=htmlspecialchars($title)?></title><link rel="stylesheet" href="<?=$asset?>css/app.css"></head><body><div class="app"><aside class="side"><div class="brand">Clínica Vida+<small><?=htmlspecialchars($role)?></small></div><nav class="nav"><?php foreach($links as $l): ?><a href="<?=$l[0]?>"><?=$l[1]?></a><?php endforeach; ?><a href="<?=$logout?>">Sair</a></nav></aside><main class="main"><div class="top"><h1><?=htmlspecialchars($title)?></h1><span class="muted"><?=htmlspecialchars($_SESSION["nome"]??"")?></span></div><?=$content??""?></main></div><script src="<?=$asset?>js/app.js"></script></body></html>

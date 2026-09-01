@@ -6,45 +6,27 @@ session_start();
 |--------------------------------------------------------------------------
 | Página: consultar médicos
 |--------------------------------------------------------------------------
-| Objetivo:
-| Permitir que a recepção visualize os médicos cadastrados.
+| Permite que a recepção visualize os médicos cadastrados.
 |--------------------------------------------------------------------------
 */
 
-
 // Verifica se o usuário está logado
 if (!isset($_SESSION["id"])) {
-
-    header("Location: ../../login.php)");
+    header("Location: ../../../public/index.php");
     exit;
-
 }
-
 
 // Verifica se o usuário é recepcionista
 if ($_SESSION["perfil"] !== "Recepcionista") {
-
     header("Location: ../dashboard.php");
     exit;
-
 }
 
-
 require_once "../../../config/conexao.php";
-
 
 /*
 |--------------------------------------------------------------------------
 | Busca os médicos cadastrados
-|--------------------------------------------------------------------------
-|
-| Os dados estão distribuídos entre:
-|
-| usuarios
-| medicos
-| medicos_especialidades
-| especialidades
-|
 |--------------------------------------------------------------------------
 */
 
@@ -84,9 +66,7 @@ $sql = "SELECT
 
         ORDER BY u.nome ASC";
 
-
 $stmt = $conn->prepare($sql);
-
 $stmt->execute();
 
 $resultado = $stmt->get_result();
@@ -99,116 +79,264 @@ $resultado = $stmt->get_result();
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>Médicos Cadastrados</title>
+<title>Médicos | Clínica Vida+</title>
+
+<link
+    rel="stylesheet"
+    href="../../../public/css/app.css"
+>
+```
 
 </head>
 
 <body>
 
-    <h1>Médicos Cadastrados</h1>
+<div class="layout">
+
+```
+<!-- MENU LATERAL -->
+<aside class="sidebar">
+
+    <div class="brand">
+        Clínica Vida+
+        <small>Recepção</small>
+    </div>
+
+    <nav class="nav">
+
+        <a href="../dashboard.php">
+            Dashboard
+        </a>
+
+        <a href="../pacientes/index.php">
+            Pacientes
+        </a>
+
+        <a class="active" href="index.php">
+            Médicos
+        </a>
+
+        <a href="../agenda/index.php">
+            Agenda
+        </a>
+
+        <a href="../consultas/index.php">
+            Consultas
+        </a>
+
+        <a href="../../../logout.php">
+            Sair
+        </a>
+
+    </nav>
+
+</aside>
 
 
-    <table border="1" cellpadding="8">
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="main">
 
-        <thead>
+    <div class="topbar">
 
-            <tr>
+        <div>
 
-                <th>Nome</th>
+            <h1>Médicos</h1>
 
-                <th>CRM</th>
+            <p>
+                Consulte os médicos cadastrados na clínica.
+            </p>
 
-                <th>Especialidade</th>
+        </div>
 
-                <th>Telefone</th>
+        <div class="user">
 
-                <th>E-mail</th>
+            <?= htmlspecialchars($_SESSION["nome"] ?? "") ?>
 
-                <th>Status</th>
+        </div>
 
-            </tr>
-
-        </thead>
+    </div>
 
 
-        <tbody>
+    <!-- CARD -->
+    <div class="card">
 
-            <?php if ($resultado->num_rows > 0): ?>
+        <div class="card-header">
 
-                <?php while ($medico = $resultado->fetch_assoc()): ?>
+            <div>
+
+                <h2>Médicos cadastrados</h2>
+
+                <p>
+                    Lista de profissionais disponíveis no sistema.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
 
                     <tr>
 
-                        <td>
-                            <?= htmlspecialchars($medico["nome"]); ?>
-                        </td>
+                        <th>Nome</th>
 
-                        <td>
-                            <?= htmlspecialchars($medico["crm_numero"]); ?>
-                            /
-                            <?= htmlspecialchars($medico["crm_uf"]); ?>
-                        </td>
+                        <th>CRM</th>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $medico["especialidades"] ?? "Não informada"
-                            ); ?>
-                        </td>
+                        <th>Especialidade</th>
 
-                        <td>
-                            <?= htmlspecialchars(
-                                $medico["telefone"] ?? ""
-                            ); ?>
-                        </td>
+                        <th>Telefone</th>
 
-                        <td>
-                            <?= htmlspecialchars($medico["email"]); ?>
-                        </td>
+                        <th>E-mail</th>
 
-                        <td>
-
-                            <?php if ($medico["ativo"] == 1): ?>
-
-                                Ativo
-
-                            <?php else: ?>
-
-                                Inativo
-
-                            <?php endif; ?>
-
-                        </td>
+                        <th>Status</th>
 
                     </tr>
 
-                <?php endwhile; ?>
-
-            <?php else: ?>
-
-                <tr>
-
-                    <td colspan="6">
-                        Nenhum médico cadastrado.
-                    </td>
-
-                </tr>
-
-            <?php endif; ?>
-
-        </tbody>
-
-    </table>
+                </thead>
 
 
-    <br>
+                <tbody>
 
-    <a href="../dashboard.php">
-        Voltar para o Dashboard
-    </a>
+                    <?php if ($resultado->num_rows > 0): ?>
+
+                        <?php while ($medico = $resultado->fetch_assoc()): ?>
+
+                            <tr>
+
+                                <td>
+
+                                    <strong>
+                                        <?= htmlspecialchars(
+                                            $medico["nome"]
+                                        ); ?>
+                                    </strong>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $medico["crm_numero"]
+                                    ); ?>
+
+                                    /
+
+                                    <?= htmlspecialchars(
+                                        $medico["crm_uf"]
+                                    ); ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $medico["especialidades"]
+                                        ?? "Não informada"
+                                    ); ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $medico["telefone"]
+                                        ?? "Não informado"
+                                    ); ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?= htmlspecialchars(
+                                        $medico["email"]
+                                    ); ?>
+
+                                </td>
+
+
+                                <td>
+
+                                    <?php if ($medico["ativo"] == 1): ?>
+
+                                        <span class="status status-active">
+                                            Ativo
+                                        </span>
+
+                                    <?php else: ?>
+
+                                        <span class="status status-inactive">
+                                            Inativo
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </td>
+
+                            </tr>
+
+                        <?php endwhile; ?>
+
+
+                    <?php else: ?>
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="empty"
+                            >
+
+                                Nenhum médico cadastrado.
+
+                            </td>
+
+                        </tr>
+
+                    <?php endif; ?>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <div class="card-footer">
+
+            <a
+                class="btn btn-secondary"
+                href="../dashboard.php"
+            >
+                Voltar para o Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+```
+
+</div>
+
+<script src="../../../public/js/app.js"></script>
 
 </body>
 
