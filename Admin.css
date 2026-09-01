@@ -1,0 +1,87 @@
+/* Administrador - Tema Azul Escuro */
+.admin-body {
+  background-color: #1a237e; /* Azul escuro */
+  color: #e8eaf6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.admin-header {
+  background-color: #283593;
+  padding: 20px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #c5cae9;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.admin-nav {
+  background-color: #3949ab;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px 0;
+}
+
+.admin-nav a {
+  color: #c5cae9;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.admin-nav a:hover {
+  background-color: #5c6bc0;
+  color: white;
+}
+
+.admin-container {
+  padding: 30px;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #283593;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+
+/* Botões */
+.admin-btn {
+  background-color: #3949ab;
+  color: #e8eaf6;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-btn:hover {
+  background-color: #5c6bc0;
+}
+
+/* Tabelas */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #3949ab;
+  color: #e8eaf6;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #5c6bc0;
+}
+
+.admin-table thead {
+  background-color: #283593;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #5c6bc0;
+}
